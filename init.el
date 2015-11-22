@@ -25,6 +25,7 @@
 
 (load "~/.emacs.d/configs/ui")
 (load "~/.emacs.d/configs/editing")
+(load "~/.emacs.d/configs/git")
 ;;(load "~/.emacs.d/configs/windows")
 ;;(load "~/.emacs.d/configs/helm")
 ;;(load "~/.emacs.d/configs/programmin1g")
