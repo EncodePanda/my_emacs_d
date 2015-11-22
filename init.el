@@ -29,6 +29,6 @@
 (load "~/.emacs.d/configs/windows")
 ;;(load "~/.emacs.d/configs/helm")
 (load "~/.emacs.d/configs/programming")
-;;(load "~/.emacs.d/configs/scala")
+(load "~/.emacs.d/configs/scala")
 ;;(load "~/.emacs.d/configs/haskell")
 ;;(load "~/.emacs.d/configs/other")
