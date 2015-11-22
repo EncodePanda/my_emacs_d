@@ -23,7 +23,7 @@
 (auto-package-update-maybe)
 (key-chord-mode 1)
 
-;;(load "~/.emacs.d/configs/ui")
+(load "~/.emacs.d/configs/ui")
 ;;(load "~/.emacs.d/configs/editing")
 ;;(load "~/.emacs.d/configs/windows")
 ;;(load "~/.emacs.d/configs/helm")
