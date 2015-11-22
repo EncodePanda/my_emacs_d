@@ -1,4 +1,6 @@
-(packages-conditional-install '(zoom-frm neotree))
+(packages-conditional-install '(zoom-frm neotree monokai-theme))
+
+(load-theme 'monokai t)
 
 (desktop-save-mode 1)
 (tool-bar-mode 0) 
