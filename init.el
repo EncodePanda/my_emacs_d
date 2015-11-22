@@ -18,7 +18,7 @@
     (package-conditional-install (car packages))
     (packages-conditional-install (cdr packages))))
 
-(packages-conditional-install '(auto-package-update key-chord))
+(packages-conditional-install '(auto-package-update key-chord monokai-theme))
 
 (auto-package-update-maybe)
 (key-chord-mode 1)
