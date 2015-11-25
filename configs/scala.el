@@ -2,6 +2,12 @@
 
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
+;; (add-hook 'scala-mode-hook #'yas-minor-mode)
+;; (with-eval-after-load 'company
+  ;; (define-key company-active-map [tab] nil)
+  ;; (define-key company-active-map (kbd "M-n") #'company-select-next)
+  ;; )
+
 ;; ignore first test
 (defun ignore-fst-test ()
   "Change me!"
