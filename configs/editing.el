@@ -1,4 +1,4 @@
-(packages-conditional-install '(goto-chg multiple-cursors avy))
+(packages-conditional-install '(goto-chg multiple-cursors avy undo-tree))
 
 (defun toggle-comment-on-line ()
   "comment or uncomment current line"
@@ -40,3 +40,5 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-c j") 'avy-goto-subword-1)
+
+(global-undo-tree-mode 1)
