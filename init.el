@@ -32,7 +32,3 @@
 (load "~/.emacs.d/configs/scala")
 (load "~/.emacs.d/configs/erlang")
 (load "~/.emacs.d/configs/other")
-
-;; uncomment below if on OSX
-;; (load "~/.emacs.d/configs/osx")
-;; (set-exec-path-from-shell-PATH)
