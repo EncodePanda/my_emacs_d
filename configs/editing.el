@@ -1,5 +1,11 @@
 (packages-conditional-install '(goto-chg multiple-cursors avy undo-tree))
 
+
+(fset 'delete_word
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([67108896 134217830 kp-delete] 0 "%d")) arg)))
+
+(key-chord-define-global "dw" 'delete_word)
+
 (defun toggle-comment-on-line ()
   "comment or uncomment current line"
   (interactive)
