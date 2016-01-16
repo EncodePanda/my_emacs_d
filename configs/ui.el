@@ -15,7 +15,8 @@
 (global-set-key (kbd "s-<down>") 'shrink-window)
 (global-set-key (kbd "s-<up>") 'enlarge-window)
 
-(global-set-key (kbd "C-+") 'zoom-frm-in)
-(global-set-key (kbd "C-_") 'zoom-frm-out)
+(global-set-key (kbd "C-=") 'zoom-frm-in)
+(global-set-key (kbd "C--") 'zoom-frm-out)
 
 (global-set-key [f8] 'neotree-toggle)
+(global-set-key [f9] 'neotree-find)
