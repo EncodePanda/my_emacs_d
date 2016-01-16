@@ -6,3 +6,5 @@
 (key-chord-define-global "mw" 'ace-maximize-window)
 (key-chord-define-global "zw" 'zoom-window-zoom)
 
+(global-set-key (kbd "M-]") 'next-buffer)
+(global-set-key (kbd "M-[") 'previous-buffer)
