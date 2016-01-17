@@ -1,4 +1,4 @@
-(packages-conditional-install '(goto-chg multiple-cursors avy undo-tree))
+(packages-conditional-install '(goto-chg multiple-cursors avy undo-tree string-edit))
 
 
 (fset 'delete_word
