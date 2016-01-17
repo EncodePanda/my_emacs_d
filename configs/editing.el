@@ -1,10 +1,11 @@
 (packages-conditional-install '(goto-chg multiple-cursors avy undo-tree string-edit))
 
+(key-chord-define-global "kw" 'kill-word)
+(global-set-key "\C-w" 'backward-kill-word)
+(global-set-key "\C-x\C-k" 'kill-region)
+(global-set-key "\C-c\C-k" 'kill-region)
 
-(fset 'delete_word
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([67108896 134217830 kp-delete] 0 "%d")) arg)))
 
-(key-chord-define-global "dw" 'delete_word)
 
 (defun toggle-comment-on-line ()
   "comment or uncomment current line"
