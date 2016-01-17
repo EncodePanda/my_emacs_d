@@ -8,6 +8,8 @@
 (global-set-key (kbd "C-c F") 'helm-projectile-grep)
 (key-chord-define-global "gm" 'helm-projectile-grep)
 (global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-m") 'helm-M-x)
+(global-set-key (kbd "C-c C-m") 'helm-M-x)
 (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (key-chord-define-global "fm" 'helm-mini)
