@@ -1,11 +1,7 @@
 (packages-conditional-install '(goto-chg multiple-cursors avy undo-tree string-edit))
 
 (key-chord-define-global "kw" 'kill-word)
-(global-set-key "\C-w" 'backward-kill-word)
-(global-set-key "\C-x\C-k" 'kill-region)
-(global-set-key "\C-c\C-k" 'kill-region)
-
-
+(key-chord-define-global "bw" 'backward-kill-word)
 
 (defun toggle-comment-on-line ()
   "comment or uncomment current line"
