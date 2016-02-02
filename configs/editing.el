@@ -2,6 +2,13 @@
 
 (key-chord-define-global "kw" 'kill-word)
 (key-chord-define-global "bw" 'backward-kill-word)
+(key-chord-define-global "mw" 'mark-word)
+
+(require 'eno)
+(key-chord-define-global "wj" 'eno-word-goto)
+
+(key-chord-define-global "cj" 'avy-goto-subword-1)
+(global-set-key (kbd "C-c j") 'avy-goto-subword-1)
 
 (defun toggle-comment-on-line ()
   "comment or uncomment current line"
@@ -9,7 +16,7 @@
   (comment-or-uncomment-region (line-beginning-position) (line-end-position))
   (next-line))
 (global-set-key (kbd "C-c /") 'toggle-comment-on-line)
-(global-set-key (kbd "C-?") 'toggle-comment-on-line)
+(key-chord-define-global "cl" 'toggle-comment-on-line)
 
 
 (defun copy-line (arg)
@@ -42,6 +49,6 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(global-set-key (kbd "C-c j") 'avy-goto-subword-1)
+
 
 (global-undo-tree-mode 1)
