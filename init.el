@@ -10,7 +10,7 @@
 (defun package-conditional-install (package-name)
   "Install a package if it is not present"
   (unless (package-installed-p package-name)
-  (package-refresh-contents) (package-install package-name)))
+    (package-refresh-contents) (package-install package-name)))
 
 (defun packages-conditional-install (packages)
   "Install list of packages if not present"
@@ -22,6 +22,12 @@
 
 (auto-package-update-maybe)
 (key-chord-mode 1)
+
+;; mac specific settings
+(when (eq system-type 'darwin) 
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'super)
+  )
 
 (load "~/.emacs.d/configs/ui")
 (load "~/.emacs.d/configs/editing")
