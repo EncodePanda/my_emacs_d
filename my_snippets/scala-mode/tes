@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+#Author : Paul Szulc <paul.szulc@gmail.com>
+#name : test("") {}
+# key: tes
+# --
+test("${1:name}") {
+  $0
+}

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+#Author : Paul Szulc <paul.szulc@gmail.com>
+#name : disjunction A \/ B
+# key: dis
+# --
+${1:A} \/ ${2:B}
