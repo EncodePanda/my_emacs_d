@@ -7,3 +7,5 @@
 
 (key-chord-define-global "q[" 'sp-backward-sexp)
 (key-chord-define-global "q]" 'sp-forward-sexp)
+
+(global-linum-mode 1)
