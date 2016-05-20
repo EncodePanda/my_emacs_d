@@ -18,7 +18,7 @@
     (package-conditional-install (car packages))
     (packages-conditional-install (cdr packages))))
 
-(packages-conditional-install '(auto-package-update key-chord))
+(packages-conditional-install '(auto-package-update key-chord keyfreq))
 
 (auto-package-update-maybe)
 (key-chord-mode 1)
@@ -29,6 +29,15 @@
   (setq mac-option-modifier 'super)
   )
 
+(require 'keyfreq)
+(setq keyfreq-excluded-commands
+      '(self-insert-command
+        abort-recursive-edit
+        previous-line
+        next-line))
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
+
 (load "~/.emacs.d/configs/ui")
 (load "~/.emacs.d/configs/editing")
 (load "~/.emacs.d/configs/git")
@@ -38,3 +47,4 @@
 (load "~/.emacs.d/configs/scala")
 (load "~/.emacs.d/configs/erlang")
 (load "~/.emacs.d/configs/other")
+(load "~/.emacs.d/configs/org")
