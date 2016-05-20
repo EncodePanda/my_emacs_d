@@ -1,13 +1,22 @@
-(packages-conditional-install '(ensime scala-mode2))
+(packages-conditional-install '(ensime scala-mode yasnippet))
 
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
-;; (add-hook 'scala-mode-hook #'yas-minor-mode)
-;; (with-eval-after-load 'company
-  ;; (define-key company-active-map [tab] nil)
-  ;; (define-key company-active-map (kbd "M-n") #'company-select-next)
-  ;; )
+(require 'yasnippet)
+
+
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"
+        "~/.emacs.d/my_snippets"
+	))
+(yas-reload-all)
+(add-hook 'scala-mode-hook #'yas-minor-mode)
+(with-eval-after-load 'company
+  (define-key company-active-map [tab] nil)
+  )
+
+(add-hook 'scala-mode-hook #'linum-mode)
 
 ;; ignore first test
 (defun ignore-fst-test ()
