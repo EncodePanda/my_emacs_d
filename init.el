@@ -18,7 +18,15 @@
     (package-conditional-install (car packages))
     (packages-conditional-install (cdr packages))))
 
-(packages-conditional-install '(auto-package-update key-chord keyfreq))
+(setq prettify-symbols-alist
+      '(
+	("lambda" . 955)
+	))
+
+(packages-conditional-install '(auto-package-update key-chord keyfreq eno nyan-mode))
+
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 (auto-package-update-maybe)
 (key-chord-mode 1)
@@ -35,6 +43,7 @@
         abort-recursive-edit
         previous-line
         next-line))
+(nyan-mode 1)
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 
