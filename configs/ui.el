@@ -18,5 +18,5 @@
 (global-set-key (kbd "C-=") 'zoom-frm-in)
 (global-set-key (kbd "C--") 'zoom-frm-out)
 
-(global-set-key [f8] 'neotree-toggle)
-(global-set-key [f9] 'neotree-find)
+(global-set-key (kbd "M-o M-t t") 'neotree-toggle)
+(global-set-key (kbd "M-o M-t f") 'neotree-find)
