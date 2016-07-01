@@ -18,7 +18,7 @@
     (package-conditional-install (car packages))
     (packages-conditional-install (cdr packages))))
 
-(packages-conditional-install '(auto-package-update key-chord keyfreq eno nyan-mode))
+(packages-conditional-install '(auto-package-update key-chord keyfreq eno nyan-mode exec-path-from-shell))
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
