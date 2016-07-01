@@ -1,4 +1,4 @@
-(packages-conditional-install '(goto-chg multiple-cursors avy undo-tree string-edit))
+(packages-conditional-install '(goto-chg multiple-cursors avy undo-tree string-edit highlight-symbol))
 
 (key-chord-define-global "kw" 'kill-word)
 (key-chord-define-global "bw" 'backward-kill-word)
@@ -10,6 +10,12 @@
 
 (key-chord-define-global "cj" 'avy-goto-subword-1)
 (global-set-key (kbd "C-c j") 'avy-goto-subword-1)
+
+(global-set-key (kbd "C-h C-s") 'highlight-symbol-at-point)
+(global-set-key (kbd "C-h C-n") 'highlight-symbol-next)
+(global-set-key (kbd "C-h C-p") 'highlight-symbol-prev)
+
+
 
 (defun toggle-comment-on-line ()
   "comment or uncomment current line"
