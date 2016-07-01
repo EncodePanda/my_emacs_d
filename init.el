@@ -18,11 +18,6 @@
     (package-conditional-install (car packages))
     (packages-conditional-install (cdr packages))))
 
-(setq prettify-symbols-alist
-      '(
-	("lambda" . 955)
-	))
-
 (packages-conditional-install '(auto-package-update key-chord keyfreq eno nyan-mode))
 
 (when (memq window-system '(mac ns))
