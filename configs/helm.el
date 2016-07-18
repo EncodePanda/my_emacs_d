@@ -14,6 +14,7 @@
 (global-set-key (kbd "C-c C-m") 'helm-M-x)
 (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 (global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x r l") 'helm-bookmarks)
 (key-chord-define-global "fm" 'helm-mini)
 (key-chord-define-global "lm" 'helm-do-ag-this-file)
 (key-chord-define-global "cm" 'helm-projectile-switch-project)
