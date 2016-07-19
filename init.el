@@ -18,7 +18,7 @@
     (package-conditional-install (car packages))
     (packages-conditional-install (cdr packages))))
 
-(packages-conditional-install '(auto-package-update key-chord keyfreq eno nyan-mode exec-path-from-shell))
+(packages-conditional-install '(auto-package-update key-chord keyfreq eno company nyan-mode exec-path-from-shell))
 
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
@@ -42,13 +42,15 @@
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 
+(global-company-mode)
+
 (load "~/.emacs.d/configs/ui")
 (load "~/.emacs.d/configs/editing")
 (load "~/.emacs.d/configs/git")
 (load "~/.emacs.d/configs/windows")
 (load "~/.emacs.d/configs/helm")
 (load "~/.emacs.d/configs/programming")
-(load "~/.emacs.d/configs/scala")
+;; (load "~/.emacs.d/configs/scala")
 (load "~/.emacs.d/configs/erlang")
 (load "~/.emacs.d/configs/other")
 (load "~/.emacs.d/configs/org")
