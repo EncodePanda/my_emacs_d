@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Free generator
+# key: free
+# --
+Free[${1:algebra}, ${2:value}]$0

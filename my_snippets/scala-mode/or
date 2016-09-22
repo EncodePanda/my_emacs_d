@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: or
+# key: or
+# --
+${1:Left} \/ ${2:Right}$0
