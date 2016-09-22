@@ -15,6 +15,23 @@
 (global-set-key (kbd "C-h C-n") 'highlight-symbol-next)
 (global-set-key (kbd "C-h C-p") 'highlight-symbol-prev)
 
+(defun uncomment-block ()
+  "uncomments the /* block */"
+  (interactive)
+  (isearch-forward nil 1)
+  (isearch-printing-char 42 1)
+  (isearch-printing-char 47 1)
+  (isearch-exit)
+  (delete-backward-char 1 nil)
+  (delete-backward-char 1 nil)
+  (isearch-backward nil 1)
+  (isearch-printing-char 47 1)
+  (isearch-printing-char 42 1)
+  (isearch-exit)
+  (delete-forward-char 1 nil)
+  (delete-forward-char 1 nil)
+  (kmacro-end-or-call-macro nil))
+
 
 
 (defun toggle-comment-on-line ()
