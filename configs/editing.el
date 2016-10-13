@@ -15,6 +15,8 @@
 (global-set-key (kbd "C-h C-n") 'highlight-symbol-next)
 (global-set-key (kbd "C-h C-p") 'highlight-symbol-prev)
 
+(global-set-key (kbd "C-c g") 'goto-line)
+
 (defun uncomment-block ()
   "uncomments the /* block */"
   (interactive)
