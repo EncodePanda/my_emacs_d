@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: typeclass instance
+# key: tci
+# --
+implicit val $2$1: ${1:Instance}[${2:For}] =
+    new $1[$2] {
+      $0
+}

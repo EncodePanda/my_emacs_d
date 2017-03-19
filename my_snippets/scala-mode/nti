@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: natural transforamtion ipmlementation
+# key: ~>i
+# --
+new (${1:From} ~> ${2:To}) {
+      def apply[A](from: $1[A]) = from match {
+        case _ => $0
+      }
+}
