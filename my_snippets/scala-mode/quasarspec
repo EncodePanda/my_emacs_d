@@ -1,0 +1,12 @@
+# name : quasarspec
+# key : quasarspec
+# --
+package `(file-path-to-package)`
+
+class `(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))` extends quasar.Qspec {
+  "" should {
+    "" in {
+      $0
+    }
+  }
+}

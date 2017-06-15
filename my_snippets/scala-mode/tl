@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+#Author : Paul Szulc <paul.szulc@gmail.com>
+#name : typed lambda
+# key: tl
+# --
+({type λ[a] = $0})#λ

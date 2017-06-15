@@ -1,0 +1,4 @@
+# name : dep-scalaz
+# key : depScalaz
+# --
+"org.scalaz" %% "scalaz-core" % "7.2.4"

@@ -1,0 +1,8 @@
+# name : scala-object
+# key : obj
+# --
+package `(file-path-to-package)`
+
+object `(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))` {
+    $0
+}

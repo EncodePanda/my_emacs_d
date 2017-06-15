@@ -1,0 +1,8 @@
+# name : scala-class
+# key : class
+# --
+package `(file-path-to-package)`
+
+class `(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))` {
+    $0
+}

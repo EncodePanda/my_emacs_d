@@ -1,0 +1,12 @@
+# name : sbtinit
+# key : sbtinit
+# --
+name := "`(find-project-root)`"
+
+scalaVersion := "2.12.1"
+
+resolvers += Resolver.sonatypeRepo("releases")
+
+libraryDependencies ++= Seq(
+  $0
+)

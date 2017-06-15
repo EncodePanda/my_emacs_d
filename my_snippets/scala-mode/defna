@@ -1,0 +1,6 @@
+# name : def-no-args
+# key : defna
+# --
+def $1: $2 = {
+    $0
+}
