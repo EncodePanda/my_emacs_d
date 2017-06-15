@@ -11,9 +11,52 @@
 (key-chord-define-global "cj" 'avy-goto-subword-1)
 (global-set-key (kbd "C-c j") 'avy-goto-subword-1)
 
-(global-set-key (kbd "C-h C-s") 'highlight-symbol-at-point)
-(global-set-key (kbd "C-h C-n") 'highlight-symbol-next)
-(global-set-key (kbd "C-h C-p") 'highlight-symbol-prev)
+;; highlight
+(add-hook 'prog-mode-hook 'highlight-symbol-mode)
+
+(global-set-key
+ (kbd "C-h")
+ (defhydra hydra-highlight ()
+   "highlight"
+   ("n" highlight-symbol-next "next")
+   ("p" highlight-symbol-prev "previous")
+   ("q" nil "quit")
+
+   ))
+
+(defun delete-file-and-buffer ()
+  "Kill the current buffer and deletes the file it is visiting."
+  (interactive)
+  (let ((filename (buffer-file-name)))
+    (when filename
+      (if (vc-backend filename)
+          (vc-delete-file filename)
+        (progn
+          (delete-file filename)
+          (message "Deleted file %s" filename)
+          (kill-buffer))))))
+
+;; mini-vi
+(defhydra hydra-vi (:pre (set-cursor-color "#40e0d0")
+                    :post (progn
+                            (set-cursor-color "#ffffff")
+                            (message
+                             "Thank you, come again.")))
+  "vi"
+  ("l" forward-char "forward")
+  ("h" backward-char "backward")
+  ("j" next-line "next")
+  ("k" previous-line "previous")
+  ("o" sp-backward-sexp "back_paren")
+  ("p" sp-forward-sexp "forward_paren")
+  ("q" nil "quit"))
+
+
+;; zoom
+(defhydra hydra-zoom (global-map "<f2>")
+    "zoom"
+    ("g" text-scale-increase "in")
+    ("l" text-scale-decrease "out"))
 
 (global-set-key (kbd "C-c g") 'goto-line)
 

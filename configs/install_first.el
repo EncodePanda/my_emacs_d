@@ -10,7 +10,7 @@
     (package-conditional-install (car packages))
     (packages-conditional-install (cdr packages))))
 
-(packages-conditional-install '(key-chord auto-package-update))
+(packages-conditional-install '(key-chord hydra auto-package-update))
 
 ;; updated all packages on startup
 (auto-package-update-maybe)
@@ -25,3 +25,7 @@
       delete-old-versions    t  ; Automatically delete excess backups:
       kept-new-versions      20 ; how many of the newest versions to keep
       kept-old-versions      5) ; and how many of the old
+
+(require 'hydra)
+
+

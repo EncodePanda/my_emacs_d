@@ -1,5 +1,5 @@
 ;; All other packages
-(packages-conditional-install '(keyfreq nyan-mode company eno elmacro))
+(packages-conditional-install '(keyfreq nyan-mode company eno elmacro auto-highlight-symbol hl-todo wttrin))
 
 ;; collects stats of keyusage
 (require 'keyfreq)
@@ -30,3 +30,26 @@
 
 ;; company modes provides magic text completion
 (global-company-mode)
+
+(setq org-reveal-root "file:///Users/rabbit/projects/reveal.js/js/reveal.js")
+
+;; jumping betweetn TODOs
+(defhydra hydra-todo (:pre
+                  (hl-todo-mode 1)
+              :post
+             (hl-todo-mode -1))
+  "Todo"
+  ("n" hl-todo-next "Next")
+  ("p" hl-todo-previous "Previous")
+  ("o" hl-todo-occur "Occur")
+  ("q" nil "Quit" :color blue :exit t))
+
+(setq wttrin-default-cities '("Wroclaw"))
+(setq wttrin-default-accept-language '("Accept-Language" . "en-US"))
+
+(defun toggle-mode-line () "toggles the modeline on and off"
+  (interactive) 
+  (setq mode-line-format
+    (if (equal mode-line-format nil)
+        (default-value 'mode-line-format)) )
+  (redraw-display))
