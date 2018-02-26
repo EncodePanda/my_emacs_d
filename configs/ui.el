@@ -3,7 +3,6 @@
 (require 'moe-theme)
 (load-theme 'moe-dark t)
 
-(desktop-save-mode 1)
 (tool-bar-mode 0) 
 (menu-bar-mode 0)
 (toggle-frame-fullscreen) 
