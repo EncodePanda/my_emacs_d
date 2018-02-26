@@ -15,6 +15,9 @@
 ;; updated all packages on startup
 (auto-package-update-maybe)
 
+;; auto-refresh all buffers when files have changed on disk
+(global-auto-revert-mode t)
+
 ;; add ability to bind actions to series of key strokes
 (key-chord-mode 1)
 
