@@ -56,13 +56,6 @@
 
 
 
-(defun toggle-comment-on-line ()
-  "comment or uncomment current line"
-  (interactive)
-  (comment-or-uncomment-region (line-beginning-position) (line-end-position))
-  (next-line))
-(global-set-key (kbd "C-c /") 'toggle-comment-on-line)
-(key-chord-define-global "cl" 'toggle-comment-on-line)
 
 
 (defun copy-line (arg)

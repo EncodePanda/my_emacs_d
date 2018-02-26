@@ -13,6 +13,13 @@
 
 (global-set-key (kbd "C-c u") 'hydra-undo-tree/body)
 
+
+(defun toggle-comment-on-line ()
+  "comment or uncomment current line"
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+  (next-line))
+
 ;; navigation and edition
 (defhydra hydra-navigation (:pre (set-cursor-color "#40e0d0")
                             :post (progn
@@ -27,26 +34,28 @@
   ;; end of line
   ;; comment
   ;; move line
-  ;; jump last modified
   ;; select start
   ;; word forward
   ;; word backward
   ;; begining of a file
   ;; end of file
-  ;; last change
   
   (";" forward-char "forward")
   (":" forward-word "forward word")
   ("j" backward-char "backward")
   ("J" backward-word "backward word")
-  ("k" next-line "next")
-  ("K" avy-goto-line-below "next few")
-  ("l" previous-line "previous")
-  ("L" avy-goto-line-above "previous few")
+  ("l" next-line "next")
+  ("L" avy-goto-line-below "next few")
+  ("k" previous-line "previous")
+  ("K" avy-goto-line-above "previous few")
   ("o" sp-backward-sexp "back_paren")
   ("p" sp-forward-sexp "forward_paren")
   ("g" goto-line "goto line")
   ("s" avy-goto-subword-1 "goto char")
+  ("." etags-select-find-tag-at-point "tag at point")
+  ("f" etags-select-find-tag "tag by name")
+  ("c" goto-last-change "goto last change")
+  ("v" toggle-comment-on-line "comment/uncomment current line")
   
   ("i" nil "quit"))
 
