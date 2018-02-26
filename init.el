@@ -8,9 +8,14 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
+;; save when loosing focus
+;; (add-hook 'focus-out-hook 'save-some-buffers)
+
 ;; order matter
 (load "~/.emacs.d/configs/install_first")
+(load "~/.emacs.d/configs/hydras")
 (load "~/.emacs.d/configs/osx")
+(load "~/.emacs.d/configs/haskell")
 (load "~/.emacs.d/configs/yasnippet")
 (load "~/.emacs.d/configs/misc")
 (load "~/.emacs.d/configs/ui")

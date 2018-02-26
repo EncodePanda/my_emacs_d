@@ -30,6 +30,12 @@
 
 ;; company modes provides magic text completion
 (global-company-mode)
+(add-hook 'haskell-mode-hook 'intero-mode)
+
+;; (add-to-list 'company-backends 'company-cabal)
+;; (add-to-list 'company-backends 'company-dabbrev-code) 
+;; (add-to-list 'company-backends 'company-yasnippet)
+;; (add-to-list 'company-backends 'company-files)
 
 (setq org-reveal-root "file:///Users/rabbit/projects/reveal.js/js/reveal.js")
 
