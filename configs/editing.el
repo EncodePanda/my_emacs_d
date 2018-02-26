@@ -14,15 +14,6 @@
 ;; highlight
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
 
-(global-set-key
- (kbd "C-h")
- (defhydra hydra-highlight ()
-   "highlight"
-   ("n" highlight-symbol-next "next")
-   ("p" highlight-symbol-prev "previous")
-   ("q" nil "quit")
-
-   ))
 
 (defun delete-file-and-buffer ()
   "Kill the current buffer and deletes the file it is visiting."
@@ -36,20 +27,6 @@
           (message "Deleted file %s" filename)
           (kill-buffer))))))
 
-;; mini-vi
-(defhydra hydra-vi (:pre (set-cursor-color "#40e0d0")
-                    :post (progn
-                            (set-cursor-color "#ffffff")
-                            (message
-                             "Thank you, come again.")))
-  "vi"
-  ("l" forward-char "forward")
-  ("h" backward-char "backward")
-  ("j" next-line "next")
-  ("k" previous-line "previous")
-  ("o" sp-backward-sexp "back_paren")
-  ("p" sp-forward-sexp "forward_paren")
-  ("q" nil "quit"))
 
 
 ;; zoom
