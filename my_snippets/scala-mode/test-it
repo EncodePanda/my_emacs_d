@@ -1,0 +1,6 @@
+# name : test-it
+# key : it
+# --
+it("should $0") {
+
+}

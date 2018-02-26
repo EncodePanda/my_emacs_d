@@ -1,0 +1,13 @@
+# name : new-funspec
+# key : new-funspec
+# --
+package `(file-path-to-package)`
+
+import org.scalatest.FunSpec
+
+class `(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))` extends FunSpec{
+
+    describe("$0") {
+
+    }
+}

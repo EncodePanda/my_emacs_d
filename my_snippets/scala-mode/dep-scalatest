@@ -1,0 +1,4 @@
+# name : dep-scalatest
+# key : dep-scalatest
+# --
+"org.scalatest" %% "scalatest" % "3.0.3" % "test"

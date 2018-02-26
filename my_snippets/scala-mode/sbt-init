@@ -1,0 +1,10 @@
+# name : sbt-init
+# key : sbt-init
+# --
+name := "`(find-project-root)`"
+
+scalaVersion := "2.12.4"
+
+libraryDependencies ++= Seq(
+  $0
+)
