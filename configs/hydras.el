@@ -27,6 +27,12 @@
                                  (message
                                   "Thank you, come again.")))
   "navigation"
+;; usuwanie slowa z przodu, z tylu
+;; na poczatek na koniec lini
+;; cala strona do gory
+;; context select
+
+
   ;; kill line
   ;; kill word front
   ;; kill word back
