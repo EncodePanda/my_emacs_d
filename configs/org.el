@@ -13,9 +13,11 @@
 (setq org-agenda-files '("~/org"))
 
 (setq org-capture-templates
- '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+ '(("t" "Todo" entry (file+headline "~/org/capture.org" "Tasks")
+    "* TODO %?\n  %i\n  %a")
+   ("j" "Pyrofex JIRA issues wannabes" entry (file+headline "~/org/pyrofex-jira.org" "JIRA issues")
         "* TODO %?\n  %i\n  %a")
-   ("p" "RChain work" entry (file+datetree "~/org/pyrofex-log.org")
+   ("p" "Pyrofex work" entry (file+datetree "~/org/pyrofex-log.org")
         "* %? %U")))
 
 ;; (setq org-columns-default-format
