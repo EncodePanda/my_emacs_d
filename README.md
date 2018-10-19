@@ -18,3 +18,9 @@ ln -s ~/projects/my_emacs_d/my_snippets ~/.emacs.d/my_snippets
 ```
 
 Also install Silver Search on your machine https://github.com/ggreer/the_silver_searcher
+
+Also install mactex for Mac OS
+
+```
+brew cask install mactex
+```
