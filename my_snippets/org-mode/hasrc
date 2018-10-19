@@ -1,0 +1,7 @@
+# name : hasrc
+# key : hasrc
+# --
+
+#+BEGIN_SRC haskell
+$0
+#+END_SRC
