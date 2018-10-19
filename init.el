@@ -8,15 +8,20 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-;; save when loosing focus
-;; (add-hook 'focus-out-hook 'save-some-buffers)
+;; needed to produce latex/pdf for org more
+(if (eq window-system 'mac)
+   (add-to-list 'exec-path "/usr/local/texlive/2018/bin/x86_64-darwin")
+  )
+
+(global-auto-revert-mode t)
 
 ;; order matter
 (load "~/.emacs.d/configs/install_first")
 (load "~/.emacs.d/configs/hydras")
 (load "~/.emacs.d/configs/osx")
-(load "~/.emacs.d/configs/haskell")
 (load "~/.emacs.d/configs/yasnippet")
+(load "~/.emacs.d/configs/haskell")
+(load "~/.emacs.d/configs/scala")
 (load "~/.emacs.d/configs/misc")
 (load "~/.emacs.d/configs/ui")
 (load "~/.emacs.d/configs/editing")
