@@ -31,7 +31,8 @@
 ;; na poczatek na koniec lini
 ;; cala strona do gory
 ;; context select
-
+;; goto beginning of file
+;; goto end of file
 
   ;; kill line
   ;; kill word front
