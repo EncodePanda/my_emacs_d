@@ -1,4 +1,4 @@
-(packages-conditional-install '(zoom-frm neotree monokai-theme moe-theme))
+(packages-conditional-install '(neotree monokai-theme moe-theme))
 
 (require 'moe-theme)
 (load-theme 'moe-dark t)
