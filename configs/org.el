@@ -10,7 +10,7 @@
    (org-agenda-files :maxlevel . 2) ; refile to any of these files
    ))
 
-(setq org-agenda-files '("~/org"))
+(setq org-agenda-files (directory-files-recursively "~/org/" "\.org$"))
 
 (setq org-capture-templates
  '(("t" "Todo" entry (file+headline "~/org/capture.org" "Tasks")
