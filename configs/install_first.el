@@ -10,7 +10,7 @@
     (package-conditional-install (car packages))
     (packages-conditional-install (cdr packages))))
 
-(packages-conditional-install '(key-chord hydra auto-package-update etags-select helm-etags-plus))
+(packages-conditional-install '(key-chord hydra helm auto-package-update etags-select helm-etags-plus))
 
 ;; updated all packages on startup
 (auto-package-update-maybe)
