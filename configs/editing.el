@@ -55,9 +55,6 @@
   (kmacro-end-or-call-macro nil))
 
 
-
-
-
 (defun copy-line (arg)
     (interactive "p")
     (let ((beg (line-beginning-position))

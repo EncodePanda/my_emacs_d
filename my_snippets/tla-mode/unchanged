@@ -1,0 +1,4 @@
+# name : tla-unchanged
+# key : uc
+# --
+UNCHANGED << ${1:variables} >>

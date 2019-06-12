@@ -1,0 +1,4 @@
+# name : tla-except-function
+# key : excf
+# --
+$1' = [$1 EXCEPT ![$2] = ${0}]

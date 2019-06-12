@@ -1,0 +1,4 @@
+# name : tla-spec
+# key : spec
+# --
+Spec == ${1:Init} /\ []([${2:Next}]_vars)

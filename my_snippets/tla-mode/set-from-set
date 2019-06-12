@@ -1,0 +1,4 @@
+# name : tla-set-from-set
+# key : set-from-set
+# --
+{${3:expression} : ${2:elem} \in ${1:set}}

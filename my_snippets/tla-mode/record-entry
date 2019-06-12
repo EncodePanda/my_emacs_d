@@ -1,0 +1,4 @@
+# name : tla-record-entry
+# key : re
+# --
+${1:Field} |-> ${2:Value}

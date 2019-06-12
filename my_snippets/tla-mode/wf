@@ -1,0 +1,4 @@
+# name : tla-weak-fairness
+# key : wf
+# --
+WF_${1:vars}(${2:Formula})

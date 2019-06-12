@@ -1,0 +1,4 @@
+# name : tla-strong-fairness
+# key : sf
+# --
+SF_${1:vars}(${2:Formula})

@@ -1,0 +1,4 @@
+# name : tla-choose
+# key : choose
+# --
+CHOOSE ${2:Elem} \in ${1:S} : ${3:Predicate}

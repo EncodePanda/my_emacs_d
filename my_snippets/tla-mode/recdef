@@ -1,0 +1,5 @@
+# name : tla-recursive-def
+# key : recdef
+# --
+RECURSIVE $1(_)
+$1($2) == ${0}

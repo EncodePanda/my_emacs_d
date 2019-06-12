@@ -1,0 +1,4 @@
+# name : tla-def
+# key : def
+# --
+${1:name} == 
