@@ -32,3 +32,7 @@
 (load "~/.emacs.d/configs/other")
 (load "~/.emacs.d/configs/org")
 (load "~/.emacs.d/configs/greek")
+(load "~/.emacs.d/configs/frame-fns.el")
+(load "~/.emacs.d/configs/frame-cmds.el")
+(load "~/.emacs.d/configs/zoom-frm.el")
+
