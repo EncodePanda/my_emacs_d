@@ -30,7 +30,7 @@
 
 ;; company modes provides magic text completion
 (global-company-mode)
-(add-hook 'haskell-mode-hook 'intero-mode)
+
 
 ;; (add-to-list 'company-backends 'company-cabal)
 ;; (add-to-list 'company-backends 'company-dabbrev-code) 
