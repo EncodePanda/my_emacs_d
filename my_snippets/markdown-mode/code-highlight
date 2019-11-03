@@ -1,0 +1,4 @@
+# name : code-highlight
+# key : ch
+# --
+[.code-highlight: ${0}]

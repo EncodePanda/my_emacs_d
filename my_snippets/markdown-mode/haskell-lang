@@ -1,0 +1,6 @@
+# name : haskell-lang
+# key : hask
+# --
+```haskell
+${0}
+```
