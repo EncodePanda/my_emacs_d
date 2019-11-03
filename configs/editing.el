@@ -14,6 +14,8 @@
 ;; highlight
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
 
+;; remove whitespaces at the end of the line
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (defun delete-file-and-buffer ()
   "Kill the current buffer and deletes the file it is visiting."
