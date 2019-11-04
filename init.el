@@ -151,6 +151,20 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; Haskell
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package haskell-mode
+  :ensure t
+)
+(custom-set-variables
+ '(haskell-stylish-on-save nil))
+
+;;(require 'flymake-hlint) ;; not needed if installed via package
+;;(add-hook 'haskell-mode-hook 'flymake-hlint-load)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Configuration for editing ELisp code
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -175,7 +189,6 @@
 (load "~/.emacs.d/configs/install_first")
 (load "~/.emacs.d/configs/hydras")
 (load "~/.emacs.d/configs/yasnippet")
-(load "~/.emacs.d/configs/haskell")
 (load "~/.emacs.d/configs/scala")
 (load "~/.emacs.d/configs/misc")
 (load "~/.emacs.d/configs/ui")
