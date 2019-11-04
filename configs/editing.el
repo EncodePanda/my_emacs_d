@@ -1,4 +1,4 @@
-(packages-conditional-install '(goto-chg multiple-cursors avy undo-tree string-edit highlight-symbol))
+(packages-conditional-install '(helm-swoop goto-chg multiple-cursors avy undo-tree string-edit highlight-symbol))
 
 (key-chord-define-global "kw" 'kill-word)
 (key-chord-define-global "bw" 'backward-kill-word)
@@ -10,6 +10,16 @@
 
 (key-chord-define-global "cj" 'avy-goto-subword-1)
 (global-set-key (kbd "C-c j") 'avy-goto-subword-1)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; With helm-swoop searching through buffer is lot easier then with the default
+;; isearch.
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key (kbd "C-s") 'helm-swoop)
+(global-set-key (kbd "C-r") 'helm-swoop)
 
 ;; highlight
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
@@ -38,24 +48,6 @@
     ("l" text-scale-decrease "out"))
 
 (global-set-key (kbd "C-c g") 'goto-line)
-
-(defun uncomment-block ()
-  "uncomments the /* block */"
-  (interactive)
-  (isearch-forward nil 1)
-  (isearch-printing-char 42 1)
-  (isearch-printing-char 47 1)
-  (isearch-exit)
-  (delete-backward-char 1 nil)
-  (delete-backward-char 1 nil)
-  (isearch-backward nil 1)
-  (isearch-printing-char 47 1)
-  (isearch-printing-char 42 1)
-  (isearch-exit)
-  (delete-forward-char 1 nil)
-  (delete-forward-char 1 nil)
-  (kmacro-end-or-call-macro nil))
-
 
 (defun copy-line (arg)
     (interactive "p")
