@@ -14,11 +14,40 @@
 ;;
 ;; Install use-package
 ;;
+;; With this package all other package will be installed.
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (when (not package-archive-contents)
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; UI/UX custimizations
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; fullscreen, no menu, no bars
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(toggle-frame-fullscreen)
+(scroll-bar-mode 0)
+
+;; answer questions with y/n (instead of yes/no)
+(fset `yes-or-no-p `y-or-n-p)
+
+;; load theme
+(use-package moe-theme
+  :ensure)
+(load-theme 'moe-dark t)
+
+;; zoom in/out a.k.a presentation mode
+(load "~/.emacs.d/configs/frame-fns.el")
+(load "~/.emacs.d/configs/frame-cmds.el")
+(load "~/.emacs.d/configs/zoom-frm.el")
+(global-set-key (kbd "C-=") 'zoom-frm-in)
+(global-set-key (kbd "C--") 'zoom-frm-out)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -95,6 +124,3 @@
 (load "~/.emacs.d/configs/other")
 (load "~/.emacs.d/configs/org")
 (load "~/.emacs.d/configs/greek")
-(load "~/.emacs.d/configs/frame-fns.el")
-(load "~/.emacs.d/configs/frame-cmds.el")
-(load "~/.emacs.d/configs/zoom-frm.el")
