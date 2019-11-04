@@ -22,6 +22,28 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; Mac / OSX specific configuration
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; needed for PATH recognition
+(use-package exec-path-from-shell
+  :ensure)
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+(exec-path-from-shell-initialize)
+
+;; bind meta and super to cmd and option
+(when (eq system-type 'darwin)
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'super)
+  )
+
+;; uses oxs notifier as default TODO not sure if its working ...
+(setq alert-default-style 'osx-notifier)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Git
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -50,7 +72,6 @@
 ;; order matter
 (load "~/.emacs.d/configs/install_first")
 (load "~/.emacs.d/configs/hydras")
-(load "~/.emacs.d/configs/osx")
 (load "~/.emacs.d/configs/yasnippet")
 (load "~/.emacs.d/configs/haskell")
 (load "~/.emacs.d/configs/scala")
