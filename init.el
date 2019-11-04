@@ -105,6 +105,13 @@
 ;; this will refresh buffer if file changed on a disk e.g loaded new branch
 (global-auto-revert-mode t)
 
+;; show which lines were added/modfied/removed
+;; git-gutter-fringe+ words perfectly with linum-mode but only in
+;; graphical environment (this will not work in terminal)
+(use-package git-gutter-fringe+
+  :ensure)
+(global-git-gutter+-mode t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Company mode
