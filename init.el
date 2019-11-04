@@ -42,6 +42,22 @@
   :ensure)
 (load-theme 'moe-dark t)
 
+;; quick-switch-themes allows to quickly toggle between defined themes
+(defvar quick-switch-themes
+  (let ((themes-list (list 'moe-dark
+                           'moe-light)))
+    (nconc themes-list themes-list)))
+(defun quick-switch-themes* ()
+  (interactive)
+  (if-let* ((next-theme (cadr quick-switch-themes)))
+      (progn (when-let* ((current-theme (car quick-switch-themes)))
+               (disable-theme (car quick-switch-themes)))
+             (load-theme next-theme t)
+             (message "Loaded theme: %s" next-theme))
+    ;; Always have the dark mode-line theme
+    (mapc #'disable-theme (delq 'smart-mode-line-dark custom-enabled-themes)))
+  (setq quick-switch-themes (cdr quick-switch-themes)))
+
 ;; zoom in/out a.k.a presentation mode
 (load "~/.emacs.d/configs/frame-fns.el")
 (load "~/.emacs.d/configs/frame-cmds.el")
