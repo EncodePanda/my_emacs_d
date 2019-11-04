@@ -1,12 +1,25 @@
-;; add package repositories
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Add package repositories.
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade.ferrier.me.uk/packages/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Install use-package
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (when (not package-archive-contents)
-  (package-refresh-contents))
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+
 
 ;; needed to produce latex/pdf for org more
 (if (eq window-system 'mac)
@@ -35,4 +48,3 @@
 (load "~/.emacs.d/configs/frame-fns.el")
 (load "~/.emacs.d/configs/frame-cmds.el")
 (load "~/.emacs.d/configs/zoom-frm.el")
-
