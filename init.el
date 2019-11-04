@@ -24,6 +24,23 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; Hydras
+;;
+;; Majore Mode Hydra is needed to be installed first so that we can later on
+;; define hydras per major mode (e.g for haskell, orm-mode)
+;;
+;; Key bind to meta-space which under this configuration is cmd-space. This
+;; requires user to reconfigure their Mac/OSX keybindg for spotlight search.
+;; I've assgined that to cmd+enter on my local OSX.
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package major-mode-hydra
+  :ensure t
+  :bind
+  ("M-SPC" . major-mode-hydra))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; UI/UX custimizations
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
