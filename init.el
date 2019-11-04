@@ -20,6 +20,24 @@
   (package-install 'use-package))
 (require 'use-package)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Git
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; magit is a powerful interface to git
+(use-package magit
+  :bind ("C-x G" . magit-status)
+  :ensure t)
+
+;; By default ediff pops out a separate frame for navigation during the difff.
+;; This change below keeps the ediff in the same frame.
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;; this will refresh buffer if file changed on a disk e.g loaded new branch
+(global-auto-revert-mode t)
+
 
 ;; needed to produce latex/pdf for org more
 (if (eq window-system 'mac)
@@ -39,7 +57,6 @@
 (load "~/.emacs.d/configs/ui")
 (load "~/.emacs.d/configs/editing")
 (load "~/.emacs.d/configs/project")
-(load "~/.emacs.d/configs/git")
 (load "~/.emacs.d/configs/windows")
 (load "~/.emacs.d/configs/erlang")
 (load "~/.emacs.d/configs/other")
