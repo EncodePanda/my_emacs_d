@@ -39,7 +39,7 @@
 
 ;; load theme
 (use-package moe-theme
-  :ensure)
+  :ensure t)
 (load-theme 'moe-dark t)
 
 ;; quick-switch-themes allows to quickly toggle between defined themes
@@ -73,7 +73,7 @@
 
 ;; needed for PATH recognition
 (use-package exec-path-from-shell
-  :ensure)
+  :ensure t)
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 (exec-path-from-shell-initialize)
@@ -109,7 +109,7 @@
 ;; git-gutter-fringe+ words perfectly with linum-mode but only in
 ;; graphical environment (this will not work in terminal)
 (use-package git-gutter-fringe+
-  :ensure)
+  :ensure t)
 (global-git-gutter+-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
