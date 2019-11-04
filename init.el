@@ -67,7 +67,18 @@
 ;; This mode enables completion, supports many backends
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; enable company mode for all files
 (global-company-mode t)
+
+;; "aggressive" completion (no delays, quick feedback)
+(setq company-idle-delay 0
+      company-echo-delay 0
+      company-dabbrev-downcase nil
+      company-minimum-prefix-length 2
+      company-selection-wrap-around t
+      company-transformers '(company-sort-by-occurrence
+                             company-sort-by-backend-importance))
 
 ;; order matter
 (load "~/.emacs.d/configs/install_first")
