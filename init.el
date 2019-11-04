@@ -38,7 +38,14 @@
 ;; this will refresh buffer if file changed on a disk e.g loaded new branch
 (global-auto-revert-mode t)
 
-(global-auto-revert-mode t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Company mode
+;;
+;; This mode enables completion, supports many backends
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-company-mode t)
 
 ;; order matter
 (load "~/.emacs.d/configs/install_first")
