@@ -27,6 +27,11 @@
                              (format "pandoc -f markdown -t org -o %s"
                                      (concat (file-name-sans-extension (buffer-file-name)) ".org"))))
 
+;; add to eneeded to produce latex/pdf for org more
+(if (eq window-system 'mac)
+   (add-to-list 'exec-path "/usr/local/texlive/2019/bin/x86_64-darwin")
+  )
+
 ;; (setq org-columns-default-format
       ;; "%25ITEM %TODO %SCHEDULED %TAGS")
 

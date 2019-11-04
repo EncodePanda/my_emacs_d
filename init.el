@@ -38,12 +38,6 @@
 ;; this will refresh buffer if file changed on a disk e.g loaded new branch
 (global-auto-revert-mode t)
 
-
-;; needed to produce latex/pdf for org more
-(if (eq window-system 'mac)
-   (add-to-list 'exec-path "/usr/local/texlive/2018/bin/x86_64-darwin")
-  )
-
 (global-auto-revert-mode t)
 
 ;; order matter
