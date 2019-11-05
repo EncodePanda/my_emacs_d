@@ -1,11 +1,7 @@
-(packages-conditional-install '(smartparens projectile recentf ag helm-ag helm helm-projectile))
+(packages-conditional-install '(smartparens projectile ag helm-ag helm helm-projectile))
 
-(require 'recentf)
 (require 'projectile)
 (require 'helm-projectile)
-(setq recentf-max-saved-items 200
-      recentf-max-menu-items 15)
-(recentf-mode +1)
 
 (global-set-key (kbd "C-c F") 'helm-do-ag-project-root)
 

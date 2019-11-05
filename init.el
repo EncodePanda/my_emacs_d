@@ -88,6 +88,15 @@
 (global-set-key (kbd "C-=") 'zoom-frm-in)
 (global-set-key (kbd "C--") 'zoom-frm-out)
 
+;; show buffers that were opened recently
+;; helpful if you just restarted your Emacs
+(use-package recentf
+  :ensure t
+)
+(setq recentf-max-saved-items 200
+      recentf-max-menu-items 15)
+(recentf-mode +1)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Mac / OSX specific configuration
