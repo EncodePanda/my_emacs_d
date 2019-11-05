@@ -138,6 +138,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; enable company mode for all files
+(use-package company
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-etags)
+)
 (global-company-mode t)
 
 ;; "aggressive" completion (no delays, quick feedback)
