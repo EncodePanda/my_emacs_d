@@ -33,6 +33,9 @@
 ;; requires user to reconfigure their Mac/OSX keybindg for spotlight search.
 ;; I've assgined that to cmd+enter on my local OSX.
 ;;
+;; Also by installing major-mode-hydra we get pretty-hydra which will also be
+;; used below
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package major-mode-hydra
   :ensure t
