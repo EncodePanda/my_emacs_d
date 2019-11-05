@@ -29,9 +29,6 @@
               (define-key eshell-mode-map [remap pcomplete] 'helm-esh-pcomplete)
               (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history)))
 
-(show-paren-mode 1)
-(column-number-mode 1)
+
 (smartparens-global-mode 1)
 (projectile-global-mode 1)
-
-(global-linum-mode 1)

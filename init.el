@@ -48,11 +48,14 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; fullscreen, no menu, no bars
-(tool-bar-mode 0)
-(menu-bar-mode 0)
-(toggle-frame-fullscreen)
-(scroll-bar-mode 0)
+;; small UI improvements
+(tool-bar-mode 0)           ;; no tool bar
+(menu-bar-mode 0)           ;; no menu bar
+(toggle-frame-fullscreen)   ;; start with fullscreen
+(scroll-bar-mode 0)         ;; no scrollbar
+(show-paren-mode 1)         ;; highlight matchin paranthesis
+(column-number-mode 1)      ;; show column number in minibuffer
+(global-linum-mode 1)       ;; show line numbers in gutter
 
 ;; answer questions with y/n (instead of yes/no)
 (fset `yes-or-no-p `y-or-n-p)
