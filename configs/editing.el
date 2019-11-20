@@ -47,8 +47,6 @@
     ("g" text-scale-increase "in")
     ("l" text-scale-decrease "out"))
 
-(global-set-key (kbd "C-c g") 'goto-line)
-
 (defun copy-line (arg)
     (interactive "p")
     (let ((beg (line-beginning-position))

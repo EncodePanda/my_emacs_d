@@ -130,6 +130,11 @@
   :bind ("C-x G" . magit-status)
   :ensure t)
 
+;; time machine allows inspecting changes on a single file
+;; we can move back and forth to see the progress on a given file
+(use-package git-timemachine
+  :ensure)
+
 ;; By default ediff pops out a separate frame for navigation during the difff.
 ;; This change below keeps the ediff in the same frame.
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
@@ -143,6 +148,16 @@
 (use-package git-gutter-fringe+
   :ensure t)
 (global-git-gutter+-mode t)
+
+(pretty-hydra-define hydra-git (:foreign-keys warn :title "Git" :quit-key "q" :exit t)
+  ("Magit"
+   (("o" magit "open")
+    ("b" magit-blame "blame"))
+
+   "Other"
+   (("t" git-timemachine "time machine"))
+   ))
+(global-set-key (kbd "C-c g") 'hydra-git/body)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
