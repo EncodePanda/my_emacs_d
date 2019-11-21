@@ -184,6 +184,53 @@
       company-transformers '(company-sort-by-occurrence
                              company-sort-by-backend-importance))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Org Mode
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'org)
+;; org bullets for nicer rendering of org files
+(use-package org-bullets
+  :ensure)
+(add-hook 'org-mode-hook 'org-bullets-mode)
+;; bindings, todo use use-package
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(define-key global-map "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+(setq org-default-notes-file (concat org-directory "/captured.org"))
+
+(setq org-refile-targets '(
+   (nil :maxlevel . 2)             ; refile to headings in the current buffer
+   (org-agenda-files :maxlevel . 2) ; refile to any of these files
+   ))
+
+(setq org-agenda-files (directory-files-recursively "~/org/" "\.org$"))
+
+(setq org-capture-templates
+ '(("t" "Todo" entry (file+headline "~/org/capture.org" "Tasks")
+    "* TODO %?\n  %i")
+   ("j" "JIRA" entry (file+headline "~/org/jira.org" "JIRA issues")
+        "* TODO %?\n  %i\n  %a")
+   ("w" "Work log" entry (file+datetree "~/org/work-log.org")
+        "* %? %U")))
+
+(defun markdown-convert-buffer-to-org ()
+    "Convert the current buffer's content from markdown to orgmode format and save it with the current buffer's file name but with .org extension."
+    (interactive)
+    (shell-command-on-region (point-min) (point-max)
+                             (format "pandoc -f markdown -t org -o %s"
+                                     (concat (file-name-sans-extension (buffer-file-name)) ".org"))))
+
+;; add to eneeded to produce latex/pdf for org more
+;; TODO document software hat needs to be installed
+(if (eq window-system 'mac)
+   (add-to-list 'exec-path "/usr/local/texlive/2019/bin/x86_64-darwin")
+)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Haskell
@@ -193,7 +240,14 @@
   :ensure t
 )
 (custom-set-variables
- '(haskell-stylish-on-save nil))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(haskell-stylish-on-save nil)
+ '(package-selected-packages
+   (quote
+    (org-beautify-theme org-bullets zoom-window yasnippet wttrin which-key use-package string-edit smartparens scala-mode sbt-mode nyan-mode neotree multiple-cursors moe-theme markdown-mode major-mode-hydra magit keyfreq key-chord hl-todo highlight-symbol helm-swoop helm-projectile helm-etags-plus helm-ag haskell-mode goto-chg git-timemachine git-gutter-fringe+ exec-path-from-shell etags-select erlang eno encourage-mode elmacro csv-mode company auto-package-update auto-highlight-symbol annoying-arrows-mode all-the-icons ag ace-window))))
 
 ;;(require 'flymake-hlint) ;; not needed if installed via package
 ;;(add-hook 'haskell-mode-hook 'flymake-hlint-load)
@@ -234,3 +288,9 @@
 (load "~/.emacs.d/configs/other")
 (load "~/.emacs.d/configs/org")
 (load "~/.emacs.d/configs/greek")
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
