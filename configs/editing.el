@@ -1,9 +1,5 @@
 (packages-conditional-install '(helm-swoop goto-chg multiple-cursors avy undo-tree string-edit highlight-symbol))
 
-(key-chord-define-global "kw" 'kill-word)
-(key-chord-define-global "bw" 'backward-kill-word)
-(key-chord-define-global "mw" 'mark-word)
-(key-chord-define-global "ms" 'mark-sexp)
 
 (require 'eno)
 (key-chord-define-global "wj" 'eno-word-goto)
@@ -40,12 +36,6 @@
           (kill-buffer))))))
 
 
-
-;; zoom
-(defhydra hydra-zoom (global-map "<f2>")
-    "zoom"
-    ("g" text-scale-increase "in")
-    ("l" text-scale-decrease "out"))
 
 (defun copy-line (arg)
     (interactive "p")
