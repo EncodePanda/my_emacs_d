@@ -262,14 +262,8 @@
   :ensure t
 )
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(haskell-stylish-on-save nil)
- '(package-selected-packages
-   (quote
-    (org-beautify-theme org-bullets zoom-window yasnippet wttrin which-key use-package string-edit smartparens scala-mode sbt-mode nyan-mode neotree multiple-cursors moe-theme markdown-mode major-mode-hydra magit keyfreq key-chord hl-todo highlight-symbol helm-swoop helm-projectile helm-etags-plus helm-ag haskell-mode goto-chg git-timemachine git-gutter-fringe+ exec-path-from-shell etags-select erlang eno encourage-mode elmacro csv-mode company auto-package-update auto-highlight-symbol annoying-arrows-mode all-the-icons ag ace-window))))
+)
 
 ;;(require 'flymake-hlint) ;; not needed if installed via package
 ;;(add-hook 'haskell-mode-hook 'flymake-hlint-load)
