@@ -162,10 +162,15 @@
 (pretty-hydra-define hydra-git (:foreign-keys warn :title "Git" :quit-key "q" :exit t)
   ("Magit"
    (("o" magit "open")
-    ("b" magit-blame "blame"))
+    ("b" magit-blame "blame")
+   )
 
    "Other"
-   (("t" git-timemachine "time machine"))
+   (("t" git-timemachine "time machine")
+    ("s" git-gutter+-show-hunk "show hunk" :exit nil)
+    ("k" git-gutter+-previous-hunk "previous hunk" :exit nil)
+    ("j" git-gutter+-next-hunk "previous hunk" :exit nil)
+   )
    ))
 (global-set-key (kbd "C-c g") 'hydra-git/body)
 
