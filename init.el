@@ -210,6 +210,13 @@
 (use-package org-bullets
   :ensure)
 (add-hook 'org-mode-hook 'org-bullets-mode)
+
+;; autolist changes behaviour to more familiar one from non-programming editors
+;; e.g hiting RET at the end of a list creats new entry in that list
+(use-package org-autolist
+  :ensure)
+(add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
+
 ;; bindings, todo use use-package
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
