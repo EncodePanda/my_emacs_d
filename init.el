@@ -265,9 +265,6 @@
 (use-package haskell-mode
   :ensure t
 )
-(custom-set-variables
- '(haskell-stylish-on-save nil)
-)
 
 ;;(require 'flymake-hlint) ;; not needed if installed via package
 ;;(add-hook 'haskell-mode-hook 'flymake-hlint-load)
