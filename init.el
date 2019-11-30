@@ -290,6 +290,18 @@
     ("v" describe-variable "variable")
     ("i" info-lookup-symbol "info lookup"))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Smart evil
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package xah-fly-keys
+  :ensure t
+)
+
+(xah-fly-keys-set-layout "qwerty") ; required
+(xah-fly-keys 1)
+
 ;; order madtter
 (load "~/.emacs.d/configs/install_first")
 (load "~/.emacs.d/configs/hydras")
