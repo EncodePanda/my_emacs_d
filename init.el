@@ -130,7 +130,12 @@
 
 (use-package dumb-jump
   :ensure
-)
+  )
+
+(use-package duplicate-thing
+  :ensure)
+
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -296,12 +301,52 @@
 ;; Smart evil
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq xah-fly-use-meta-key nil)
+(setq xah-fly-use-control-key nil)
 (use-package xah-fly-keys
   :ensure t
 )
 
-(xah-fly-keys-set-layout "qwerty") ; required
+(xah-fly-keys-set-layout "qwerty")
 (xah-fly-keys 1)
+(global-set-key (kbd "M-SPC") 'xah-fly-command-mode-activate)
+(global-set-key (kbd "C-SPC") 'xah-fly-leader-key-map)
+
+(defun my-xfk-addon-command ()
+  "Modify keys for xah fly key command mode keys"
+  (interactive)
+  ;; numeric row
+  (define-key xah-fly-key-map (kbd "1") 'eyebrowse-switch-to-window-config-1)
+  (define-key xah-fly-key-map (kbd "2") 'eyebrowse-switch-to-window-config-2)
+  (define-key xah-fly-key-map (kbd "3") 'eyebrowse-switch-to-window-config-3)
+  (define-key xah-fly-key-map (kbd "4") 'eyebrowse-switch-to-window-config-4)
+
+  ;; buffer modification
+  ;; first row
+  (define-key xah-fly-key-map (kbd "q") 'join-line)
+  (define-key xah-fly-key-map (kbd "w") 'duplicate-thing)
+  (define-key xah-fly-key-map (kbd "e") 'backward-kill-word)
+  (define-key xah-fly-key-map (kbd "r") 'kill-word)
+  (define-key xah-fly-key-map (kbd "t") 'kill-line)
+  ;; second row
+  ;;                                a    m-x
+  (define-key xah-fly-key-map (kbd "s") 'set-mark-command)
+  ;;                                 d    delete
+  ;; navigation
+  ;; first row
+  (define-key xah-fly-key-map (kbd "y") 'helm-projectile-recentf)
+  ;;                                u    back word
+  ;;                                i    up
+  ;;                                o    forward word
+  (define-key xah-fly-key-map (kbd "p") 'git-gutter+-next-hunk)
+  ;; second row
+  (define-key xah-fly-key-map (kbd "n") 'helm-swoop)
+  ;; more hereXS
+  )
+
+(add-hook 'xah-fly-command-mode-activate-hook 'my-xfk-addon-command)
+
+
 
 ;; order madtter
 (load "~/.emacs.d/configs/install_first")
@@ -323,3 +368,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (duplicate-thing zoom-window yasnippet xah-fly-keys wttrin which-key use-package string-edit smartparens scala-mode sbt-mode protobuf-mode pandoc-mode org-bullets org-autolist nyan-mode neotree multiple-cursors monokai-theme moe-theme markdown-mode major-mode-hydra magit keyfreq key-chord intero hl-todo highlight-symbol helm-swoop helm-projectile helm-etags-plus helm-ag hasky-stack goto-chg git-timemachine git-gutter-fringe+ eyebrowse exec-path-from-shell etags-select erlang eno encourage-mode elmacro eldoro dumb-jump csv-mode code-library auto-package-update auto-highlight-symbol annoying-arrows-mode ag ace-window))))
