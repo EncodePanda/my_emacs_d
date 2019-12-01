@@ -179,6 +179,15 @@
 (use-package git-gutter-fringe+
   :ensure t)
 (global-git-gutter+-mode t)
+;; refresh gutter when staged by magit
+(defun my-refresh-visible-git-gutter-buffers ()
+  (dolist (buff (buffer-list))
+    (with-current-buffer buff
+      (when (and git-gutter+-mode (get-buffer-window buff))
+        (git-gutter+-mode t)))))
+
+(add-hook 'magit-post-refresh-hook
+          #'my-refresh-visible-git-gutter-buffers)
 
 (pretty-hydra-define hydra-git (:foreign-keys warn :title "Git" :quit-key "q" :exit t)
   ("Magit"
