@@ -21,6 +21,8 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
