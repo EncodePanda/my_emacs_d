@@ -36,6 +36,17 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; Initialize Dashboard
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package dashboard
+  :config
+  (dashboard-setup-startup-hook))
+(setq dashboard-banner-logo-title "Welcome back, Rabbit")
+(setq dashboard-startup-banner "~/.emacs.d/logo.png")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Hydras
 ;;
 ;; Majore Mode Hydra is needed to be installed first so that we can later on
