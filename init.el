@@ -63,7 +63,7 @@
 (use-package major-mode-hydra
   :ensure t
   :bind
-  ("M-SPC" . major-mode-hydra))
+  ("C-SPC" . major-mode-hydra))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -350,8 +350,7 @@
 
 (xah-fly-keys-set-layout "qwerty")
 (xah-fly-keys 1)
-(global-set-key (kbd "M-SPC") 'xah-fly-command-mode-activate)
-(global-set-key (kbd "C-SPC") 'xah-fly-leader-key-map)
+(global-set-key (kbd "C-SPC") 'xah-fly-command-mode-activate)
 
 (defun my-xfk-addon-command ()
   "Modify keys for xah fly key command mode keys"
