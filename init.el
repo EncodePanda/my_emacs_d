@@ -357,33 +357,57 @@
   "Modify keys for xah fly key command mode keys"
   (interactive)
   ;; numeric row
-  (define-key xah-fly-key-map (kbd "1") 'eyebrowse-switch-to-window-config-1)
-  (define-key xah-fly-key-map (kbd "2") 'eyebrowse-switch-to-window-config-2)
-  (define-key xah-fly-key-map (kbd "3") 'eyebrowse-switch-to-window-config-3)
-  (define-key xah-fly-key-map (kbd "4") 'eyebrowse-switch-to-window-config-4)
+  (define-key xah-fly-key-map (kbd "1") '("workspace 1" . eyebrowse-switch-to-window-config-1))
+  (define-key xah-fly-key-map (kbd "2") '("workspace 2" . eyebrowse-switch-to-window-config-2))
+  (define-key xah-fly-key-map (kbd "3") '("workspace 3" . eyebrowse-switch-to-window-config-3))
+  (define-key xah-fly-key-map (kbd "4") '("workspace 4" . eyebrowse-switch-to-window-config-4))
+  (define-key xah-fly-key-map (kbd "5") nil)
+  (define-key xah-fly-key-map (kbd "6") nil)
+  (define-key xah-fly-key-map (kbd "7") nil)
+  (define-key xah-fly-key-map (kbd "8") nil)
+  (define-key xah-fly-key-map (kbd "9") nil)
+  (define-key xah-fly-key-map (kbd "0") nil)
 
   ;; buffer modification
   ;; first row
-  (define-key xah-fly-key-map (kbd "q") 'join-line)
-  (define-key xah-fly-key-map (kbd "w") 'duplicate-thing)
-  (define-key xah-fly-key-map (kbd "e") 'backward-kill-word)
-  (define-key xah-fly-key-map (kbd "r") 'kill-word)
-  (define-key xah-fly-key-map (kbd "t") 'kill-line)
+  (define-key xah-fly-key-map (kbd "q") '("join line" . join-line))
+  (define-key xah-fly-key-map (kbd "w") '("duplicate" . duplicate-thing))
+  (define-key xah-fly-key-map (kbd "e") '("backward-kill-word" . backward-kill-word))
+  (define-key xah-fly-key-map (kbd "r") '("kill-word" . kill-word))
+  (define-key xah-fly-key-map (kbd "t") '("kill-line" . kill-line))
   ;; second row
   ;;                                a    m-x
   (define-key xah-fly-key-map (kbd "s") 'set-mark-command)
-  ;;                                 d    delete
+  ;;                                d    delete
+  ;;                                f    insert
+  (define-key xah-fly-key-map (kbd "g") '("major" . major-mode-hydra))
+  ;; third row
+  ;;                                z    comment
+  ;;                                x    cut
+  ;;                                c    copy
+  ;;                                v    paste
+  (define-key xah-fly-key-map (kbd "b") '("undo" . undo))
+
+
+
+
   ;; navigation
   ;; first row
-  (define-key xah-fly-key-map (kbd "y") 'helm-projectile-recentf)
+  (define-key xah-fly-key-map (kbd "y") '("buffers" . helm-projectile-recentf))
   ;;                                u    back word
   ;;                                i    up
   ;;                                o    forward word
-  (define-key xah-fly-key-map (kbd "p") 'git-gutter+-next-hunk)
-  ;; second row
-  (define-key xah-fly-key-map (kbd "n") 'helm-swoop)
-  ;; more hereXS
-  )
+  (define-key xah-fly-key-map (kbd "p") '("next hunk" . git-gutter+-next-hunk))
+  ;; third row
+  (define-key xah-fly-key-map (kbd "n") '("search" . helm-swoop))
+  (define-key xah-fly-key-map (kbd "m") '("jump" . avy-goto-subword-1))
+  (define-key xah-fly-key-map (kbd ",") '("next window" . next-window))
+  (define-key xah-fly-key-map (kbd ".") '("jump to tag" . dumb-jump-go))
+  (define-key xah-fly-key-map (kbd "/") '("mark all" . mc/mark-all-like-this))
+
+  ;; other
+  (define-key xah-fly-key-map (kbd "?") '("this help menu" . which-key-show-top-level))
+)
 
 (add-hook 'xah-fly-command-mode-activate-hook 'my-xfk-addon-command)
 
