@@ -122,9 +122,7 @@
 
 ;; show buffers that were opened recently
 ;; helpful if you just restarted your Emacs
-(use-package recentf
-  :ensure t
-)
+(use-package recentf)
 (setq recentf-max-saved-items 200
       recentf-max-menu-items 15)
 (recentf-mode +1)
@@ -136,8 +134,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; needed for PATH recognition
-(use-package exec-path-from-shell
-  :ensure t)
+(use-package exec-path-from-shell)
+
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 (exec-path-from-shell-initialize)
