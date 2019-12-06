@@ -393,17 +393,17 @@
   (define-key xah-fly-key-map (kbd "o") nil)
   (define-key xah-fly-key-map (kbd "p") '("next hunk" . git-gutter+-next-hunk))
   ;; second row
-  (define-key xah-fly-key-map (kbd "h") '("next hunk" . nil)
+  (define-key xah-fly-key-map (kbd "h") '("next hunk" . nil))
   (define-key xah-fly-key-map (kbd "j") '("left" . backward-char))
   (define-key xah-fly-key-map (kbd "C-j") '("left word" . backward-word))
-  (define-key xah-fly-key-map (kbd "k") '("down" . next))
-  (define-key xah-fly-key-map (kbd "C-k") '("page down" . scroll-down))
-  (define-key xah-fly-key-map (kbd "l") '("up" . previous))
-  (define-key xah-fly-key-map (kbd "C-l") '("page up" . scroll-up))
+  (define-key xah-fly-key-map (kbd "k") '("down" . next-line))
+  (define-key xah-fly-key-map (kbd "C-k") '("page down" . scroll-up))
+  (define-key xah-fly-key-map (kbd "l") '("up" . previous-line))
+  (define-key xah-fly-key-map (kbd "C-l") '("page up" . scroll-down))
   (define-key xah-fly-key-map (kbd ";") '("right" . forward-char))
-  (define-key xah-fly-key-map (kbd "C-;") '("right word" . forward-wor))
-  (define-key xah-fly-key-map (kbd "'") nil)
-  (define-key xah-fly-key-map (kbd "\\") nil)
+  (define-key xah-fly-key-map (kbd "C-;") '("right word" . forward-word))
+  (define-key xah-fly-key-map (kbd "'") '("line begin" . line-beginning-position))
+  (define-key xah-fly-key-map (kbd "\\") '("line end" . line-end-position))
 
   ;; third row
   (define-key xah-fly-key-map (kbd "n") '("search" . helm-swoop))
@@ -440,11 +440,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (duplicate-thing zoom-window yasnippet xah-fly-keys wttrin which-key use-package string-edit smartparens scala-mode sbt-mode protobuf-mode pandoc-mode org-bullets org-autolist nyan-mode neotree multiple-cursors monokai-theme moe-theme markdown-mode major-mode-hydra magit keyfreq key-chord intero hl-todo highlight-symbol helm-swoop helm-projectile helm-etags-plus helm-ag hasky-stack goto-chg git-timemachine git-gutter-fringe+ eyebrowse exec-path-from-shell etags-select erlang eno encourage-mode elmacro eldoro dumb-jump csv-mode code-library auto-package-update auto-highlight-symbol annoying-arrows-mode ag ace-window))))
