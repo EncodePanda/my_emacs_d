@@ -385,16 +385,26 @@
   ;;                                v    paste
   (define-key xah-fly-key-map (kbd "b") '("undo" . undo))
 
-
-
-
   ;; navigation
   ;; first row
   (define-key xah-fly-key-map (kbd "y") '("buffers" . helm-projectile-recentf))
-  ;;                                u    back word
-  ;;                                i    up
-  ;;                                o    forward word
+  (define-key xah-fly-key-map (kbd "u") nil)
+  (define-key xah-fly-key-map (kbd "i") nil)
+  (define-key xah-fly-key-map (kbd "o") nil)
   (define-key xah-fly-key-map (kbd "p") '("next hunk" . git-gutter+-next-hunk))
+  ;; second row
+  (define-key xah-fly-key-map (kbd "h") '("next hunk" . nil)
+  (define-key xah-fly-key-map (kbd "j") '("left" . backward-char))
+  (define-key xah-fly-key-map (kbd "C-j") '("left word" . backward-word))
+  (define-key xah-fly-key-map (kbd "k") '("down" . next))
+  (define-key xah-fly-key-map (kbd "C-k") '("page down" . scroll-down))
+  (define-key xah-fly-key-map (kbd "l") '("up" . previous))
+  (define-key xah-fly-key-map (kbd "C-l") '("page up" . scroll-up))
+  (define-key xah-fly-key-map (kbd ";") '("right" . forward-char))
+  (define-key xah-fly-key-map (kbd "C-;") '("right word" . forward-wor))
+  (define-key xah-fly-key-map (kbd "'") nil)
+  (define-key xah-fly-key-map (kbd "\\") nil)
+
   ;; third row
   (define-key xah-fly-key-map (kbd "n") '("search" . helm-swoop))
   (define-key xah-fly-key-map (kbd "m") '("jump" . avy-goto-subword-1))
