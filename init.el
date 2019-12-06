@@ -61,7 +61,6 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package major-mode-hydra
-  :ensure t
   :bind
   ("C-SPC" . major-mode-hydra))
 
@@ -154,19 +153,12 @@
 ;; Window management
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package eyebrowse
-  :ensure)
+(use-package eyebrowse)
 (eyebrowse-mode t)
 
-(use-package dumb-jump
-  :ensure
-  )
+(use-package dumb-jump)
 
-(use-package duplicate-thing
-  :ensure)
-
-
-
+(use-package duplicate-thing)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -176,13 +168,11 @@
 
 ;; magit is a powerful interface to git
 (use-package magit
-  :bind ("C-x G" . magit-status)
-  :ensure t)
+  :bind ("C-x G" . magit-status))
 
 ;; time machine allows inspecting changes on a single file
 ;; we can move back and forth to see the progress on a given file
-(use-package git-timemachine
-  :ensure)
+(use-package git-timemachine)
 
 ;; By default ediff pops out a separate frame for navigation during the difff.
 ;; This change below keeps the ediff in the same frame.
@@ -194,8 +184,7 @@
 ;; show which lines were added/modfied/removed
 ;; git-gutter-fringe+ words perfectly with linum-mode but only in
 ;; graphical environment (this will not work in terminal)
-(use-package git-gutter-fringe+
-  :ensure t)
+(use-package git-gutter-fringe+)
 (global-git-gutter+-mode t)
 ;; refresh gutter when staged by magit
 (defun my-refresh-visible-git-gutter-buffers ()
@@ -232,7 +221,6 @@
 
 ;; enable company mode for all files
 (use-package company
-  :ensure t
   :config
   (add-to-list 'company-backends 'company-etags)
 )
@@ -255,8 +243,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'org)
 ;; org bullets for nicer rendering of org files
-(use-package org-bullets
-  :ensure)
+(use-package org-bullets)
 (add-hook 'org-mode-hook 'org-bullets-mode)
 
 ;; autolist changes behaviour to more familiar one from non-programming editors
@@ -306,9 +293,7 @@
 ;; Haskell
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package haskell-mode
-  :ensure t
-)
+(use-package haskell-mode)
 
 ;;(require 'flymake-hlint) ;; not needed if installed via package
 ;;(add-hook 'haskell-mode-hook 'flymake-hlint-load)
@@ -342,9 +327,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq xah-fly-use-meta-key nil)
 (setq xah-fly-use-control-key nil)
-(use-package xah-fly-keys
-  :ensure t
-)
+(use-package xah-fly-keys)
 
 (xah-fly-keys-set-layout "qwerty")
 (xah-fly-keys 1)
