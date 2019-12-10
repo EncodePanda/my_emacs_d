@@ -320,8 +320,62 @@
     ("v" describe-variable "variable")
     ("i" info-lookup-symbol "info lookup"))))
 
-;; order madtter
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Evil-mode
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package evil)
+(use-package evil-leader)
+(use-package evil-mc)
+
+(require 'evil)
+(require 'evil-leader)
+
+(global-evil-mc-mode  1)
+
+(evil-define-key 'visual evil-mc-key-map
+  "A" #'evil-mc-make-cursor-in-visual-selection-end
+  "I" #'evil-mc-make-cursor-in-visual-selection-beg)
+
+(global-evil-leader-mode)
+
+(evil-leader/set-leader "<SPC>")
+(evil-leader/set-key
+  "e" 'find-file
+  "y" 'helm-show-kill-ring
+  "u" 'undo-tree-visualize
+  "b" 'switch-to-buffer
+  "r" 'lsp-find-references
+  "d" 'lsp-find-definition
+  "k" 'kill-buffer
+  "gb" 'magit-blame
+  "ci" 'evilnc-comment-or-uncomment-lines
+  "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+  "cc" 'evilnc-copy-and-comment-lines
+  "cp" 'evilnc-comment-or-uncomment-paragraphs
+  "cr" 'comment-or-uncomment-region
+  "cv" 'evilnc-toggle-invert-comment-line-by-line
+)
+
+(evil-mode 1)
+(key-chord-defne evil-insert-state-map  "C-SPC" 'evil-normal-state)
+;;(global-set-key (kbd "C-c l") 'lsp-ui-peek-find-definitions)
+;;(global-set-key (kbd "C-c h") 'lsp-ui-peek-jump-backward)
+
+;; optional: this is the evil state that evil-magit will use
+;; (setq evil-magit-state 'normal)
+;; optional: disable additional bindings for yanking text
+;; (setq evil-magit-use-y-for-yank nil)
+(use-package evil-magit)
+(use-package evil-surround)
+(global-evil-surround-mode 1)
+(use-package evil-nerd-commenter)
+(provide 'init-evil)
+;; order madtter (load "~/.emacs.d/configs/install_first")
 (load "~/.emacs.d/configs/install_first")
+
 (load "~/.emacs.d/configs/hydras")
 (load "~/.emacs.d/configs/yasnippet")
 (load "~/.emacs.d/configs/scala")
