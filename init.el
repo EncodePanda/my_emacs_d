@@ -62,7 +62,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package major-mode-hydra
   :bind
-  ("C-SPC" . major-mode-hydra))
+  ("C-M-SPC" . major-mode-hydra))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -339,6 +339,11 @@
   "A" #'evil-mc-make-cursor-in-visual-selection-end
   "I" #'evil-mc-make-cursor-in-visual-selection-beg)
 
+(use-package evil-magit)
+(use-package evil-surround)
+(global-evil-surround-mode 1)
+(use-package evil-nerd-commenter)
+
 (global-evil-leader-mode)
 
 (evil-leader/set-leader "<SPC>")
@@ -360,7 +365,7 @@
 )
 
 (evil-mode 1)
-(key-chord-defne evil-insert-state-map  "C-SPC" 'evil-normal-state)
+;;(key-chord-defne evil-insert-state-map  "C-SPC" 'evil-normal-state)
 ;;(global-set-key (kbd "C-c l") 'lsp-ui-peek-find-definitions)
 ;;(global-set-key (kbd "C-c h") 'lsp-ui-peek-jump-backward)
 
@@ -368,14 +373,8 @@
 ;; (setq evil-magit-state 'normal)
 ;; optional: disable additional bindings for yanking text
 ;; (setq evil-magit-use-y-for-yank nil)
-(use-package evil-magit)
-(use-package evil-surround)
-(global-evil-surround-mode 1)
-(use-package evil-nerd-commenter)
 (provide 'init-evil)
-;; order madtter (load "~/.emacs.d/configs/install_first")
 (load "~/.emacs.d/configs/install_first")
-
 (load "~/.emacs.d/configs/hydras")
 (load "~/.emacs.d/configs/yasnippet")
 (load "~/.emacs.d/configs/scala")
