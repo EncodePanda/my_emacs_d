@@ -348,20 +348,13 @@
 
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key
-  "e" 'find-file
   "y" 'helm-show-kill-ring
   "u" 'undo-tree-visualize
   "b" 'switch-to-buffer
-  "r" 'lsp-find-references
-  "d" 'lsp-find-definition
   "k" 'kill-buffer
-  "gb" 'magit-blame
-  "ci" 'evilnc-comment-or-uncomment-lines
-  "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-  "cc" 'evilnc-copy-and-comment-lines
-  "cp" 'evilnc-comment-or-uncomment-paragraphs
-  "cr" 'comment-or-uncomment-region
-  "cv" 'evilnc-toggle-invert-comment-line-by-line
+  "g" 'hydra-git/body
+  "jj" 'dumb-jump-go
+  "jb" 'dumb-jump-back
 )
 
 (evil-mode 1)
