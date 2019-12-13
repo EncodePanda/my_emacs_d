@@ -294,6 +294,91 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package haskell-mode)
+(setq haskell-import-mapping
+      '(("Data.Attoparsec.Char8" . "import qualified Data.Attoparsec.Char8 as Atto8
+")
+        ("Data.Text" . "import qualified Data.Text as T
+import Data.Text (Text)
+")
+        ("Data.Text.Encoding" . "import qualified Data.Text.Encoding as T
+")
+        ("Data.Text.Lazy.Encoding" . "import qualified Data.Text.Lazy.Encoding as LT
+")
+        ("Data.Text.Lazy" . "import qualified Data.Text.Lazy as LT
+")
+        ("Data.Text.IO" . "import qualified Data.Text.IO as T
+")
+        ("Data.Text.Lazy.IO" . "import qualified Data.Text.IO as LT
+")
+        ("Data.ByteString" . "import qualified Data.ByteString as S
+import Data.ByteString (ByteString)
+")
+        ("Data.ByteString.Char8" . "import qualified Data.ByteString.Char8 as S8
+import Data.ByteString (ByteString)
+")
+        ("Data.ByteString.Lazy" . "import qualified Data.ByteString.Lazy as L
+")
+        ("Data.ByteString.Lazy.Builder" . "import qualified Data.ByteString.Builder as SB
+")
+        ("Data.ByteString.Builder" . "import qualified Data.ByteString.Builder as SB
+")
+        ("Data.ByteString.Lazy.Char8" . "import qualified Data.ByteString.Lazy.Char8 as L8
+")
+        ("Data.Map" . "import qualified Data.Map.Strict as M
+import Data.Map.Strict (Map)
+")
+        ("Data.HashMap" . "import qualified Data.HashMap.Strict as HM
+import Data.HashMap.Strict (HashMap)
+")
+        ("Data.IntMap" . "import qualified Data.IntMap.Strict as IM
+import Data.IntMap.Strict (IntMap)
+")
+        ("Data.StrMap" . "import Data.StrMap as StrMap
+import Data.StrMap (StrMap)
+")
+        ("Data.Map.Strict" . "import qualified Data.Map.Strict as M
+import Data.Map.Strict (Map)
+")
+        ("Data.Set" . "import qualified Data.Set as Set
+import Data.Set (Set)
+")
+        ("Data.Vector" . "import qualified Data.Vector as V
+import Data.Vector (Vector)
+")
+        ("Data.Vector.Storable" . "import qualified Data.Vector.Storable as SV
+import Data.Vector (Vector)
+")
+        ("Data.List.NonEmpty" . "import qualified Data.List.NonEmpty as NE
+import Data.List.NonEmpty (NonEmpty(..))
+")
+        ("Data.Conduit.List" . "import qualified Data.Conduit.List as CL
+")
+        ("Data.Conduit.Binary" . "import qualified Data.Conduit.Binary as CB
+")
+        ("Data.Sequence" . "import qualified Data.Sequence as Seq
+import Data.Sequence (Seq)
+")))
+
+(setq haskell-imports-helm-source
+      `((name . "*helm* Insert Haskell import")
+        (candidates . ,haskell-import-mapping)
+        (action . (lambda (candidate)
+                    (helm-marked-candidates)))))
+
+(defun haskell-imports-helm ()
+  (interactive)
+  (insert
+   (mapconcat 'identity
+              (helm :sources '(haskell-imports-helm-source))
+              ",")))
+
+(major-mode-hydra-define haskell-mode nil
+  ("Navigation"
+   (("o" haskell-navigate-imports  "imports"))
+   "Editing"
+   (("i" haskell-imports-helm  "imports"))
+   "Documentation"
+   (("h" hoogle "hoogle"))))
 
 ;;(require 'flymake-hlint) ;; not needed if installed via package
 ;;(add-hook 'haskell-mode-hook 'flymake-hlint-load)
@@ -351,8 +436,14 @@
   "y" 'helm-show-kill-ring
   "u" 'undo-tree-visualize
   "b" 'switch-to-buffer
+  "ww" 'ace-window
+  "w1" 'eyebrowse-switch-to-window-config-1
+  "w2" 'eyebrowse-switch-to-window-config-2
+  "w3" 'eyebrowse-switch-to-window-config-3
+  "w4" 'eyebrowse-switch-to-window-config-4
   "k" 'kill-buffer
   "g" 'hydra-git/body
+  "m" 'major-mode-hydra
   "jj" 'dumb-jump-go
   "jb" 'dumb-jump-back
 )
@@ -386,3 +477,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (evil-nerd-commenter zoom-window yasnippet xah-fly-keys wttrin which-key use-package string-edit smartparens scala-mode sbt-mode quelpa protobuf-mode pandoc-mode org-bullets org-autolist nyan-mode neotree multiple-cursors monokai-theme moe-theme markdown-mode major-mode-hydra keyfreq key-chord intero hl-todo highlight-symbol helm-swoop helm-projectile helm-etags-plus helm-ag hasky-stack git-timemachine git-gutter-fringe+ eyebrowse exec-path-from-shell evil-surround evil-mc evil-magit evil-leader etags-select erlang eno encourage-mode elmacro eldoro duplicate-thing dumb-jump dashboard csv-mode code-library auto-package-update auto-highlight-symbol annoying-arrows-mode ag ace-window))))
