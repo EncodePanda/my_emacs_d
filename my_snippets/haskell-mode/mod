@@ -1,0 +1,5 @@
+# name : mod
+# key : mod
+# --
+module `(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))` where
+  $0
