@@ -440,14 +440,16 @@ import Data.Sequence (Seq)
   "w1" 'eyebrowse-switch-to-window-config-1
   "w2" 'eyebrowse-switch-to-window-config-2
   "w3" 'eyebrowse-switch-to-window-config-3
+  "wh" 'split-window-horizontally
+  "wv" 'split-window-vertically
   "w4" 'eyebrowse-switch-to-window-config-4
   "k" 'kill-buffer
   "g" 'hydra-git/body
   "m" 'major-mode-hydra
+  "n" 'eno-word-goto
   "jj" 'dumb-jump-go
   "jb" 'dumb-jump-back
 )
-
 (evil-mode 1)
 ;;(key-chord-defne evil-insert-state-map  "C-SPC" 'evil-normal-state)
 ;;(global-set-key (kbd "C-c l") 'lsp-ui-peek-find-definitions)
