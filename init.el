@@ -294,6 +294,7 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package haskell-mode)
+(load "~/.emacs.d/configs/ghcid.el")
 (use-package haskell-snippets)
 (require 'haskell-snippets)
 (setq haskell-import-mapping
