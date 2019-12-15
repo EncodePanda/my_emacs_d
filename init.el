@@ -207,6 +207,7 @@
     ("s" git-gutter+-show-hunk "show hunk" :exit nil)
     ("k" git-gutter+-previous-hunk "previous hunk" :exit nil)
     ("j" git-gutter+-next-hunk "previous hunk" :exit nil)
+    ("x" git-gutter+-revert-hunk "kill hunk" :exit nil)
    )
    ))
 (global-set-key (kbd "C-c g") 'hydra-git/body)
@@ -379,7 +380,10 @@ import Data.Sequence (Seq)
   ("Navigation"
    (("o" haskell-navigate-imports  "imports"))
    "Editing"
-   (("i" haskell-imports-helm  "imports"))
+   (("i" haskell-imports-helm  "imports")
+    ("y" yyas-describe-table "snippets")
+    ("g" ghcid "ghcid")
+    )
    "Documentation"
    (("h" hoogle "hoogle"))))
 
