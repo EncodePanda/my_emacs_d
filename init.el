@@ -294,6 +294,8 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package haskell-mode)
+(use-package haskell-snippets)
+(require 'haskell-snippets)
 (setq haskell-import-mapping
       '(("Data.Attoparsec.Char8" . "import qualified Data.Attoparsec.Char8 as Atto8
 ")

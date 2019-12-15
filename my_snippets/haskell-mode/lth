@@ -1,4 +1,0 @@
-# name : lth
-# key : lth
-# --
-{-# LANGUAGE TemplateHaskell #-}
