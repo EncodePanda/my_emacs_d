@@ -453,20 +453,27 @@ import Data.Sequence (Seq)
   "k" 'kill-buffer
   "g" 'hydra-git/body
   "m" 'major-mode-hydra
-  "n" 'eno-word-goto
+  "nn" 'eno-word-goto
+  "n]" 'sp-backward-sexp
+  "n[" 'sp-forward-sexp
+  "nl" 'goto-line
+  "nc" 'goto-last-change
+  "nw" 'evil-avy-goto-char-timer
   "jj" 'dumb-jump-go
   "jb" 'dumb-jump-back
-)
-(evil-mode 1)
-;;(key-chord-defne evil-insert-state-map  "C-SPC" 'evil-normal-state)
-;;(global-set-key (kbd "C-c l") 'lsp-ui-peek-find-definitions)
-;;(global-set-key (kbd "C-c h") 'lsp-ui-peek-jump-backward)
+  "jw" 'dumb-jump-go-prompt
+  )
 
-;; optional: this is the evil state that evil-magit will use
-;; (setq evil-magit-state 'normal)
-;; optional: disable additional bindings for yanking text
-;; (setq evil-magit-use-y-for-yank nil)
+(key-chord-define-global "fj" 'evil-normal-state)
+
+(use-package evil-surround
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
+
+(evil-mode 1)
 (provide 'init-evil)
+
 (load "~/.emacs.d/configs/install_first")
 (load "~/.emacs.d/configs/hydras")
 (load "~/.emacs.d/configs/yasnippet")
