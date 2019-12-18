@@ -381,7 +381,7 @@ import Data.Sequence (Seq)
    (("o" haskell-navigate-imports  "imports"))
    "Editing"
    (("i" haskell-imports-helm  "imports")
-    ("y" yyas-describe-table "snippets")
+    ("y" yas-describe-tables "snippets")
     ("g" ghcid "ghcid")
     )
    "Documentation"
