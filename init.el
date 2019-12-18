@@ -436,8 +436,20 @@ import Data.Sequence (Seq)
 (global-evil-surround-mode 1)
 (use-package evil-nerd-commenter)
 
-(global-evil-leader-mode)
+(setq evil-normal-state-cursor '(box "yellow"))
 
+(use-package evil-org
+  :ensure t
+  :after org
+  :config
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (add-hook 'evil-org-mode-hook
+            (lambda ()
+              (evil-org-set-key-theme)))
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+
+(global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key
   "y" 'helm-show-kill-ring
