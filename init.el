@@ -202,12 +202,15 @@
     ("b" magit-blame "blame")
    )
 
-   "Other"
-   (("t" git-timemachine "time machine")
-    ("s" git-gutter+-show-hunk "show hunk" :exit nil)
+   "Hunks"
+   (("w" git-gutter+-show-hunk "show hunk" :exit nil)
     ("k" git-gutter+-previous-hunk "previous hunk" :exit nil)
     ("j" git-gutter+-next-hunk "previous hunk" :exit nil)
     ("x" git-gutter+-revert-hunk "kill hunk" :exit nil)
+    ("s" git-gutter+-stage-hunks "stage hunk" :exit nil)
+   )
+   "Other"
+   (("t" git-timemachine "time machine")
    )
    ))
 (global-set-key (kbd "C-c g") 'hydra-git/body)
@@ -454,17 +457,21 @@ import Data.Sequence (Seq)
 (evil-leader/set-key
   "y" 'helm-show-kill-ring
   "u" 'undo-tree-visualize
-  "b" 'switch-to-buffer
+  "bb" 'helm-mini
+  "bp" 'helm-projectile-find-file
+  "br" 'helm-projectile-recentf
   "ww" 'ace-window
   "w1" 'eyebrowse-switch-to-window-config-1
   "w2" 'eyebrowse-switch-to-window-config-2
   "w3" 'eyebrowse-switch-to-window-config-3
-  "wh" 'split-window-horizontally
-  "wv" 'split-window-vertically
   "w4" 'eyebrowse-switch-to-window-config-4
+  "wv" 'split-window-horizontally
+  "wh" 'split-window-vertically
+  "wx" 'ace-delete-window
   "k" 'kill-buffer
   "g" 'hydra-git/body
   "m" 'major-mode-hydra
+  "p" 'helm-projectile-switch-project
   "nn" 'eno-word-goto
   "n]" 'sp-backward-sexp
   "n[" 'sp-forward-sexp
