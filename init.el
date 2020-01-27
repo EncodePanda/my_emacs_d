@@ -156,7 +156,10 @@
 (use-package eyebrowse)
 (eyebrowse-mode t)
 
-(use-package dumb-jump)
+(use-package dumb-jump
+  :config (setq dumb-jump-force-searcher 'ag)
+)
+
 
 (use-package duplicate-thing)
 
