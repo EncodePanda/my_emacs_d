@@ -487,7 +487,7 @@ import Data.Sequence (Seq)
   "nn" 'eno-word-goto
   "n]" 'sp-backward-sexp
   "n[" 'sp-forward-sexp
-  "nl" 'goto-line
+  "nl" 'avy-goto-line
   "nc" 'goto-last-change
   "nw" 'evil-avy-goto-char-timer
   "jj" 'dumb-jump-go
