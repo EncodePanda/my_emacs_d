@@ -1,0 +1,7 @@
+# name : klarna newtype
+# key : knew
+# --
+newtype $1 = $1 { un$1 :: Text }
+  deriving stock (Generic, Eq)
+  deriving newtype (Show, ToJSON, FromJSON, IsString)
+$0
