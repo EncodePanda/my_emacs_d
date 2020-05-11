@@ -94,6 +94,18 @@
       recentf-max-menu-items 15)
 (recentf-mode +1)
 
+;; Hydra for UI/UX related stuff
+(pretty-hydra-define hydra-uiux (:foreign-keys warn :title "UI/UX" :quit-key "q")
+  ("Zoom"
+   (("i" zoom-frm-in "(+) in")
+    ("o" zoom-frm-out "(-) out")
+   )
+
+   "Theme"
+   (("t" quick-switch-themes* "theme switch")
+   )
+   ))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Initialize Dashboard
@@ -473,6 +485,7 @@ import Data.Sequence (Seq)
   "wx" 'ace-delete-window
   "k" 'kill-buffer
   "g" 'hydra-git/body
+  "x" 'hydra-uiux/body
   "m" 'major-mode-hydra
   "p" 'helm-projectile-switch-project
   "nn" 'eno-word-goto
