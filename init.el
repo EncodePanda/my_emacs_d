@@ -82,8 +82,7 @@
 (fset `yes-or-no-p `y-or-n-p)
 
 ;; load theme
-(use-package moe-theme
-  :ensure t)
+(use-package moe-theme)
 (load-theme 'moe-dark t)
 
 ;; quick-switch-themes allows to quickly toggle between defined themes
@@ -107,8 +106,6 @@
 (load "~/.emacs.d/configs/frame-fns.el")
 (load "~/.emacs.d/configs/frame-cmds.el")
 (load "~/.emacs.d/configs/zoom-frm.el")
-(global-set-key (kbd "C-=") 'zoom-frm-in)
-(global-set-key (kbd "C--") 'zoom-frm-out)
 
 ;; show buffers that were opened recently
 ;; helpful if you just restarted your Emacs
