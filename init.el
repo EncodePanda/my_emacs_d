@@ -66,7 +66,8 @@
 ;; quick-switch-themes allows to quickly toggle between defined themes
 (defvar quick-switch-themes
   (let ((themes-list (list 'moe-dark
-                           'moe-light)))
+                           'moe-light
+			   'light-blue)))
     (nconc themes-list themes-list)))
 (defun quick-switch-themes* ()
   (interactive)
