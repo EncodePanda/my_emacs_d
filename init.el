@@ -533,7 +533,4 @@ import Data.Sequence (Seq)
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(haskell-stylish-on-save t)
- '(package-selected-packages
-   (quote
-    (htmlize json-mode haskell-snippets shm zoom-window yasnippet xah-fly-keys wttrin which-key use-package string-edit smartparens scala-mode sbt-mode quelpa protobuf-mode pandoc-mode org-bullets org-autolist nyan-mode neotree multiple-cursors monokai-theme moe-theme markdown-mode major-mode-hydra keyfreq key-chord intero hl-todo highlight-symbol helm-swoop helm-projectile helm-etags-plus helm-ag hasky-stack git-timemachine git-gutter-fringe+ eyebrowse exec-path-from-shell evil-surround evil-nerd-commenter evil-mc evil-magit evil-leader etags-select erlang eno encourage-mode elmacro eldoro duplicate-thing dumb-jump dashboard csv-mode code-library auto-package-update auto-highlight-symbol annoying-arrows-mode ag ace-window))))
+ '(haskell-stylish-on-save t))
