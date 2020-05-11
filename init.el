@@ -22,6 +22,8 @@
   (package-install 'use-package))
 (require 'use-package)
 (require 'use-package-ensure)
+;; when installing package, it will be always downloaded automatically from
+;; repository if is not available locally
 (setq use-package-always-ensure t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
