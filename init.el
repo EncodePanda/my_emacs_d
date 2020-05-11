@@ -28,7 +28,30 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Hydras
+;; Evil-mode - provides Vim features like Visual selection and text objects
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; key-chord allows usage of key-chord-define-global
+(use-package key-chord)
+;; enable evil mode
+(use-package evil
+  :config
+  (evil-mode)
+)
+;; when in normal mode, cursor will be heyllow
+(setq evil-normal-state-cursor '(box "yellow"))
+(setq evil-insert-state-cursor '(bar "white"))
+(key-chord-define-global "fj" 'evil-normal-state)
+;; leader key provides the <leader> feature from Vim that provides an easy way
+;; to bind keys under a variable prefix key
+(use-package evil-leader)
+(global-evil-leader-mode)
+(evil-leader/set-leader "<SPC>")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Hydras - used to tie related commands into a family of short bindings with
+;; a common prefix. Similar to leader key but more powerful
 ;;
 ;; Majore Mode Hydra is needed to be installed first so that we can later on
 ;; define hydras per major mode (e.g for haskell, orm-mode)
@@ -116,6 +139,7 @@
   (dashboard-setup-startup-hook))
 (setq dashboard-banner-logo-title "Welcome back, Encode Panda")
 (setq dashboard-startup-banner "~/.emacs.d/logo.png")
+(push 'dashboard-mode evil-insert-state-modes)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -421,31 +445,15 @@ import Data.Sequence (Seq)
     ("v" describe-variable "variable")
     ("i" info-lookup-symbol "info lookup"))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Evil-mode
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package key-chord)
-(use-package evil)
-(use-package evil-leader)
+
 (use-package evil-mc)
-
-(require 'evil)
-(require 'evil-leader)
-
 (global-evil-mc-mode  1)
-
-(evil-define-key 'visual evil-mc-key-map
-  "A" #'evil-mc-make-cursor-in-visual-selection-end
-  "I" #'evil-mc-make-cursor-in-visual-selection-beg)
 
 (use-package evil-magit)
 (use-package evil-surround)
 (global-evil-surround-mode 1)
 (use-package evil-nerd-commenter)
 
-(setq evil-normal-state-cursor '(box "yellow"))
 
 (use-package evil-org
   :ensure t
@@ -458,8 +466,11 @@ import Data.Sequence (Seq)
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
 
-(global-evil-leader-mode)
-(evil-leader/set-leader "<SPC>")
+(evil-leader/set-key
+  "jj" 'dumb-jump-go
+  "jb" 'dumb-jump-back
+  "jw" 'dumb-jump-go-prompt
+  )
 (evil-leader/set-key
   "y" 'helm-show-kill-ring
   "u" 'undo-tree-visualize
@@ -494,20 +505,13 @@ import Data.Sequence (Seq)
   "nl" 'avy-goto-line
   "nc" 'goto-last-change
   "nw" 'evil-avy-goto-char-timer
-  "jj" 'dumb-jump-go
-  "jb" 'dumb-jump-back
-  "jw" 'dumb-jump-go-prompt
   )
 
-(key-chord-define-global "fj" 'evil-normal-state)
 
 (use-package evil-surround
   :ensure t
   :config
   (global-evil-surround-mode 1))
-
-(evil-mode 1)
-(provide 'init-evil)
 
 (load "~/.emacs.d/configs/install_first")
 (load "~/.emacs.d/configs/hydras")
