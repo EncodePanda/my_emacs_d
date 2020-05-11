@@ -426,7 +426,7 @@ import Data.Sequence (Seq)
 ;; Evil-mode
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+(use-package key-chord)
 (use-package evil)
 (use-package evil-leader)
 (use-package evil-mc)
