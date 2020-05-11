@@ -28,17 +28,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Initialize Dashboard
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package dashboard
-  :config
-  (dashboard-setup-startup-hook))
-(setq dashboard-banner-logo-title "Welcome back, Rabbit")
-(setq dashboard-startup-banner "~/.emacs.d/logo.png")
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
 ;; Hydras
 ;;
 ;; Majore Mode Hydra is needed to be installed first so that we can later on
@@ -103,6 +92,18 @@
 (setq recentf-max-saved-items 200
       recentf-max-menu-items 15)
 (recentf-mode +1)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Initialize Dashboard
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package dashboard
+  :config
+  (dashboard-setup-startup-hook))
+(setq dashboard-banner-logo-title "Welcome back, Encode Panda")
+(setq dashboard-startup-banner "~/.emacs.d/logo.png")
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
