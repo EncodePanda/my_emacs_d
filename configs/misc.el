@@ -1,5 +1,5 @@
 ;; All other packages
-(packages-conditional-install '(keyfreq nyan-mode company eno elmacro auto-highlight-symbol hl-todo wttrin))
+(packages-conditional-install '(keyfreq company eno elmacro auto-highlight-symbol hl-todo wttrin))
 
 ;; collects stats of keyusage
 (require 'keyfreq)
@@ -11,9 +11,7 @@
 
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
-
-;; nyancut flying around :)
-(nyan-mode 1)
+;; TODO
 
 ;; copy buffer's path to clipboard
 (defun put-file-name-on-clipboard ()
@@ -28,18 +26,9 @@
         (clipboard-kill-region (point-min) (point-max)))
       (message filename))))
 
-;; company modes provides magic text completion
-(global-company-mode)
 
 
-;; (add-to-list 'company-backends 'company-cabal)
-;; (add-to-list 'company-backends 'company-dabbrev-code) 
-;; (add-to-list 'company-backends 'company-yasnippet)
-;; (add-to-list 'company-backends 'company-files)
-
-(setq org-reveal-root "file:///Users/rabbit/projects/reveal.js/js/reveal.js")
-
-;; jumping betweetn TODOs
+;; jumping betweetn TODO
 (defhydra hydra-todo (:pre
                   (hl-todo-mode 1)
               :post
@@ -52,10 +41,3 @@
 
 (setq wttrin-default-cities '("Wroclaw"))
 (setq wttrin-default-accept-language '("Accept-Language" . "en-US"))
-
-(defun toggle-mode-line () "toggles the modeline on and off"
-  (interactive) 
-  (setq mode-line-format
-    (if (equal mode-line-format nil)
-        (default-value 'mode-line-format)) )
-  (redraw-display))

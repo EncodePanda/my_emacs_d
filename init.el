@@ -28,11 +28,34 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; Mac / OSX specific configuration
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; needed for PATH recognition
+(use-package exec-path-from-shell)
+
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+(exec-path-from-shell-initialize)
+
+;; bind meta and super to cmd and option
+(when (eq system-type 'darwin)
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'super)
+  )
+
+;; uses oxs notifier as default TODO not sure if its working ...
+(setq alert-default-style 'osx-notifier)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Evil-mode - provides Vim features like Visual selection and text objects
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; key-chord allows usage of key-chord-define-global
 (use-package key-chord)
+(key-chord-mode 1)
 ;; enable evil mode
 (use-package evil
   :config
@@ -102,6 +125,14 @@
     (mapc #'disable-theme (delq 'smart-mode-line-dark custom-enabled-themes)))
   (setq quick-switch-themes (cdr quick-switch-themes)))
 
+;; nyancut flying around :)
+(use-package nyan-mode)
+(nyan-mode 1)
+
+;; encourage your work each time you save a buffer :)
+(use-package encourage-mode)
+(encourage-mode 1)
+
 ;; zoom in/out a.k.a presentation mode
 (load "~/.emacs.d/configs/frame-fns.el")
 (load "~/.emacs.d/configs/frame-cmds.el")
@@ -126,6 +157,93 @@
    )
    ))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Helm - incremental completion and selection narrowing framework
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package helm)
+(global-set-key (kbd "M-x") 'helm-M-x)            ;; replace default M-x
+(global-set-key (kbd "C-x C-f") 'helm-find-files) ;; replace default find file
+(global-set-key (kbd "C-s") 'helm-occur)          ;; replace default search
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Project exploration
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package projectile)      ;; project interaction library
+(projectile-global-mode 1)
+(use-package helm-projectile) ;; integrate helm with projectile
+(use-package ag)              ;; search using ag (silversearch)
+(use-package helm-ag)         ;; helm integration with ag
+
+(evil-leader/set-key
+  "pb" 'helm-mini                         ;; all buffers via helm
+  "pp" 'helm-projectile-find-file         ;; all project files
+  "pr" 'helm-projectile-recentf           ;; project recently opened buffers
+  "pg" 'helm-do-ag-project-root           ;; grap content in the project
+  "ps" 'helm-projectile-switch-project     ;; switch to known project
+)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Navigation
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; dump-jump is like having etags without a need to generate tags in the first
+;; place. dumb-jump works with different search engines, for me
+;; ag (silversearch) works best
+(use-package dumb-jump
+  :config (setq dumb-jump-force-searcher 'ag)
+)
+(evil-leader/set-key
+  "jj" 'dumb-jump-go
+  "jb" 'dumb-jump-back
+  "jw" 'dumb-jump-go-prompt
+  )
+;; eno and avy are nice combo to jump between places in visible part of buffer
+(use-package eno)
+(use-package avy)
+(evil-leader/set-key
+  "nn" 'eno-word-goto
+  "nl" 'avy-goto-line
+  "nc" 'goto-last-change
+  "nw" 'evil-avy-goto-char-timer
+  )
+;; jump to last change
+(use-package goto-chg)
+(evil-leader/set-key
+  "nc" 'goto-last-change
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Bookmakrs
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(evil-leader/set-key
+  "bs" 'helm-bookmarks     ;; search bookmarks
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Editing
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; visual undo (with branches)
+(use-package undo-tree)
+(global-undo-tree-mode 1)
+(evil-leader/set-key
+  "y" 'helm-show-kill-ring
+  "uu" 'undo-tree-visualize
+  "us" 'undo-tree-save-state-to-register
+  "ur" 'undo-tree-restore-state-to-register
+)
+;; contextual selection
+(use-package expand-region)
+(evil-leader/set-key
+  "e" 'er/expand-region
+)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Initialize Dashboard
@@ -152,40 +270,30 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Mac / OSX specific configuration
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; needed for PATH recognition
-(use-package exec-path-from-shell)
-
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-(exec-path-from-shell-initialize)
-
-;; bind meta and super to cmd and option
-(when (eq system-type 'darwin)
-  (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier 'super)
-  )
-
-;; uses oxs notifier as default TODO not sure if its working ...
-(setq alert-default-style 'osx-notifier)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
 ;; Window management
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package eyebrowse)
+(use-package eyebrowse)                   ;; like linux multiple desktop support
 (eyebrowse-mode t)
+(use-package ace-window)                  ;; window management made easy
 
-(use-package dumb-jump
-  :config (setq dumb-jump-force-searcher 'ag)
+(global-set-key (kbd "M-]") 'next-buffer)     ;; to buffer on the left
+(global-set-key (kbd "M-[") 'previous-buffer) ;; to buffer on the right
+
+(evil-leader/set-key
+  "ww" 'ace-window
+  "ws" 'ace-swap-window
+  "w1" 'eyebrowse-switch-to-window-config-1
+  "w2" 'eyebrowse-switch-to-window-config-2
+  "w3" 'eyebrowse-switch-to-window-config-3
+  "w4" 'eyebrowse-switch-to-window-config-4
+  "wv" 'split-window-horizontally
+  "wh" 'split-window-vertically
+  "wx" 'ace-delete-window
+  "k" 'kill-buffer
 )
-
-
-(use-package duplicate-thing)
+;; back-up jump (if evil not available)
+(global-set-key (kbd "C-c \\") 'ace-window)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -254,6 +362,10 @@
 (use-package company
   :config
   (add-to-list 'company-backends 'company-etags)
+;; (add-to-list 'company-backends 'company-cabal)
+;; (add-to-list 'company-backends 'company-dabbrev-code)
+;; (add-to-list 'company-backends 'company-yasnippet)
+;; (add-to-list 'company-backends 'company-files)
 )
 (global-company-mode t)
 
@@ -261,11 +373,18 @@
 (setq company-idle-delay 0
       company-echo-delay 0
       company-dabbrev-downcase nil
-      company-minimum-prefix-length 3
+      company-minimum-prefix-length 4
       company-selection-wrap-around t
       company-transformers '(company-sort-by-occurrence
                              company-sort-by-backend-importance))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Some handful set of modes
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package markdown-mode)
+(use-package csv-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -416,9 +535,27 @@ import Data.Sequence (Seq)
     )
    "Documentation"
    (("h" hoogle "hoogle"))))
-
 ;;(require 'flymake-hlint) ;; not needed if installed via package
 ;;(add-hook 'haskell-mode-hook 'flymake-hlint-load)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Scala
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package scala-mode)
+(use-package sbt-mode)
+(setq sbt:prefer-nested-projects t)    ;; bug in sbt-mode fixed
+
+(setq compilation-auto-jump-to-first-error t)
+(global-set-key (kbd "C-c s") 'sbt-hydra)
+
+(add-hook 'sbt-mode-hook
+          (lambda ()
+            (setq prettify-symbols-alist
+                  `((,(expand-file-name (directory-file-name default-directory)) . ?⌂)
+                    (,(expand-file-name "~") . ?~)))
+            (prettify-symbols-mode t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -442,6 +579,57 @@ import Data.Sequence (Seq)
     ("v" describe-variable "variable")
     ("i" info-lookup-symbol "info lookup"))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Smart Parens
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package smartparens)
+(smartparens-global-mode 1)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Needs cleanup
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Write backups to ~/.emacs.d/backup/
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+      backup-by-copying      t  ; Don't de-link hard links
+      version-control        t  ; Use version numbers on backups
+      delete-old-versions    t  ; Automatically delete excess backups:
+      kept-new-versions      20 ; how many of the newest versions to keep
+      kept-old-versions      5) ; and how many of the old
+
+;; etags
+(use-package etags-select)
+(use-package helm-etags-plus)
+
+;; quick way to update dependencies
+(use-package auto-package-update)
+
+;; auto-refresh all buffers when files have changed on disk
+(global-auto-revert-mode t)
+
+;; allows editing strings with escaping
+(use-package string-edit)
+
+;; highlight
+(use-package highlight-symbol)
+(add-hook 'prog-mode-hook 'highlight-symbol-mode)
+;; remove whitespaces at the end of the line
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(use-package multiple-cursors)
+(global-set-key (kbd "C-s-c C-s-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+(add-hook 'eshell-mode-hook
+          #'(lambda ()
+              (eshell-cmpl-initialize)
+              (define-key eshell-mode-map [remap pcomplete] 'helm-esh-pcomplete)
+              (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history)))
 
 (use-package evil-mc)
 (global-evil-mc-mode  1)
@@ -464,16 +652,6 @@ import Data.Sequence (Seq)
   (evil-org-agenda-set-keys))
 
 (evil-leader/set-key
-  "jj" 'dumb-jump-go
-  "jb" 'dumb-jump-back
-  "jw" 'dumb-jump-go-prompt
-  )
-(evil-leader/set-key
-  "y" 'helm-show-kill-ring
-  "u" 'undo-tree-visualize
-  "bb" 'helm-mini
-  "bp" 'helm-projectile-find-file
-  "br" 'helm-projectile-recentf
   "ci" 'evilnc-comment-or-uncomment-lines
   "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
   "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
@@ -483,44 +661,22 @@ import Data.Sequence (Seq)
   "cv" 'evilnc-toggle-invert-comment-line-by-line
   "."  'evilnc-copy-and-comment-operator
   "\\" 'evilnc-comment-operator ; if you prefer backslash key
-  "ww" 'ace-window
-  "w1" 'eyebrowse-switch-to-window-config-1
-  "w2" 'eyebrowse-switch-to-window-config-2
-  "w3" 'eyebrowse-switch-to-window-config-3
-  "w4" 'eyebrowse-switch-to-window-config-4
-  "wv" 'split-window-horizontally
-  "wh" 'split-window-vertically
-  "wx" 'ace-delete-window
-  "k" 'kill-buffer
   "g" 'hydra-git/body
   "x" 'hydra-uiux/body
   "m" 'major-mode-hydra
-  "p" 'helm-projectile-switch-project
-  "nn" 'eno-word-goto
-  "n]" 'sp-backward-sexp
-  "n[" 'sp-forward-sexp
-  "nl" 'avy-goto-line
-  "nc" 'goto-last-change
-  "nw" 'evil-avy-goto-char-timer
-  )
-
+)
 
 (use-package evil-surround
   :ensure t
   :config
   (global-evil-surround-mode 1))
 
+(setq confirm-kill-emacs 'yes-or-no-p)
+
 (load "~/.emacs.d/configs/install_first")
-(load "~/.emacs.d/configs/hydras")
 (load "~/.emacs.d/configs/yasnippet")
-(load "~/.emacs.d/configs/scala")
 (load "~/.emacs.d/configs/misc")
 (load "~/.emacs.d/configs/ui")
-(load "~/.emacs.d/configs/editing")
-(load "~/.emacs.d/configs/project")
-(load "~/.emacs.d/configs/windows")
-(load "~/.emacs.d/configs/erlang")
-(load "~/.emacs.d/configs/other")
 (load "~/.emacs.d/configs/org")
 (load "~/.emacs.d/configs/greek")
 (custom-set-faces
@@ -534,4 +690,7 @@ import Data.Sequence (Seq)
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(haskell-stylish-on-save t))
+ '(haskell-stylish-on-save t)
+ '(package-selected-packages
+   (quote
+    (expand-region neotree wttrin hl-todo auto-highlight-symbol elmacro keyfreq evil-org evil-nerd-commenter evil-surround evil-magit evil-mc multiple-cursors highlight-symbol string-edit auto-package-update helm-etags-plus etags-select smartparens sbt-mode scala-mode haskell-snippets haskell-mode org-autolist org-bullets csv-mode markdown-mode company git-gutter-fringe+ git-timemachine magit ace-window eyebrowse which-key dashboard avy eno dumb-jump helm-ag ag helm-projectile projectile helm encourage-mode nyan-mode moe-theme major-mode-hydra evil-leader evil key-chord exec-path-from-shell use-package))))
