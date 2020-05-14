@@ -25,3 +25,15 @@ Also install mactex for Mac OS
 ```
 brew cask install mactex
 ```
+
+
+Also install ispell
+
+```
+brew install ispell
+```
+
+## Possible extensions in the future
+
+* [Better spelling with aspel (+camelCase support)](http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html)
+* [Spellchecing with English grammar!](https://joelkuiper.eu/spellcheck_emacs)
