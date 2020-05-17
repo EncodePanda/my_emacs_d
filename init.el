@@ -253,6 +253,19 @@
 (eval-after-load "evil-maps" (define-key evil-motion-state-map "\C-e" nil))
 ;; this bind C-e to expand-region
 (global-set-key (kbd "C-e") 'er/expand-region)
+;; folds text
+(use-package vimish-fold)
+(vimish-fold-global-mode 1)
+(evil-leader/set-key
+  "vf" 'vimish-fold
+  "vd" 'vimish-fold-delete
+  "vD" 'vimish-fold-delete-all
+  "vu" 'vimish-fold-unfold
+  "vU" 'vimish-fold-unfold-all
+  "vt" 'vimish-fold-toggle
+  "vT" 'vimish-fold-toggle-all
+)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Initialize Dashboard
@@ -288,7 +301,6 @@
 
 (global-set-key (kbd "M-]") 'next-buffer)     ;; to buffer on the left
 (global-set-key (kbd "M-[") 'previous-buffer) ;; to buffer on the right
-
 (evil-leader/set-key
   "ww" 'ace-window
   "ws" 'ace-swap-window
