@@ -590,6 +590,9 @@ import Data.Sequence (Seq)
 (use-package restclient)
 (use-package company-restclient)
 (add-to-list 'company-backends 'company-restclient)
+;; speed-type allows testing your type skills, just call speed-type-test
+(use-package speed-type)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Configuration for editing ELisp code
