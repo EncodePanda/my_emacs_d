@@ -48,6 +48,10 @@
 ;; uses oxs notifier as default TODO not sure if its working ...
 (setq alert-default-style 'osx-notifier)
 
+;; osx-lib gives nice adapters to OSX functionality
+(use-package osx-lib)
+(osx-lib-say "Emacs loading...")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Evil-mode - provides Vim features like Visual selection and text objects
@@ -150,6 +154,10 @@
   ("Zoom"
    (("i" zoom-frm-in "(+) in")
     ("o" zoom-frm-out "(-) out")
+   )
+   "Volume"
+   (("m" osx-lib-mute-volume "mute")
+    ("M" osx-lib-unmute-volume "unmute")
    )
 
    "Theme"
@@ -689,6 +697,7 @@ import Data.Sequence (Seq)
 (load "~/.emacs.d/configs/ui")
 (load "~/.emacs.d/configs/org")
 (load "~/.emacs.d/configs/greek")
+(osx-lib-say "Emacs loaded")
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
