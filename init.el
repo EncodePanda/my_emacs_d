@@ -249,9 +249,10 @@
 )
 ;; contextual selection
 (use-package expand-region)
-(evil-leader/set-key
-  "e" 'er/expand-region
-)
+;; this unbinds evil C-e
+(eval-after-load "evil-maps" (define-key evil-motion-state-map "\C-e" nil))
+;; this bind C-e to expand-region
+(global-set-key (kbd "C-e") 'er/expand-region)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Initialize Dashboard
@@ -404,6 +405,7 @@
   :bind ("C-M-;" . flyspell-correct-wrapper)
   :init
   (setq flyspell-correct-interface #'flyspell-correct-helm))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Org Mode
