@@ -340,12 +340,16 @@
 (add-hook 'magit-post-refresh-hook
           #'my-refresh-visible-git-gutter-buffers)
 
+;; inline git blame
+(use-package git-messenger)
+(setq git-messenger:show-detail t) ;; more details in popup (author, date etc.)
+
 (pretty-hydra-define hydra-git (:foreign-keys warn :title "Git" :quit-key "q" :exit t)
   ("Magit"
    (("o" magit "open")
     ("b" magit-blame "blame")
+    ("p" git-messenger:popup-message "blame line")
    )
-
    "Hunks"
    (("w" git-gutter+-show-hunk "show hunk" :exit nil)
     ("k" git-gutter+-previous-hunk "previous hunk" :exit nil)
