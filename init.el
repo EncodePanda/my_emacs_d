@@ -253,6 +253,12 @@
 (eval-after-load "evil-maps" (define-key evil-motion-state-map "\C-e" nil))
 ;; this bind C-e to expand-region
 (global-set-key (kbd "C-e") 'er/expand-region)
+
+;; edit multiple regions simultaneously in a buffer or a region
+(use-package iedit)
+(use-package evil-iedit-state)
+(define-key evil-normal-state-map (kbd "ge") 'evil-iedit-state/iedit-mode)
+
 ;; folds text
 (use-package vimish-fold)
 (vimish-fold-global-mode 1)
