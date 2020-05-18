@@ -363,7 +363,7 @@
 (setq git-messenger:show-detail t) ;; more details in popup (author, date etc.)
 
 (pretty-hydra-define hydra-git (:foreign-keys warn :title "Git" :quit-key "q" :exit t)
-  ("Magit"
+  ("Git"
    (("o" magit "open")
     ("b" magit-blame "blame")
     ("p" git-messenger:popup-message "blame line")
@@ -375,8 +375,10 @@
     ("x" git-gutter+-revert-hunk "kill hunk" :exit nil)
     ("s" git-gutter+-stage-hunks "stage hunk" :exit nil)
    )
-   "Other"
+   "Log"
    (("t" git-timemachine "time machine")
+    ("a" magit-log-all "log all")
+    ("f" magit-log-buffer-file "log file")
    )
    ))
 (global-set-key (kbd "C-c g") 'hydra-git/body)
