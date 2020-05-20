@@ -103,7 +103,15 @@
 (scroll-bar-mode 0)         ;; no scrollbar
 (show-paren-mode 1)         ;; highlight matchin paranthesis
 (column-number-mode 1)      ;; show column number in minibuffer
-(global-linum-mode 1)       ;; show line numbers in gutter
+
+;; adds relative line numbers in normal mode and absolute
+;; line numbers in insert mode
+;; to use *just* absolute line numbers everywhere we would have to
+;; replace code below with (global-linum-mode 1)
+(use-package nlinum-relative
+    :config
+    (nlinum-relative-setup-evil)
+    (add-hook 'prog-mode-hook 'nlinum-relative-mode))
 
 ;; answer questions with y/n (instead of yes/no)
 (fset `yes-or-no-p `y-or-n-p)
