@@ -393,6 +393,45 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; File operations
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Delete and kill buffer
+(defun delete-file-visited-by-buffer (buffername)
+  "Delete the file visited by the buffer named BUFFERNAME."
+  (interactive "b")
+  (let* ((buffer (get-buffer buffername))
+         (filename (buffer-file-name buffer)))
+    (when filename
+      (delete-file filename)
+      (kill-buffer-ask buffer))))
+;; copy buffer's path to clipboard
+(defun put-file-name-on-clipboard ()
+  "Put the current file name on the clipboard"
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (with-temp-buffer
+        (insert filename)
+        (clipboard-kill-region (point-min) (point-max)))
+      (message filename))))
+;; hydra for file manipulation
+(pretty-hydra-define hydra-file(:foreign-keys warn :title "File" :quit-key "q" :exit t)
+  ("File"
+   (("x" delete-file-visited-by-buffer "delete")
+    ("p" put-file-name-on-clipboard "path to clipboard")
+   )
+   ))
+(evil-leader/set-key
+  "g" 'hydra-git/body
+  "x" 'hydra-uiux/body
+)
+(define-key evil-normal-state-map (kbd "gf") 'hydra-file/body)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Company mode
 ;;
 ;; This mode enables completion, supports many backends
