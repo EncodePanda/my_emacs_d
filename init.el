@@ -173,7 +173,6 @@
    )
    ))
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Helm - incremental completion and selection narrowing framework
@@ -183,6 +182,7 @@
 (global-set-key (kbd "M-x") 'helm-M-x)            ;; replace default M-x
 (global-set-key (kbd "C-x C-f") 'helm-find-files) ;; replace default find file
 (global-set-key (kbd "C-s") 'helm-occur)          ;; replace default search
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Project exploration
@@ -213,10 +213,12 @@
   :config (setq dumb-jump-force-searcher 'ag)
 )
 (evil-leader/set-key
-  "jj" 'dumb-jump-go
-  "jb" 'dumb-jump-back
-  "jw" 'dumb-jump-go-prompt
+  "d" 'dumb-jump-go-prompt
   )
+;; note that by default gd is bound to evil-definition that is using tags
+;; with dumb jump we can completely ignore etags
+(define-key evil-normal-state-map (kbd "gd") 'dumb-jump-go)
+(define-key evil-normal-state-map (kbd "gD") 'dumb-jump-back)
 ;; eno and avy are nice combo to jump between places in visible part of buffer
 (use-package eno)
 (use-package avy)
