@@ -344,6 +344,7 @@
 ;; magit is a powerful interface to git
 (use-package magit
   :bind ("C-x G" . magit-status))
+(use-package evil-magit) ;; integration with evil
 
 ;; time machine allows inspecting changes on a single file
 ;; we can move back and forth to see the progress on a given file
@@ -542,6 +543,7 @@
 (use-package haskell-mode
   :init (setq haskell-stylish-on-save t)
 )
+;; ghcid from lukasz
 (load "~/.emacs.d/configs/ghcid.el")
 (use-package haskell-snippets)
 (require 'haskell-snippets)
@@ -759,7 +761,6 @@ import Data.Sequence (Seq)
 (use-package evil-mc)
 (global-evil-mc-mode  1)
 
-(use-package evil-magit)
 (use-package evil-surround)
 (global-evil-surround-mode 1)
 (use-package evil-nerd-commenter)
