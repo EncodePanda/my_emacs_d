@@ -801,7 +801,5 @@ import Data.Sequence (Seq)
 
 (load "~/.emacs.d/configs/install_first")
 (load "~/.emacs.d/configs/yasnippet")
-(load "~/.emacs.d/configs/misc")
-(load "~/.emacs.d/configs/org")
 (load "~/.emacs.d/configs/greek")
 (osx-lib-say "Emacs loaded")
