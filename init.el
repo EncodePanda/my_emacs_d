@@ -264,6 +264,9 @@
 ;; this bind C-e to expand-region
 (global-set-key (kbd "C-e") 'er/expand-region)
 
+;; auto highlight symbols at point
+(use-package auto-highlight-symbol)
+
 ;; edit multiple regions simultaneously in a buffer or a region
 (use-package iedit)
 (use-package evil-iedit-state)
