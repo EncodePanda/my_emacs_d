@@ -736,7 +736,6 @@ import Data.Sequence (Seq)
 
 ;; auto-refresh all buffers when files have changed on disk
 (global-auto-revert-mode t)
-
 ;; allows editing strings with escaping
 (use-package string-edit)
 
