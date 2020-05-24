@@ -446,15 +446,17 @@
 
 ;; enable company mode for all files
 (use-package company
-  :config
-  (add-to-list 'company-backends 'company-etags)
+   :config
+   (global-company-mode)
+  ;; (add-to-list 'company-backends 'company-etags)
 ;; (add-to-list 'company-backends 'company-cabal)
-;; (add-to-list 'company-backends 'company-dabbrev-code)
+   (add-to-list 'company-backends 'company-dabbrev-code)
 ;; (add-to-list 'company-backends 'company-yasnippet)
 ;; (add-to-list 'company-backends 'company-files)
+   (define-key company-active-map (kbd "C-n") 'company-select-next)
+   (define-key company-active-map (kbd "C-p") 'company-select-previous)
+   :bind ("C-<tab>" . 'company-complete-common-or-cycle)
 )
-(global-company-mode t)
-
 ;; "aggressive" completion (no delays, quick feedback)
 (setq company-idle-delay 0
       company-echo-delay 0
