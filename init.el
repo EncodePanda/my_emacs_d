@@ -801,3 +801,10 @@ import Data.Sequence (Seq)
 (load "~/.emacs.d/configs/yasnippet")
 (load "~/.emacs.d/configs/greek")
 (osx-lib-say "Emacs loaded")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; TODO - things that seem cool but I have not yet time to explore
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; https://www.gnu.org/software/emacs/manual/html_node/autotype/Hippie-Expand.html
