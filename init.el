@@ -539,7 +539,9 @@
 ;; Haskell
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package haskell-mode)
+(use-package haskell-mode
+  :init (setq haskell-stylish-on-save t)
+)
 (load "~/.emacs.d/configs/ghcid.el")
 (use-package haskell-snippets)
 (require 'haskell-snippets)
@@ -802,18 +804,3 @@ import Data.Sequence (Seq)
 (load "~/.emacs.d/configs/org")
 (load "~/.emacs.d/configs/greek")
 (osx-lib-say "Emacs loaded")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(haskell-stylish-on-save t)
- '(package-selected-packages
-   (quote
-    (expand-region neotree wttrin hl-todo auto-highlight-symbol elmacro keyfreq evil-org evil-nerd-commenter evil-surround evil-magit evil-mc multiple-cursors highlight-symbol string-edit auto-package-update helm-etags-plus etags-select smartparens sbt-mode scala-mode haskell-snippets haskell-mode org-autolist org-bullets csv-mode markdown-mode company git-gutter-fringe+ git-timemachine magit ace-window eyebrowse which-key dashboard avy eno dumb-jump helm-ag ag helm-projectile projectile helm encourage-mode nyan-mode moe-theme major-mode-hydra evil-leader evil key-chord exec-path-from-shell use-package))))
