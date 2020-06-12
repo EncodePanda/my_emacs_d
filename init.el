@@ -213,12 +213,10 @@
   :config (setq dumb-jump-force-searcher 'ag)
 )
 (evil-leader/set-key
-  "d" 'dumb-jump-go-prompt
+  "jj" 'dumb-jump-go
+  "jb" 'dumb-jump-back
+  "jw" 'dumb-jump-go-prompt
   )
-;; note that by default gd is bound to evil-definition that is using tags
-;; with dumb jump we can completely ignore etags
-(define-key evil-normal-state-map (kbd "gd") 'dumb-jump-go)
-(define-key evil-normal-state-map (kbd "gD") 'dumb-jump-back)
 ;; eno and avy are nice combo to jump between places in visible part of buffer
 (use-package eno)
 (use-package avy)
