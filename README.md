@@ -33,6 +33,12 @@ Also install ispell
 brew install ispell
 ```
 
+Also install direnv
+
+```
+nix-env -i direnv
+```
+
 ## Possible extensions in the future
 
 * [Better spelling with aspel (+camelCase support)](http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html)
