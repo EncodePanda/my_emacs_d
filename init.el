@@ -50,7 +50,6 @@
 
 ;; osx-lib gives nice adapters to OSX functionality
 (use-package osx-lib)
-(osx-lib-say "Emacs loading...")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -550,6 +549,12 @@
 (use-package haskell-mode
   :init (setq haskell-stylish-on-save t)
 )
+(use-package flycheck-haskell)
+(add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
+;; body insert
+(fset 'haskellfuncbody
+   [?0 ?v ?i ?w ?y ?o ?j ?f ?p backspace backspace backspace escape ?p ?a ?  ?= ?  escape])
+(define-key haskell-mode-map (kbd "C-c f") 'haskellfuncbody)
 ;; ghcid from lukasz
 (load "~/.emacs.d/configs/ghcid.el")
 (use-package haskell-snippets)
@@ -816,7 +821,7 @@ import Data.Sequence (Seq)
 (load "~/.emacs.d/configs/install_first")
 (load "~/.emacs.d/configs/yasnippet")
 (load "~/.emacs.d/configs/greek")
-(osx-lib-say "Emacs loaded")
+;; (sxo-lib-say "Emacs loaded")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
