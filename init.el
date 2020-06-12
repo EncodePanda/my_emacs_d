@@ -821,3 +821,12 @@ import Data.Sequence (Seq)
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; https://www.gnu.org/software/emacs/manual/html_node/autotype/Hippie-Expand.html
+;; https://github.com/hayamiz/twittering-mode/blob/3.0.x/README.markdown
+;; https://github.com/fniessen/org-html-themes
+;; https://pavpanchekha.com/blog/magit-unpublished.html
+;; https://github.com/JulienMasson/org-gtasks
+;; https://www.reddit.com/r/emacs/comments/8jaflq/tip_how_to_use_your_dashboard_properly/
+;; https://github.com/emacs-evil/evil-collection
+;; https://github.com/atykhonov/google-translate
+;; https://github.com/Malabarba/emacs-google-this
+;; https://github.com/dgutov/diff-hl
