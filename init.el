@@ -113,6 +113,13 @@
     (nlinum-relative-setup-evil)
     (add-hook 'prog-mode-hook 'nlinum-relative-mode))
 
+;; clm/open-command-log-buffer opens small buffer that shows all the keystrokes
+;; and functions used while oparating Emacs
+(use-package command-log-mode
+  :config
+  (global-command-log-mode)
+)
+
 ;; answer questions with y/n (instead of yes/no)
 (fset `yes-or-no-p `y-or-n-p)
 
