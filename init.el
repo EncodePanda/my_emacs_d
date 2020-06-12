@@ -447,14 +447,11 @@
 ;; enable company mode for all files
 (use-package company
   :init
-  ;; (setq company-backends '((company-files company-keywords company-capf company-dabbrev-code company-dabbrev company-ispell)))
+  (setq company-backends '((company-files company-keywords company-capf company-dabbrev-code company-dabbrev company-ispell)))
   :config
   (global-company-mode)
-  (add-to-list 'company-backends 'company-dabbrev-code)
-  (add-to-list 'company-backends 'company-ispell)
 
 ;; (add-to-list 'company-backends 'company-yasnippet)
-;; (add-to-list 'company-backends 'company-files)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
   :bind ("C-<tab>" . 'company-complete-common-or-cycle)
