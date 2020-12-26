@@ -554,6 +554,7 @@
 ;; Haskell
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; TOOD https://github.com/bmillwood/pointfree
 (use-package haskell-mode
   :init (setq haskell-stylish-on-save t)
 )
@@ -836,6 +837,8 @@ import Data.Sequence (Seq)
 ;; TODO - things that seem cool but I have not yet time to explore
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Haskell:
+;; - jump to definition in right window macro
 ;; https://www.gnu.org/software/emacs/manual/html_node/autotype/Hippie-Expand.html
 ;; https://github.com/hayamiz/twittering-mode/blob/3.0.x/README.markdown
 ;; https://github.com/fniessen/org-html-themes
