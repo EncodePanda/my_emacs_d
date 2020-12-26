@@ -457,9 +457,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; enable company mode for all files
+(use-package company-ghc)
 (use-package company
   :init
-  (setq company-backends '((company-files company-keywords company-capf company-dabbrev-code company-dabbrev company-ispell)))
+  (setq company-backends '((company-ghc company-files company-keywords company-capf company-dabbrev-code company-dabbrev company-ispell)))
   :config
   (global-company-mode)
 
