@@ -260,6 +260,9 @@
 ;; visual undo (with branches)
 (use-package undo-tree)
 (global-undo-tree-mode 1)
+;; fine-graned undo with evil mode, without this undo has not friendly
+;; experience where it undo things in chunks
+(setq evil-want-fine-undo t)
 (evil-leader/set-key
   "y" 'helm-show-kill-ring
   "uu" 'undo-tree-visualize
