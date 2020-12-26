@@ -150,6 +150,11 @@
 ;; encourage your work each time you save a buffer :)
 (use-package encourage-mode)
 (encourage-mode 1)
+(setq encourage-encouragements
+  (nconc encourage-encouragements
+    '("Good job"
+      "Great initiative"
+      "Nice work")))
 
 ;; zoom in/out a.k.a presentation mode
 (load "~/.emacs.d/configs/frame-fns.el")
