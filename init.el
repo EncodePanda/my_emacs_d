@@ -5,8 +5,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade.ferrier.me.uk/packages/"))
+(setq package-check-signature nil)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
