@@ -133,22 +133,8 @@
 (use-package moe-theme)
 (load-theme 'moe-dark t)
 
-;; quick-switch-themes allows to quickly toggle between defined themes
-(defvar quick-switch-themes
-  (let ((themes-list (list 'moe-dark
-                           'moe-light
-			   'light-blue)))
-    (nconc themes-list themes-list)))
-(defun quick-switch-themes* ()
-  (interactive)
-  (if-let* ((next-theme (cadr quick-switch-themes)))
-      (progn (when-let* ((current-theme (car quick-switch-themes)))
-               (disable-theme (car quick-switch-themes)))
-             (load-theme next-theme t)
-             (message "Loaded theme: %s" next-theme))
-    ;; Always have the dark mode-line theme
-    (mapc #'disable-theme (delq 'smart-mode-line-dark custom-enabled-themes)))
-  (setq quick-switch-themes (cdr quick-switch-themes)))
+;; allows quick theme change
+(use-package helm-themes)
 
 ;; nyancut flying around :)
 (use-package nyan-mode)
@@ -187,7 +173,7 @@
    )
 
    "Theme"
-   (("t" quick-switch-themes* "theme switch")
+   (("t" helm-themes "theme switch")
    )
    ))
 
