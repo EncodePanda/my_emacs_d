@@ -751,10 +751,6 @@ import Data.Sequence (Seq)
       kept-new-versions      20 ; how many of the newest versions to keep
       kept-old-versions      5) ; and how many of the old
 
-;; etags
-(use-package etags-select)
-(use-package helm-etags-plus)
-
 ;; quick way to update dependencies
 (use-package auto-package-update)
 
