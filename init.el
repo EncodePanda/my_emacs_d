@@ -824,6 +824,21 @@ import Data.Sequence (Seq)
 (load "~/.emacs.d/configs/install_first")
 (load "~/.emacs.d/configs/yasnippet")
 (load "~/.emacs.d/configs/greek")
+
+;; The default value of custom-file is just the current user's .emacs.d/init.el file.
+;; Emacs will add content to custom-file whenever a variable is customized or marked as safe.
+;; When init.el is version controlled, it is quite annoying to have random machine-generated
+;; variable settings added to it because those changes are often not worth keeping permanently,
+;; so we set a different custom file here to avoid this situation.
+;;
+;; custom-before.el is loaded before the rest of init.el, while custom-after.el is loaded afterwards.
+;; this-machine.el has customizations that should only apply to the current machine.
+;; custom-before and custom-after are not version controlled in the dotfiles repo but they are shared across machines elsewhere.
+(defvar machine-custom "~/.emacs.d/this-machine.el")
+(defvar custom-after-file "~/.emacs.d/custom-after.el")
+(setq custom-file "~/.emacs.d/custom-before.el")
+(when (file-exists-p custom-file) (load custom-file))
+
 ;; (sxo-lib-say "Emacs loaded")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
