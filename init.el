@@ -112,6 +112,13 @@
     (nlinum-relative-setup-evil)
     (add-hook 'prog-mode-hook 'nlinum-relative-mode))
 
+;; deeply nested delimiters get different colors
+(use-package rainbow-delimiters
+  :commands rainbow-delimiters-mode
+  :init
+  (progn
+    (add-hook 'prog-mode-hook (lambda () (rainbow-delimiters-mode t)))))
+
 ;; clm/open-command-log-buffer opens small buffer that shows all the keystrokes
 ;; and functions used while oparating Emacs
 (use-package command-log-mode
