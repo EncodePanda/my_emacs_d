@@ -862,3 +862,4 @@ import Data.Sequence (Seq)
 ;; https://github.com/atykhonov/google-translate
 ;; https://github.com/Malabarba/emacs-google-this
 ;; https://github.com/dgutov/diff-hl
+;; https://github.com/rejeep/f.el
