@@ -550,7 +550,6 @@
    (add-to-list 'exec-path "/usr/local/texlive/2019/bin/x86_64-darwin")
 )
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Haskell
@@ -560,8 +559,11 @@
 (use-package haskell-mode
   :init (setq haskell-stylish-on-save t)
 )
+;; syntax checking via flycheck
 (use-package flycheck-haskell)
 (add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
+;; apply-refactor for hlint hints
+(use-package hlint-refactor)
 ;; body insert
 (fset 'haskellfuncbody
    [?0 ?v ?i ?w ?y ?o ?j ?f ?p backspace backspace backspace escape ?p ?a ?  ?= ?  escape])
@@ -655,6 +657,8 @@ import Data.Sequence (Seq)
    (("i" haskell-imports-helm  "imports")
     ("y" yas-describe-tables "snippets")
     ("g" ghcid "ghcid")
+    ("l" hlint-refactor-at-point "hlint (at point)")
+    ("L" hlint-refactor-buffer "hlint (buffer)")
     )
    "Documentation"
    (("h" hoogle "hoogle"))))
