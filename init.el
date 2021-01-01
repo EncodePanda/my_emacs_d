@@ -637,6 +637,17 @@ import Data.List.NonEmpty (NonEmpty(..))
 import Data.Sequence (Seq)
 ")))
 
+;; calls pointfree (needs to be available on PATH) and replaces code with
+;; its point free version
+(defun dmw-haskell-pointfree-replace ()
+  "Replaces the marked region with the Haskell pointfree evaluation."
+  (interactive)
+  (let ((pfcmd (format "pointfree %s"
+                       (shell-quote-argument (buffer-substring-no-properties
+                                              (region-beginning)
+                                              (region-end))))))
+    (shell-command-on-region (region-beginning) (region-end) pfcmd t)))
+
 (setq haskell-imports-helm-source
       `((name . "*helm* Insert Haskell import")
         (candidates . ,haskell-import-mapping)
