@@ -94,7 +94,6 @@
 ;; UI/UX custimizations
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; small UI improvements
 (tool-bar-mode 0)           ;; no tool bar
 (menu-bar-mode 0)           ;; no menu bar
@@ -102,15 +101,7 @@
 (scroll-bar-mode 0)         ;; no scrollbar
 (show-paren-mode 1)         ;; highlight matchin paranthesis
 (column-number-mode 1)      ;; show column number in minibuffer
-
-;; adds relative line numbers in normal mode and absolute
-;; line numbers in insert mode
-;; to use *just* absolute line numbers everywhere we would have to
-;; replace code below with (global-linum-mode 1)
-(use-package nlinum-relative
-    :config
-    (nlinum-relative-setup-evil)
-    (add-hook 'prog-mode-hook 'nlinum-relative-mode))
+(global-linum-mode 1)       ;; line numbers
 
 ;; deeply nested delimiters get different colors
 (use-package rainbow-delimiters
