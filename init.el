@@ -192,10 +192,12 @@
 (evil-leader/set-key
   "pb" 'helm-mini                         ;; all buffers via helm
   "pp" 'helm-projectile-find-file         ;; all project files
-  "pr" 'helm-projectile-recentf           ;; project recently opened buffers
+  "pf" 'helm-projectile-recentf           ;; project recently opened buffers
+  "pr" 'projectile-replace                ;; replace occurances in whole project
   "pg" 'helm-do-ag-project-root           ;; grap content in the project
   "ps" 'helm-projectile-switch-project     ;; switch to known project
 )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Navigation
