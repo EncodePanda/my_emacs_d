@@ -501,9 +501,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package flyspell)
 (use-package flyspell-correct-helm
-  :bind ("C-M-;" . flyspell-correct-wrapper)
-  :init
-  (setq flyspell-correct-interface #'flyspell-correct-helm))
+   :bind ("C-M-;" . flyspell-correct-wrapper)
+   :defer t
+   :init
+   (progn
+     (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+     (add-hook 'text-mode-hook 'flyspell-mode)
+   (setq flyspell-correct-interface #'flyspell-correct-helm)))
+;; TODO https://endlessparentheses.com/ispell-and-abbrev-the-perfect-auto-correct.html
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
