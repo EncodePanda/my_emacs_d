@@ -337,6 +337,8 @@
   "w2" 'eyebrowse-switch-to-window-config-2
   "w3" 'eyebrowse-switch-to-window-config-3
   "w4" 'eyebrowse-switch-to-window-config-4
+  "w5" 'eyebrowse-switch-to-window-config-5
+  "w6" 'eyebrowse-switch-to-window-config-6
   "wv" 'split-window-horizontally
   "wh" 'split-window-vertically
   "wx" 'ace-delete-window
