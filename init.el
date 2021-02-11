@@ -64,6 +64,14 @@
   :config
   (evil-mode)
 )
+
+;; TODO bring only modes that I like
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
+
 ;; when in normal mode, cursor will be heyllow
 (setq evil-normal-state-cursor '(box "yellow"))
 (setq evil-insert-state-cursor '(bar "white"))
@@ -350,7 +358,6 @@
 ;; magit is a powerful interface to git
 (use-package magit
   :bind ("C-x G" . magit-status))
-(use-package evil-magit) ;; integration with evil
 
 ;; time machine allows inspecting changes on a single file
 ;; we can move back and forth to see the progress on a given file
