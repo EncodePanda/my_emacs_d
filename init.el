@@ -78,9 +78,13 @@
 (key-chord-define-global "fj" 'evil-normal-state)
 ;; leader key provides the <leader> feature from Vim that provides an easy way
 ;; to bind keys under a variable prefix key
-(use-package evil-leader)
-(global-evil-leader-mode)
-(evil-leader/set-leader "<SPC>")
+(use-package evil-leader
+  :after evil-collection
+  :config
+  (setq evil-want-keybinding nil)
+  (global-evil-leader-mode)
+  (evil-leader/set-leader "<SPC>")
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
