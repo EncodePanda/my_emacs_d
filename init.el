@@ -511,29 +511,44 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'org)
+(use-package org
+  :init
+  (setq org-agenda-files (directory-files-recursively "~/org/" "\.org$"))
+  (global-set-key "\C-cl" 'org-store-link)
+  (global-set-key "\C-ca" 'org-agenda)
+  (define-key global-map "\C-cc" 'org-capture)
+  (global-set-key "\C-cb" 'org-iswitchb)
+  (setq org-default-notes-file (concat org-directory "/captured.org"))
+  (add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
+)
+
 ;; org bullets for nicer rendering of org files
-(use-package org-bullets)
-(add-hook 'org-mode-hook 'org-bullets-mode)
+(use-package org-bullets
+  :after org
+  :init
+  (add-hook 'org-mode-hook 'org-bullets-mode)
+)
 
 ;; autolist changes behaviour to more familiar one from non-programming editors
 ;; e.g hiting RET at the end of a list creats new entry in that list
 (use-package org-autolist
-  :ensure)
-(add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
+  :after org
+)
 
+;; evil bindings
+;; (use-package evil-org
+;;   :ensure t
+;;   :after org
+;;   :hook (org-mode . (lambda () evil-org-mode))
+;;   :config
+;;   (require 'evil-org-agenda)
+;;   (evil-org-agenda-set-keys))
 ;; bindings, todo use use-package
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(define-key global-map "\C-cc" 'org-capture)
-(global-set-key "\C-cb" 'org-iswitchb)
-(setq org-default-notes-file (concat org-directory "/captured.org"))
 
 (setq org-refile-targets '(
    (nil :maxlevel . 2)             ; refile to headings in the current buffer
    (org-agenda-files :maxlevel . 2) ; refile to any of these files
    ))
-
-(setq org-agenda-files (directory-files-recursively "~/org/" "\.org$"))
 
 (setq org-capture-templates
  '(("t" "Todo" entry (file+headline "~/org/capture.org" "Tasks")
