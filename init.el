@@ -525,6 +525,15 @@
   (global-set-key "\C-cb" 'org-iswitchb)
   (setq org-default-notes-file (concat org-directory "/captured.org"))
   (add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
+  ;; custom agendas
+  (setq org-agenda-custom-commands
+      '(("c" . "My Custom Agendas")
+        ("cu" "Unscheduled TODO"
+         ((todo ""
+                ((org-agenda-overriding-header "\nUnscheduled TODO")
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled)))))
+         nil
+         nil)))
 )
 
 ;; org bullets for nicer rendering of org files
