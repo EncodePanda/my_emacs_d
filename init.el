@@ -515,7 +515,6 @@
 ;; Org Mode
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'org)
 (use-package org
   :init
   (setq org-agenda-files (directory-files-recursively "~/org/" "\.org$"))
