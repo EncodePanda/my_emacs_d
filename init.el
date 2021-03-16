@@ -327,6 +327,7 @@
 (use-package eyebrowse)                   ;; like linux multiple desktop support
 (eyebrowse-mode t)
 (use-package ace-window)                  ;; window management made easy
+(winner-mode 1)
 
 (global-set-key (kbd "M-]") 'next-buffer)     ;; to buffer on the left
 (global-set-key (kbd "M-[") 'previous-buffer) ;; to buffer on the right
@@ -342,6 +343,8 @@
   "wv" 'split-window-horizontally
   "wh" 'split-window-vertically
   "wx" 'ace-delete-window
+  "wu" 'winner-undo                          ;; undo any window change
+  "wU" 'winner-redo                          ;; redo any window change
   "k" 'kill-buffer
 )
 ;; back-up jump (if evil not available)
