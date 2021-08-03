@@ -811,6 +811,27 @@ import Data.Sequence (Seq)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; RSS reader
+;; see: https://github.com/skeeto/elfeed
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package elfeed
+  :config
+  (setq elfeed-feeds
+        '(
+          ;; programming
+          ("https://www.reddit.com/r/haskell.rss" haskell)
+          ("https://www.reddit.com/r/emacs.rss" emacs)
+  	)
+  )
+  (setq-default elfeed-search-filter "@2-days-ago +unread")
+  (setq-default elfeed-search-title-max-width 100)
+  (setq-default elfeed-search-title-min-width 100)
+)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Needs cleanup
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
