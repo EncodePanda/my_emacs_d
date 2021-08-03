@@ -521,6 +521,12 @@
   (add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
 )
 
+(org-babel-do-load-languages 'org-babel-load-languages
+    '(
+        (shell . t)
+    )
+)
+
 ;; org bullets for nicer rendering of org files
 (use-package org-bullets
   :after org
