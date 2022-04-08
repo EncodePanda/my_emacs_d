@@ -350,7 +350,7 @@
 (use-package eyebrowse)                   ;; like linux multiple desktop support
 (eyebrowse-mode t)
 (use-package ace-window)                  ;; window management made easy
-(winner-mode 1)
+(winner-mode 1)                           ;; undo/redo for windows management
 
 (global-set-key (kbd "M-]") 'next-buffer)     ;; to buffer on the left
 (global-set-key (kbd "M-[") 'previous-buffer) ;; to buffer on the right
@@ -365,11 +365,15 @@
   "w6" 'eyebrowse-switch-to-window-config-6
   "wv" 'split-window-horizontally
   "wh" 'split-window-vertically
+  "wb" 'balance-windows
   "wx" 'ace-delete-window
-  "wu" 'winner-undo                          ;; undo any window change
-  "wU" 'winner-redo                          ;; redo any window change
+  "wk" 'delete-other-windows         ;; deletes other windows, no questions asked
+  "wu" 'winner-undo                  ;; undo any window change
+  "wU" 'winner-redo                  ;; redo any window change
   "k" 'kill-buffer
 )
+;; set jumping keys to home row (it's digits by default)
+(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 ;; back-up jump (if evil not available)
 (global-set-key (kbd "C-c \\") 'ace-window)
 
