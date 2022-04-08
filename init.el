@@ -141,7 +141,11 @@
 (fset `yes-or-no-p `y-or-n-p)
 
 ;; load theme
-(use-package moe-theme)
+(use-package moe-theme
+  :config
+  (setq moe-dark-comment-delimiter          -moe-dark-doc        )
+  (setq moe-dark-comment                    -moe-dark-doc        )
+)
 (load-theme 'moe-dark t)
 
 ;; allows quick theme change
