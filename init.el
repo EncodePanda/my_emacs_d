@@ -111,9 +111,17 @@
 (menu-bar-mode 0)           ;; no menu bar
 (toggle-frame-fullscreen)   ;; start with fullscreen
 (scroll-bar-mode 0)         ;; no scrollbar
-(show-paren-mode 1)         ;; highlight matchin paranthesis
+(show-paren-mode 1)         ;; highlight matchin parenthesis
 (column-number-mode 1)      ;; show column number in minibuffer
 (global-linum-mode 1)       ;; line numbers
+
+;; keep text to 80 columns
+(use-package display-fill-column-indicator
+  :hook
+  (prog-mode . display-fill-column-indicator-mode)
+  (org-mode . display-fill-column-indicator-mode)
+  :config
+  (setq-default fill-column 80))
 
 ;; deeply nested delimiters get different colors
 (use-package rainbow-delimiters
