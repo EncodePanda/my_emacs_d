@@ -84,45 +84,63 @@
 ;; Also by installing major-mode-hydra we get pretty-hydra which will also be
 ;; used below
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; -----------------------------------------------------------------------------
+
 (use-package major-mode-hydra
   :bind     ("C-M-SPC" . major-mode-hydra))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Evil-mode - provides Vim features like Visual selection and text objects
+;; Evil & friends
+;;
+;; Provides Vim like features: normal mode, insert mode
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; key-chord allows usage of key-chord-define-global
-(use-package key-chord)
-(key-chord-mode 1)
-;; enable evil mode
+
+;; key-chord maps a pair of simultaneously pressed keys (or the same key being
+;; pressed twice in quick succession) to a command. Such bindings are called
+;; "key chords". allows
+(use-package key-chord
+  :config   (key-chord-mode 1))
+
 (use-package evil
-  :config
-  (evil-mode)
-)
+  :init     (setq evil-want-keybinding nil)
+  :config   (evil-mode)
+            ;; visually differentiate between normal and insert mode
+            (setq evil-normal-state-cursor '(box "yellow"))
+            (setq evil-insert-state-cursor '(bar "white")))
 
-;; TODO bring only modes that I like
+;; This s a collection of Evil bindings for the parts of Emacs that Evil does
+;; not cover properly by default, such as help-mode, M-x calendar, Eshell and
+;; more.
 (use-package evil-collection
-  :after evil
-  :ensure t
-  :config
-  (evil-collection-init))
+  :after    evil
+  :custom   ;; use evil in minibuffer
+            (evil-collection-setup-minibuffer t)
+  :config   ;; use fj key-chord to enter normal state
+            (key-chord-define-global "fj" 'evil-normal-state)
+	    ;; init evil-collection globally
+            (evil-collection-init))
 
-;; when in normal mode, cursor will be heyllow
-(setq evil-normal-state-cursor '(box "yellow"))
-(setq evil-insert-state-cursor '(bar "white"))
-(key-chord-define-global "fj" 'evil-normal-state)
-;; leader key provides the <leader> feature from Vim that provides an easy way
-;; to bind keys under a variable prefix key
+;; leader key provides the <leader> feature from Vim - an easy way to bind keys
+;; under a variable prefix key (here the space-bar)
 (use-package evil-leader
-  :after evil-collection
-  :config
-  (setq evil-want-keybinding nil)
-  (global-evil-leader-mode)
-  (evil-leader/set-leader "<SPC>")
-)
+  :after    evil-collection
+  :config   (global-evil-leader-mode)
+            (evil-leader/set-leader "<SPC>"))
 
+;; visualize evil actions
+(use-package evil-goggles
+  :after    evil
+  :config   (evil-goggles-mode)
+            (custom-set-faces
+             '(evil-goggles-delete-face ((t (:inherit 'shadow))))
+             '(evil-goggles-paste-face ((t (:inherit 'lazy-highlight))))
+             '(evil-goggles-yank-face ((t (:inherit 'isearch-fail))))))
+
+
+;; Call M-x evil-tutor-start to start learning evil mode
+(use-package evil-tutor
+  :after    evil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
