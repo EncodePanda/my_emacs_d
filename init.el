@@ -2,6 +2,15 @@
 ;;
 ;; Add package repositories.
 ;;
+;; First we need to tell Emacs to use 'package' module. With it, we will be able
+;; to fetch additional modules from the Internet.
+;; The 'package-archives' holds the modules' repositories
+;;
+;; You can M-x list-packages to see all the available packages that are
+;; available
+;;
+;; Please note that I will be using words 'package' and 'mode' interchangeably
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'package)
