@@ -23,8 +23,14 @@
 ;;
 ;; Install use-package
 ;;
-;; With this package all other package will be installed.
+;; We will use this package to install all other packages
 ;;
+;; When using use-package:
+;; * Use the :init keyword to execute code before a package is loaded.
+;; * Use the :config keyword to execute code after a package is loaded
+;; * Use the :bind keyword to bind primary commands within that module
+;; * Use the :hook keyword to add functions onto package hooks
+;; * Use the :after to configure a package after another has been loaded
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (when (not package-archive-contents)
   (package-refresh-contents)
