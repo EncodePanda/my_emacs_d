@@ -2,7 +2,7 @@
 
 My Emacs configuration, the way I like it
 
-Configuration compatible with Emacs version >= 24.4
+Configuration compatible with Emacs version >= 28.x
 
 ## Installing
 
@@ -39,7 +39,15 @@ Also install direnv
 nix-env -i direnv
 ```
 
-## Possible extensions in the future
-
+## TODOs
+* [Use org-mode as init file](https://gewhere.github.io/orgmode-emacs-init-file)
+* [evil-mode vidual replace](https://github.com/troyp/evil-visual-replace#introduction)
+* [spell & abbrev](https://endlessparentheses.com/ispell-and-abbrev-the-perfect-auto-correct.html)
+* [integrate org with google calendar](https://github.com/kidd/org-gcal.el)
+* [integrate org with google tasks](https://github.com/JulienMasson/org-gtasks)
+* [anzu](https://github.com/emacsorphanage/anzu)
+* [evil org-mode](https://github.com/Somelauw/evil-org-mode)
+* [org-appear](https://github.com/awth13/org-appear)
+* [Chat-GPT](https://www.youtube.com/watch?v=fvBDxiFPG6I)
 * [Better spelling with aspel (+camelCase support)](http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html)
 * [Spellchecing with English grammar!](https://joelkuiper.eu/spellcheck_emacs)
