@@ -72,6 +72,22 @@
 ;; osx-lib gives nice adapters to OSX functionality
 (use-package osx-lib)
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Hydras - used to tie related commands into a family of short bindings with
+;; a common prefix. Similar to leader key but more powerful
+;;
+;; Majore Mode Hydra is needed to be installed first so that we can later on
+;; define hydras per major mode (e.g for haskell, orm-mode)
+;;
+;; Also by installing major-mode-hydra we get pretty-hydra which will also be
+;; used below
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; -----------------------------------------------------------------------------
+(use-package major-mode-hydra
+  :bind     ("C-M-SPC" . major-mode-hydra))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Evil-mode - provides Vim features like Visual selection and text objects
@@ -107,20 +123,6 @@
   (evil-leader/set-leader "<SPC>")
 )
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Hydras - used to tie related commands into a family of short bindings with
-;; a common prefix. Similar to leader key but more powerful
-;;
-;; Majore Mode Hydra is needed to be installed first so that we can later on
-;; define hydras per major mode (e.g for haskell, orm-mode)
-;;
-;; Also by installing major-mode-hydra we get pretty-hydra which will also be
-;; used below
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package major-mode-hydra
-  :bind
-  ("C-M-SPC" . major-mode-hydra))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
