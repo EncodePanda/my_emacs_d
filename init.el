@@ -62,9 +62,11 @@
 
 ;; bind meta and super to cmd and option
 (when (eq system-type 'darwin)
+  (setq mac-option-key-is-meta nil)
+  (setq mac-command-key-is-meta t)
   (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier 'super)
-  )
+  (setq mac-option-modifier nil)
+)
 
 ;; uses oxs notifier as default TODO not sure if its working ...
 (setq alert-default-style 'osx-notifier)
