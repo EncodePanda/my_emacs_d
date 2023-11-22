@@ -658,80 +658,17 @@
 (use-package haskell-mode
   :init (setq haskell-stylish-on-save t)
 )
+
+(fset 'haskell-function-body
+   (kmacro-lambda-form [?I escape ?v ?i ?w ?y ?o backspace backspace escape ?p ?a ?  ?= ?  ?q backspace escape] 0 "%d"))
+(define-key haskell-mode-map (kbd "C-c f") 'haskell-function-body)
+
 ;; apply-refactor for hlint hints
 (use-package hlint-refactor)
-;; body insert
-(fset 'haskellfuncbody
-   [?0 ?v ?i ?w ?y ?o ?j ?f ?p backspace backspace backspace escape ?p ?a ?  ?= ?  escape])
-(define-key haskell-mode-map (kbd "C-c f") 'haskellfuncbody)
 ;; ghcid from lukasz
 (load "~/.emacs.d/configs/ghcid.el")
 (use-package haskell-snippets)
 (require 'haskell-snippets)
-(setq haskell-import-mapping
-      '(("Data.Attoparsec.Char8" . "import qualified Data.Attoparsec.Char8 as Atto8
-")
-        ("Data.Text" . "import qualified Data.Text as T
-import Data.Text (Text)
-")
-        ("Data.Text.Encoding" . "import qualified Data.Text.Encoding as T
-")
-        ("Data.Text.Lazy.Encoding" . "import qualified Data.Text.Lazy.Encoding as LT
-")
-        ("Data.Text.Lazy" . "import qualified Data.Text.Lazy as LT
-")
-        ("Data.Text.IO" . "import qualified Data.Text.IO as T
-")
-        ("Data.Text.Lazy.IO" . "import qualified Data.Text.IO as LT
-")
-        ("Data.ByteString" . "import qualified Data.ByteString as S
-import Data.ByteString (ByteString)
-")
-        ("Data.ByteString.Char8" . "import qualified Data.ByteString.Char8 as S8
-import Data.ByteString (ByteString)
-")
-        ("Data.ByteString.Lazy" . "import qualified Data.ByteString.Lazy as L
-")
-        ("Data.ByteString.Lazy.Builder" . "import qualified Data.ByteString.Builder as SB
-")
-        ("Data.ByteString.Builder" . "import qualified Data.ByteString.Builder as SB
-")
-        ("Data.ByteString.Lazy.Char8" . "import qualified Data.ByteString.Lazy.Char8 as L8
-")
-        ("Data.Map" . "import qualified Data.Map.Strict as M
-import Data.Map.Strict (Map)
-")
-        ("Data.HashMap" . "import qualified Data.HashMap.Strict as HM
-import Data.HashMap.Strict (HashMap)
-")
-        ("Data.IntMap" . "import qualified Data.IntMap.Strict as IM
-import Data.IntMap.Strict (IntMap)
-")
-        ("Data.StrMap" . "import Data.StrMap as StrMap
-import Data.StrMap (StrMap)
-")
-        ("Data.Map.Strict" . "import qualified Data.Map.Strict as M
-import Data.Map.Strict (Map)
-")
-        ("Data.Set" . "import qualified Data.Set as Set
-import Data.Set (Set)
-")
-        ("Data.Vector" . "import qualified Data.Vector as V
-import Data.Vector (Vector)
-")
-        ("Data.Vector.Storable" . "import qualified Data.Vector.Storable as SV
-import Data.Vector (Vector)
-")
-        ("Data.List.NonEmpty" . "import qualified Data.List.NonEmpty as NE
-import Data.List.NonEmpty (NonEmpty(..))
-")
-        ("Data.Conduit.List" . "import qualified Data.Conduit.List as CL
-")
-        ("Data.Conduit.Binary" . "import qualified Data.Conduit.Binary as CB
-")
-        ("Data.Sequence" . "import qualified Data.Sequence as Seq
-import Data.Sequence (Seq)
-")))
 
 ;; calls pointfree (needs to be available on PATH) and replaces code with
 ;; its point free version
