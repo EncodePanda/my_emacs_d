@@ -229,20 +229,24 @@
     ("M" osx-lib-unmute-volume "unmute")
    )
 
-   "Theme"
+   "Other"
    (("t" helm-themes "theme switch")
+    ("l" clm/open-command-log-buffer "log commands buffer")
    )
    ))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Helm - incremental completion and selection narrowing framework
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package helm)
-(global-set-key (kbd "M-x") 'helm-M-x)            ;; replace default M-x
-(global-set-key (kbd "C-x C-f") 'helm-find-files) ;; replace default find file
-(global-set-key (kbd "C-s") 'helm-occur)          ;; replace default search
+(use-package helm
+  :config   ;; replace default M-x
+            (global-set-key (kbd "M-x") 'helm-M-x)
+            ;; replace default find file
+            (global-set-key (kbd "C-x C-f") 'helm-find-files)
+            ;; replace default search
+            (global-set-key (kbd "C-s") 'helm-occur))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
