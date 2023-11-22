@@ -135,10 +135,9 @@
   :after    evil
   :config   (evil-goggles-mode)
             (custom-set-faces
-             '(evil-goggles-delete-face ((t (:inherit 'shadow))))
-             '(evil-goggles-paste-face ((t (:inherit 'lazy-highlight))))
-             '(evil-goggles-yank-face ((t (:inherit 'isearch-fail))))))
-
+                 '(evil-goggles-delete-face ((t (:inherit 'shadow))))
+                 '(evil-goggles-paste-face ((t (:inherit 'lazy-highlight))))
+                 '(evil-goggles-yank-face ((t (:inherit 'isearch-fail))))))
 
 ;; Call M-x evil-tutor-start to start learning evil mode
 (use-package evil-tutor
