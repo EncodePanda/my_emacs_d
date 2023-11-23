@@ -282,6 +282,11 @@
    )
    ))
 
+;; enable UIUI hydra under SPC-x
+(evil-leader/set-key
+  "x" 'hydra-uiux/body
+)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Helm - incremental completion and selection narrowing framework
@@ -931,7 +936,6 @@
   "cv" 'evilnc-toggle-invert-comment-line-by-line
   "."  'evilnc-copy-and-comment-operator
   "\\" 'evilnc-comment-operator ; if you prefer backslash key
-  "x" 'hydra-uiux/body
 )
 
 (use-package evil-surround
