@@ -295,16 +295,6 @@
             ;; replace default search
             (global-set-key (kbd "C-s") 'helm-occur))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; World clock
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; run with display-time-world
-(setq display-time-world-list
-      '(("Europe/London"                    "London - UK")
-        ("Europe/Warsaw"                    "Warsaw - PL")
-        ("Australia/Canberra"               "Canberra - AU")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -970,6 +960,22 @@
 (when (file-exists-p custom-file) (load custom-file))
 
 ;; (sxo-lib-say "Emacs loaded")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Tools and programs
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; world clock
+(setq display-time-world-list
+      '(("Europe/London"                    "London - UK")
+        ("Europe/Warsaw"                    "Warsaw - PL")
+        ("Australia/Canberra"               "Canberra - AU")))
+
+(use-package helpful)
+
+;; TODO create hydra for helpful
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
