@@ -51,3 +51,12 @@ nix-env -i direnv
 * [Chat-GPT](https://www.youtube.com/watch?v=fvBDxiFPG6I)
 * [Better spelling with aspel (+camelCase support)](http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html)
 * [Spellchecing with English grammar!](https://joelkuiper.eu/spellcheck_emacs)
+* [elfeed customizations](https://nullprogram.com/blog/2015/1203/)
+* Configure org to easly refile tasks Check possible [refile configuration](https://github.com/syl20bnr/spacemacs/issues/3094[discussion])
+* [https://orgmode.org/manual/Exporting-Agenda-Views.html](Agenda Views)
+* [https://github.com/marcinkoziej/org-pomodoro/tree/master](org-pomodoro) [https://www.youtube.com/watch?v=x6wbb0xeBTg](with nice setup)
+* aspell
+  https://github.com/NixOS/nixpkgs/issues/1000
+* [https://orgmode.org/manual/Tracking-your-habits.html](habbits with org-mode)
+  Also video https://www.youtube.com/watch?v=acj3NhXlnnk
+* [change-case.el](https://github.com/TakesxiSximada/change-case.el)
