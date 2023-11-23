@@ -88,7 +88,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package major-mode-hydra
-  :bind     ("C-M-SPC" . major-mode-hydra))
+  :bind     ("C-M-SPC" . major-mode-hydra)
+  :config   (evil-leader/set-key "m" 'major-mode-hydra))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -941,7 +942,6 @@
   "."  'evilnc-copy-and-comment-operator
   "\\" 'evilnc-comment-operator ; if you prefer backslash key
   "x" 'hydra-uiux/body
-  "m" 'major-mode-hydra
 )
 
 (use-package evil-surround
