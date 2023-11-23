@@ -145,81 +145,127 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; UI/UX custimizations
+;; UI/UX customizations
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; small UI improvements
-(tool-bar-mode 0)           ;; no tool bar
-(menu-bar-mode 0)           ;; no menu bar
-(toggle-frame-fullscreen)   ;; start with fullscreen
-(scroll-bar-mode 0)         ;; no scrollbar
-(show-paren-mode 1)         ;; highlight matchin parenthesis
-(column-number-mode 1)      ;; show column number in minibuffer
-(global-linum-mode 1)       ;; line numbers
+(tool-bar-mode 0)             ;; no tool bar
+(menu-bar-mode 0)             ;; no menu bar
+(toggle-frame-fullscreen)     ;; start with fullscreen
+(scroll-bar-mode 0)           ;; no scrollbar
+(show-paren-mode 1)           ;; highlight matchin parenthesis
+(column-number-mode 1)        ;; show column number in minibuffer
+(global-linum-mode 1)         ;; line numbers
+(fset `yes-or-no-p `y-or-n-p) ;; answer questions with y/n (instead of yes/no)
 
-;; keep text to 80 columns
+;; install icons
+(use-package all-the-icons)
+;; show icons when listing files and dirs in dired mode
+(use-package all-the-icons-dired
+  :hook     (dired-mode . all-the-icons-dired-mode))
+
+;; Displays a vertical line showing the column length limit ( is set to 80)
 (use-package display-fill-column-indicator
-  :hook
-  (prog-mode . display-fill-column-indicator-mode)
-  (org-mode . display-fill-column-indicator-mode)
-  :config
-  (setq-default fill-column 80))
+  :hook     (prog-mode . display-fill-column-indicator-mode)
+            (org-mode . display-fill-column-indicator-mode)
+            (latex-mode . display-fill-column-indicator-mode)
+            (markdown-mode . display-fill-column-indicator-mode)
+  :config   (setq-default fill-column 80))
 
-;; deeply nested delimiters get different colors
+;; The command 'clm/open-command-log-buffer' opens small buffer that shows all
+;; the keystrokes and functions used while oparating Emacs
+(use-package command-log-mode
+  :config   (global-command-log-mode))
+
+;; deeply nested delimiters (like parenthesis) get different colors, runs only
+;; for programming modes
 (use-package rainbow-delimiters
   :commands rainbow-delimiters-mode
-  :init
-  (progn
-    (add-hook 'prog-mode-hook (lambda () (rainbow-delimiters-mode t)))))
+  :hook     (prog-mode . rainbow-delimiters-mode))
 
-;; clm/open-command-log-buffer opens small buffer that shows all the keystrokes
-;; and functions used while oparating Emacs
-(use-package command-log-mode
-  :config
-  (global-command-log-mode)
-)
+;; nyan cat flying in the minibuffer
+(use-package nyan-mode
+  :config   (nyan-mode 1))
 
-;; answer questions with y/n (instead of yes/no)
-(fset `yes-or-no-p `y-or-n-p)
+;; words of encouragement in the minibuffer each time you save a file
+(use-package encourage-mode
+  :config   (encourage-mode 1)
+            (setq encourage-encouragements (nconc encourage-encouragements
+                                            '("Good job"
+                                              "Great initiative"
+                                              "Nice work"
+					      "OMG! Awesome!"))))
 
-;; load theme
+;; load default theme called moe-theme in the dark version
 (use-package moe-theme
-  :config
-  (setq moe-dark-comment-delimiter          -moe-dark-doc        )
-  (setq moe-dark-comment                    -moe-dark-doc        )
-)
-(load-theme 'moe-dark t)
+  :config   (setq moe-dark-comment-delimiter -moe-dark-doc)
+            (setq moe-dark-comment -moe-dark-doc)
+            (load-theme 'moe-dark t))
 
 ;; allows quick theme change
 (use-package helm-themes)
 
-;; nyancut flying around :)
-(use-package nyan-mode)
-(nyan-mode 1)
-
-;; encourage your work each time you save a buffer :)
-(use-package encourage-mode)
-(encourage-mode 1)
-(setq encourage-encouragements
-  (nconc encourage-encouragements
-    '("Good job"
-      "Great initiative"
-      "Nice work")))
-
-;; zoom in/out a.k.a presentation mode
+;; zoom in/out a.k.a presentation mode, this used to be part of melpa but not
+;; anymore thus is now part of this repo
 (load "~/.emacs.d/configs/frame-fns.el")
 (load "~/.emacs.d/configs/frame-cmds.el")
 (load "~/.emacs.d/configs/zoom-frm.el")
 
-;; show buffers that were opened recently
-;; helpful if you just restarted your Emacs
-(use-package recentf)
-(setq recentf-max-saved-items 200
-      recentf-max-menu-items 15)
-(recentf-mode +1)
+;; Show buffers that were opened recently. This is helpful if you just restarted
+;; your Emacs
+(use-package recentf
+  :config   ;; store max 200 items
+            (setq recentf-max-saved-items 200
+             recentf-max-menu-items 15)
+            ;; enable globallu
+            (recentf-mode +1))
 
-;; Hydra for UI/UX related stuff
-(pretty-hydra-define hydra-uiux (:foreign-keys warn :title "UI/UX" :quit-key "q")
+;; TODO make this a dedicated package that I will push to melpa
+;; -----------------------------------------------------------------------------
+;; The following allows you to switch the UI of cursor for both normal and
+;; insert state depending if you switched to a light or dark theme.
+;;
+;; You have to define explicitly which themes are light themes and which are
+;; dark themes by setting the light-themes-list and dark-themes-list variables
+
+
+(defvar light-themes-list '(moe-light solarized-light leuven)
+  "List of light themes.")
+
+(defvar dark-themes-list '(moe-dark)
+  "List of dark themes.")
+
+(defun cursors-to-light ()
+  "Modify cursor types and colors for different evil modes."
+  (interactive)
+  (setq evil-insert-state-cursor '(bar "black"))
+  (setq evil-normal-state-cursor '(box "black")))
+
+(defun cursors-to-dark ()
+  "Modify cursor types and colors for different evil modes."
+  (interactive)
+  (setq evil-insert-state-cursor '(bar "white"))
+  (setq evil-normal-state-cursor '(box "yellow")))
+
+(defun light-theme-advice (&rest args)
+  "Advice for `load-theme' to activate `cursors-to-light' when a light theme is loaded."
+  (when (member (car args) light-themes-list)
+    (cursors-to-light)
+    (message "%s theme loaded, cursors-to-light called" (car args))))
+
+(defun dark-theme-advice (&rest args)
+  "Advice for `load-theme' to activate `cursors-to-dark' when a dark theme is loaded."
+  (when (member (car args) dark-themes-list)
+    (cursors-to-dark)
+    (message "%s theme loaded, cursors-to-dark called" (car args))))
+
+(advice-add 'load-theme :after #'light-theme-advice)
+(advice-add 'load-theme :after #'dark-theme-advice)
+;; -----------------------------------------------------------------------------
+
+;; This Hydra creates a menu to manipulate the UX/UI elements quickly
+(pretty-hydra-define hydra-uiux (:foreign-keys warn
+				 :title "UI/UX"
+				 :quit-key "q")
   ("Zoom"
    (("i" zoom-frm-in "(+) in")
     ("o" zoom-frm-out "(-) out")
