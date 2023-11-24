@@ -318,7 +318,11 @@
   "pf" 'helm-projectile-recentf           ;; project recently opened buffers
   "pr" 'projectile-replace                ;; replace occurances in whole project
   "pg" 'helm-do-ag-project-root           ;; grap content in the project
-  "ps" 'helm-projectile-switch-project     ;; switch to known project
+  "pG" 'helm-do-ag                        ;; grap content in the project
+                                          ;; but you specify the folder
+  "ps" 'projectile-save-project-buffers   ;; save all buffers in the project
+  "ph" 'helm-projectile-switch-project    ;; switch to known project
+  "pc" 'project-compile                   ;; compile current project
 )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
