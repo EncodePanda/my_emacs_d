@@ -416,6 +416,8 @@
   "vT" 'vimish-fold-toggle-all
 )
 
+(use-package format-all)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Initialize Dashboard
