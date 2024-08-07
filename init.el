@@ -453,7 +453,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package eyebrowse)                   ;; like linux multiple desktop support
 (eyebrowse-mode t)
-(use-package ace-window)                  ;; window management made easy
+
+;; window management made easy
+(use-package ace-window
+  ;; changing windows with row-key
+  :config (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+)
+
 (winner-mode 1)                           ;; undo/redo for windows management
 
 (global-set-key (kbd "M-]") 'next-buffer)     ;; to buffer on the left
@@ -476,8 +482,6 @@
   "wU" 'winner-redo                  ;; redo any window change
   "k" 'kill-buffer
 )
-;; set jumping keys to home row (it's digits by default)
-(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 ;; back-up jump (if evil not available)
 (global-set-key (kbd "C-c \\") 'ace-window)
 
