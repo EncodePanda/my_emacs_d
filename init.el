@@ -399,8 +399,9 @@
 
 ;; edit multiple regions simultaneously in a buffer or a region
 (use-package iedit)
-(use-package evil-iedit-state)
-(define-key evil-normal-state-map (kbd "ge") 'evil-iedit-state/iedit-mode)
+(use-package evil-iedit-state
+  :after    (iedit evil evil-collection)
+  :config   (define-key evil-normal-state-map (kbd "gc") 'evil-iedit-state/iedit-mode))
 
 ;; folds text
 (use-package vimish-fold)
