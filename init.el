@@ -620,7 +620,7 @@
   :bind ("C-<tab>" . 'company-complete-common-or-cycle)
 )
 ;; "aggressive" completion (no delays, quick feedback)
-(setq company-idle-delay 0
+(setq company-idle-delay 1
       company-echo-delay 0
       company-dabbrev-downcase nil
       company-minimum-prefix-length 4
