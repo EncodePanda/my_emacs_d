@@ -659,28 +659,166 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package org
+  :bind     (("C-c l" . 'org-store-link)
+             ("C-c a"  . 'org-agenda)
+             ("C-c c"  . 'org-capture))
+
+  :hook     ('org-mode-hook . org-autolist-mode)
   :init
-  (setq org-agenda-files (directory-files-recursively "~/org/" "\.org$"))
-  (global-set-key "\C-cl" 'org-store-link)
-  (global-set-key "\C-ca" 'org-agenda)
-  (define-key global-map "\C-cc" 'org-capture)
-  (global-set-key "\C-cb" 'org-iswitchb)
-  (setq org-default-notes-file (concat org-directory "/captured.org"))
-  (add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
+
+  ;; add timestamp when closing as done
+  (setq org-log-done 'time)
+  ;; add closing note
+  (setq org-log-done 'note)
+
+  ;; export to HTML converts straight quotes to smart quotes ("curly quotes")
+  ;; and converting hyphens --- to —
+  (setq org-export-with-smart-quotes t)
+
+  ;; adds CREATED property to newly created heading
+  (setq org-log-into-drawer t)
+
+  (setq org-adapt-indentation t
+        org-hide-leading-stars t
+        org-src-fontify-natively t
+        org-edit-src-content-indentation 0)
+
+  (setq org-todo-keywords
+      '((sequence "TODO(t)" "|" "DONE(d)")
+        (sequence "TO_READ(r)" "READING(g)" "|" "IS_READ(i)")
+        (sequence "|" "CANCELED(c)")))
+
+  ;; do not include validate link when exporting to html
+  (setq org-html-validation-link nil)
+
+  (setq
+   ;; Edit settings
+   org-auto-align-tags nil
+   org-tags-column 0
+   org-catch-invisible-edits 'show-and-error
+   org-special-ctrl-a/e t
+   org-insert-heading-respect-content t
+
+   ;; Org styling, hide markup etc.
+   org-hide-emphasis-markers t
+   org-pretty-entities t
+   org-ellipsis "…"
+
+   ;; Agenda styling
+   org-agenda-tags-column 0
+   org-agenda-block-separator ?─
+   org-agenda-time-grid
+   '((daily today require-timed)
+     (800 1000 1200 1400 1600 1800 2000)
+     " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+   org-agenda-current-time-string
+   "◀── now ─────────────────────────────────────────────────")
+
+  (progn
+    (setq org-agenda-files (directory-files-recursively "/Users/encodepanda/Dropbox/org" "\\.org$"))
+    (setq org-default-notes-file (concat org-directory "/captured.org"))
+    (add-hook 'org-mode-hook 'org-toggle-pretty-entities) ;; pretty math latex
+  )
 )
+
+(defun insert-org-link-from-url ()
+  "Fetches the title of a webpage from a URL in the clipboard and inserts an org-mode link at point."
+  (interactive)
+  (let* ((url (substring-no-properties (current-kill 0)))
+         (buffer (url-retrieve-synchronously url))
+         title)
+    (with-current-buffer buffer
+      (goto-char (point-min))
+      (if (re-search-forward "<title>\\(.*?\\)</title>" nil t)
+          (setq title (match-string 1))
+        (setq title url)) ; Use URL as title if no title is found
+      (kill-buffer buffer))
+    (insert (format "[[%s][%s]]" url title))))
+
+(use-package org-superstar
+  :after    org
+  :config   (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+           ;;; Titles and Sections
+           ;; hide #+TITLE:
+           (setq org-hidden-keywords '(title))
+           ;; set basic title font
+           (set-face-attribute 'org-level-8 nil :weight 'bold :inherit 'default)
+           ;; Low levels are unimportant => no scaling
+           (set-face-attribute 'org-level-7 nil :inherit 'org-level-8)
+           (set-face-attribute 'org-level-6 nil :inherit 'org-level-8)
+           (set-face-attribute 'org-level-5 nil :inherit 'org-level-8)
+           (set-face-attribute 'org-level-4 nil :inherit 'org-level-8)
+           ;; Top ones get scaled the same as in LaTeX (\large, \Large, \LARGE)
+           (set-face-attribute 'org-level-3 nil :inherit 'org-level-8 :height 1.0) ;\large
+           (set-face-attribute 'org-level-2 nil :inherit 'org-level-8 :height 1.2) ;\Large
+           (set-face-attribute 'org-level-1 nil :inherit 'org-level-8 :height 1.44) ;\LARGE
+           ;; Only use the first 4 styles and do not cycle.
+           (setq org-cycle-level-faces nil)
+           (setq org-n-level-faces 4)
+           ;; Document Title, (\huge)
+           (set-face-attribute 'org-document-title nil
+                               :height 2.074
+                               :foreground 'unspecified
+                               :inherit 'org-level-8)
+
+  )
+
+(use-package org-pomodoro
+  :after    org)
+
+;; TODO use https://www.nongnu.org/org-edna-el/
+
+;; Template expansion for Org structures
+;; User <s TAB to insert a source block
+(use-package org-tempo
+  :after    org)
+
+(setq org-agenda-files-org (directory-files-recursively "/Users/encodepanda/Dropbox/org" "\\.org$"))
+(setq org-agenda-files-work (directory-files-recursively "/Users/encodepanda/Dropbox/org-work" "\\.org$"))
+
+(defun switch-org-agenda-files-set (set-name)
+  (cond ((equal set-name "org") (setq org-agenda-files org-agenda-files-org))
+        ((equal set-name "work") (setq org-agenda-files org-agenda-files-work))
+        (t (error "Invalid set name"))))
+
+(defvar helm-source-org-agenda-files-sets
+  (helm-build-sync-source "Org Agenda File Sets"
+    :candidates '("org" "opensource" "work")
+    :action '(("Switch to set" . switch-org-agenda-files-set))))
+
+(defun helm-org-agenda-files-sets ()
+  (interactive)
+  (helm :sources 'helm-source-org-agenda-files-sets
+        :buffer "*helm org agenda sets*"))
+
+
+(dolist (face '((org-level-1 . 1.2)
+                (org-level-2 . 1.1)
+                (org-level-3 . 1.05)
+                (org-level-4 . 1.0)
+                (org-level-5 . 1.1)
+                (org-level-6 . 1.1)
+                (org-level-7 . 1.1)
+                (org-level-8 . 1.1)))
+    )
 
 (org-babel-do-load-languages 'org-babel-load-languages
     '(
         (shell . t)
+        (dot . t)
+        (latex . t)
     )
 )
-
-;; org bullets for nicer rendering of org files
-(use-package org-bullets
+;; TODO https://orgmode.org/worg/exporters/taskjuggler/ox-taskjuggler.html
+(use-package org-contrib)
+(use-package ox-reveal
   :after org
   :init
-  (add-hook 'org-mode-hook 'org-bullets-mode)
+  (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/2.5.0/")
+  (setq org-reveal-hlevel 2)
+  (setq org-reveal-control nil)
 )
+
 
 ;; autolist changes behaviour to more familiar one from non-programming editors
 ;; e.g hiting RET at the end of a list creats new entry in that list
@@ -706,9 +844,9 @@
 (setq org-capture-templates
  '(("t" "Todo" entry (file+headline "~/org/capture.org" "Tasks")
     "* TODO %?\n  %i")
-   ("j" "JIRA" entry (file+headline "~/org/jira.org" "JIRA issues")
+   ("j" "JIRA" entry (file+headline "~/org/work/tripshot/issues.org" "JIRA issues")
         "* TODO %?\n  %i\n  %a")
-   ("w" "Work log" entry (file+datetree "~/org/work-log.org")
+   ("w" "Work log" entry (file+datetree "~/org/work/tripshot/diary.org")
         "* %? %U")))
 
 (defun markdown-convert-buffer-to-org ()
