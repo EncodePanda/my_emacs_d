@@ -495,6 +495,13 @@
 (use-package magit
   :bind ("C-x G" . magit-status))
 
+;; mark commits already seen on the log list
+(use-package magit-commit-mark
+  :commands (magit-commit-mark-mode))
+
+(eval-after-load 'magit
+  (add-hook 'magit-mode-hook 'magit-commit-mark-mode))
+
 ;; time machine allows inspecting changes on a single file
 ;; we can move back and forth to see the progress on a given file
 (use-package git-timemachine)
