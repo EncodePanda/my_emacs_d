@@ -783,6 +783,7 @@
    (("h" hoogle "hoogle"))))
 ;;(require 'flymake-hlint) ;; not needed if installed via package
 ;;(add-hook 'haskell-mode-hook 'flymake-hlint-load)
+(setq temporary-file-directory "~/.emacs.d/tmp/")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
