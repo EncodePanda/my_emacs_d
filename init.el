@@ -698,6 +698,8 @@
   ;; add closing note
   (setq org-log-done 'note)
 
+  (setq org-export-exclude-tags '("noexport"))
+
   ;; export to HTML converts straight quotes to smart quotes ("curly quotes")
   ;; and converting hyphens --- to —
   (setq org-export-with-smart-quotes t)
