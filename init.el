@@ -277,9 +277,9 @@
    (("i" zoom-frm-in "(+) in")
     ("o" zoom-frm-out "(-) out")
    )
-   "Volume"
-   (("m" osx-lib-mute-volume "mute")
-    ("M" osx-lib-unmute-volume "unmute")
+   "Window"
+   (("e" enlarge-window "enlarge")
+    ("s" shrink-window "enlarge")
    )
 
    "Other"
