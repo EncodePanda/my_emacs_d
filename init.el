@@ -431,23 +431,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Initialize Dashboard
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package dashboard
-  :config (dashboard-setup-startup-hook))
-          (setq dashboard-items '((recents  . 5)
-          		       (bookmarks . 5)
-          		       (projects . 5)
-          		       (agenda . 5)
-          		       (registers . 5)))
-(setq dashboard-banner-logo-title "Welcome back, Encode Panda")
-(setq dashboard-startup-banner "~/.emacs.d/logo.png")
-(push 'dashboard-mode evil-insert-state-modes)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
 ;; which-key is a minor mode for Emacs that displays the key bindings following
 ;; your currently entered incomplete command (a prefix) in a popup.
 ;;
