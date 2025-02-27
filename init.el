@@ -331,7 +331,9 @@
                                           ;; but you specify the folder
   "ps" 'projectile-save-project-buffers   ;; save all buffers in the project
   "ph" 'helm-projectile-switch-project    ;; switch to known project
-  "pc" 'project-compile                   ;; compile current project
+  "pc" 'projectile-compile-project        ;; compile current project
+  "pt" 'projectile-test-project           ;; test current project
+  "pl" 'project-shell                     ;; project shell
 )
 
 ;; Dired tries to guess a default target directory. This means if there is a
