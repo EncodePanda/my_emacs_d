@@ -901,14 +901,13 @@
   :init (setq haskell-stylish-on-save t)
 )
 
+;; from function definition to body
 (fset 'haskell-function-body
    (kmacro-lambda-form [?I escape ?v ?i ?w ?y ?o backspace backspace escape ?p ?a ?  ?= ?  ?q backspace escape] 0 "%d"))
 (define-key haskell-mode-map (kbd "C-c f") 'haskell-function-body)
 
 ;; apply-refactor for hlint hints
 (use-package hlint-refactor)
-;; ghcid from lukasz
-(load "~/.emacs.d/configs/ghcid.el")
 (use-package haskell-snippets)
 (require 'haskell-snippets)
 
@@ -938,18 +937,20 @@
 
 (major-mode-hydra-define haskell-mode nil
   ("Navigation"
-   (("o" haskell-navigate-imports  "imports"))
+   (("o" haskell-navigate-imports  "imports")
+    ("c" haskell-cabal-visit-file "cabal visit")
+    ("h" haskell-hoogle "hoogle")
+    )
    "Editing"
    (("i" haskell-imports-helm  "imports")
     ("y" yas-describe-tables "snippets")
-    ("g" ghcid "ghcid")
-    ("l" hlint-refactor-at-point "hlint (at point)")
-    ("L" hlint-refactor-buffer "hlint (buffer)")
+    ("l" flymake-show-buffer-diagnostics "hlint (buffer)")
+    ("b" haskell-function-body "insert function body")
     )
    "Documentation"
    (("h" hoogle "hoogle"))))
-;;(require 'flymake-hlint) ;; not needed if installed via package
-;;(add-hook 'haskell-mode-hook 'flymake-hlint-load)
+(use-package flymake-hlint)
+(add-hook 'haskell-mode-hook 'flymake-hlint-load)
 (setq temporary-file-directory "~/.emacs.d/tmp/")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
