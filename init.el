@@ -1168,6 +1168,68 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;; LSP
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; If you want LSP to load automatically on start-up for any Haskell project,
+;; add following hook
+;;
+;; Some configurations are based on
+;; https://emacs-lsp.github.io/lsp-mode/page/performance/
+;;
+;; TODO  https://www.reddit.com/r/emacs/comments/ezxtc5/lspmode_show_errors/
+;;
+;; Turn on LSP for a project: M-x lsp
+;; Turn off LSP for a project: M-x lsp-disconnect
+;; -----------------------------------------------------------------------------
+(use-package lsp-mode      :commands    lsp
+                           :hook        (lsp-mode . lsp-enable-which-key-integration)
+                           ;; :hook        (haskell-mode . lsp)
+                           :custom      (lsp-prefer-flymake nil)
+                           :config      (push "[/\\\\]\\.stack-work\\'" lsp-file-watch-ignored-directories)
+                                        (push "[/\\\\]\\.dist-newstyle\\'" lsp-file-watch-ignored-directories)
+                                        (advice-add 'lsp :before #'direnv-update-environment)
+                                        (setq gc-cons-threshold 100000000)
+                                        (setq read-process-output-max (* 1024 1024)))
+                                        (setq read-process-output-max (* 1024 1024)) ;; 1mb
+
+;; -----------------------------------------------------------------------------
+(use-package lsp-haskell)
+;; -----------------------------------------------------------------------------
+(use-package lsp-ui        :hook        (lsp-mode . lsp-ui-mode)
+                           :custom      (lsp-ui-doc-header t)
+                                        (lsp-ui-doc-include-signature t)
+                                        (lsp-ui-doc-position 'at-point))
+;; -----------------------------------------------------------------------------
+
+(defun haskell-lsp-enable ()
+  "Enable lsp-mode for Haskell buffers and start LSP in the current buffer."
+  (interactive)
+  (message "Enabling lsp-mode for Haskell...")
+  (add-hook 'haskell-mode-hook #'lsp)
+  (unless (bound-and-true-p lsp-mode)
+    (lsp)))  ;; Start LSP in the current buffer if not already running
+
+(defun haskell-lsp-disable ()
+  "Disable lsp-mode for Haskell buffers and disconnect LSP in the current buffer."
+  (interactive)
+  (message "Disabling lsp-mode for Haskell...")
+  (remove-hook 'haskell-mode-hook #'lsp)
+  (when (bound-and-true-p lsp-mode)
+    (lsp-disconnect)))  ;; Properly disconnect LSP if it's running
+
+(evil-leader/set-key
+  "lr" 'lsp-workspace-restart
+  "la" 'helm-lsp-code-actions
+  "lj" 'lsp-find-definition
+  "lug" 'lsp-ui-doc-glance
+  "lur" 'lsp-ui-peek-find-references
+  "ls" 'haskell-lsp-enable
+  "lS" 'haskell-lsp-disable)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;; Tools and programs
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
