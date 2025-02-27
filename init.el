@@ -445,8 +445,36 @@
 ;; Window management
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package eyebrowse)                   ;; like linux multiple desktop support
-(eyebrowse-mode t)
+;; TODO consider alternative with saved buffers
+;; https://github.com/nex3/perspective-el?tab=readme-ov-file#installation
+;; like linux multiple desktop support
+(use-package eyebrowse
+  :config (eyebrowse-mode t)
+)
+
+(use-package eyebrowse-restore
+  :ensure t
+  :config
+  (eyebrowse-restore-mode))
+
+;; Define a Helm source for Eyebrowse
+(defun helm-eyebrowse-source ()
+  "Create a Helm source for Eyebrowse window configurations."
+  (helm-build-sync-source "Eyebrowse Configurations"
+    :candidates (mapcar (lambda (config)
+                          (let ((index (car config))
+                                (name (eyebrowse-format-slot config)))
+                            (cons (format "[%d] %s" index name) index)))
+                        (eyebrowse--get 'window-configs))
+    :action (lambda (index)
+              (eyebrowse-switch-to-window-config index))))
+
+;; Create a Helm command to list and select Eyebrowse configurations
+(defun helm-eyebrowse ()
+  "List and select Eyebrowse window configurations using Helm."
+  (interactive)
+  (helm :sources (helm-eyebrowse-source)
+        :buffer "*helm-eyebrowse*"))
 
 ;; window management made easy
 (use-package ace-window
@@ -458,15 +486,22 @@
 
 (global-set-key (kbd "M-]") 'next-buffer)     ;; to buffer on the left
 (global-set-key (kbd "M-[") 'previous-buffer) ;; to buffer on the right
+
 (evil-leader/set-key
   "ww" 'ace-window
   "ws" 'ace-swap-window
+  "we" 'helm-eyebrowse
   "w1" 'eyebrowse-switch-to-window-config-1
   "w2" 'eyebrowse-switch-to-window-config-2
   "w3" 'eyebrowse-switch-to-window-config-3
   "w4" 'eyebrowse-switch-to-window-config-4
   "w5" 'eyebrowse-switch-to-window-config-5
   "w6" 'eyebrowse-switch-to-window-config-6
+  "w5" 'eyebrowse-switch-to-window-config-7
+  "w8" 'eyebrowse-switch-to-window-config-8
+  "w9" 'eyebrowse-switch-to-window-config-9
+  "wtp" 'tab-line-switch-to-prev-tab
+  "wtn" 'tab-line-switch-to-next-tab
   "wv" 'split-window-horizontally
   "wh" 'split-window-vertically
   "wb" 'balance-windows
