@@ -143,14 +143,15 @@
 ;; UI/UX customizations
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(tool-bar-mode 0)             ;; no tool bar
-(menu-bar-mode 0)             ;; no menu bar
-(toggle-frame-fullscreen)     ;; start with fullscreen
-(scroll-bar-mode 0)           ;; no scrollbar
-(show-paren-mode 1)           ;; highlight matchin parenthesis
-(column-number-mode 1)        ;; show column number in minibuffer
-(global-linum-mode 1)         ;; line numbers
-(fset `yes-or-no-p `y-or-n-p) ;; answer questions with y/n (instead of yes/no)
+(tool-bar-mode 0)                    ;; no tool bar
+(menu-bar-mode 0)                    ;; no menu bar
+(toggle-frame-fullscreen)            ;; start with fullscreen
+(scroll-bar-mode 0)                  ;; no scrollbar
+(show-paren-mode 1)                  ;; highlight matchin parenthesis
+(column-number-mode 1)               ;; show column number in minibuffer
+(global-display-line-numbers-mode 1) ;; display line numbers
+(fset `yes-or-no-p `y-or-n-p)        ;; answer questions with y/n (instead of
+				     ;; yes/no)
 
 ;; install icons
 (use-package all-the-icons)
