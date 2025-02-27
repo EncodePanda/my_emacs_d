@@ -153,6 +153,17 @@
 (fset `yes-or-no-p `y-or-n-p)        ;; answer questions with y/n (instead of
 				     ;; yes/no)
 
+;; sometimes we want to dedicate a window for a given buffer, this function
+;; allows to quickly toggle between dedicated and not dedicated for a given
+;; buffer
+(defun toggle-window-dedicated ()
+  "Toggle whether the current window is dedicated to its buffer."
+  (interactive)
+  (let* ((window (selected-window))
+         (state (window-dedicated-p window)))
+    (set-window-dedicated-p window (not state))
+    (message "Window %s" (if (not state) "dedicated" "undedicated"))))
+
 ;; install icons
 (use-package all-the-icons)
 ;; show icons when listing files and dirs in dired mode
