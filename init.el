@@ -68,12 +68,6 @@
   (setq mac-option-modifier nil)
 )
 
-;; uses oxs notifier as default TODO not sure if its working ...
-(setq alert-default-style 'osx-notifier)
-
-;; osx-lib gives nice adapters to OSX functionality
-(use-package osx-lib)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
