@@ -531,11 +531,6 @@
 (eval-after-load 'magit
   (add-hook 'magit-mode-hook 'magit-commit-mark-mode))
 
-;; lists items in a file todo.org
-;; good for temp list of TODOS while working on a branch
-(use-package magit-org-todos
-  :config
-  (magit-org-todos-autoinsert))
 
 ;; time machine allows inspecting changes on a single file
 ;; we can move back and forth to see the progress on a given file
