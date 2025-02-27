@@ -647,10 +647,13 @@
 (setq company-idle-delay 1
       company-echo-delay 0
       company-dabbrev-downcase nil
-      company-minimum-prefix-length 4
+      company-minimum-prefix-length 3
       company-selection-wrap-around t
       company-transformers '(company-sort-by-occurrence
                              company-sort-by-backend-importance))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
