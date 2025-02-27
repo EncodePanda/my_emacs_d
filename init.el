@@ -312,7 +312,10 @@
 ;; Project exploration
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package projectile)      ;; project interaction library
+(use-package projectile
+  :config ;; follow the compilation buffer
+          (setq compilation-scroll-output t)
+)
 (projectile-global-mode 1)
 (use-package helm-projectile) ;; integrate helm with projectile
 (use-package ag)              ;; search using ag (silversearch)
