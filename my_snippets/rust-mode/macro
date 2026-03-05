@@ -1,0 +1,10 @@
+# name : macro template
+# key : macro
+# --
+
+#[macro_export]
+macro_rules! $1 {
+    () => {
+         $0
+    }
+}

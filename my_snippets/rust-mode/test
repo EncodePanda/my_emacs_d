@@ -1,0 +1,12 @@
+# name : test function
+# key : test
+# --
+
+#[test]
+fn test_$0() {
+    // given
+
+    // when
+
+    // then
+}

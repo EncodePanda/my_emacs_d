@@ -1,0 +1,48 @@
+# name : creates simple repl for main
+# key : repl
+# --
+#[derive(Parser)]
+#[command(name = "$1")]
+#[command(about = "$2", long_about = None)]
+struct Cli {
+}
+
+fn main() -> rustyline::Result<()> {
+    let mut rl = DefaultEditor::new()?;
+
+    println!("");
+
+    #[cfg(feature = "with-file-history")]
+    if rl.load_history("history.txt").is_err() {
+        println!("No previous history.");
+    }
+    loop {
+        let lineErr = rl.readline(">> ");
+
+        match lineErr {
+            Ok(line) => {
+                if line.trim().is_empty() {
+                    continue;
+                }
+                rl.add_history_entry(line.as_str())?;
+
+                println!("{}", line);
+		$0
+            }
+            Err(ReadlineError::Interrupted) => {
+                println!("Goodbye!");
+                std::process::exit(0);
+            }
+            Err(ReadlineError::Eof) => {
+                break;
+            }
+            Err(err) => {
+                eprintln!("Error: {:?}", err);
+                break;
+            }
+        }
+    }
+    #[cfg(feature = "with-file-history")]
+    rl.save_history("history.txt");
+    Ok(())
+}

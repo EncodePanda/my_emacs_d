@@ -1,0 +1,8 @@
+# name : async main
+# key : amain
+# --
+
+#[tokio:main]
+async fn main() -> Result<()> {
+
+}
