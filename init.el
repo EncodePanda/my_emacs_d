@@ -41,12 +41,6 @@
 ;; repository if is not available locally
 (setq use-package-always-ensure t)
 
-;; This allows you to ensure that specific binary is globally available on your
-;; system. If not, it will install it automatically.
-;; See https://github.com/jwiegley/use-package#use-package-ensure-system-package
-;; for details
-(use-package use-package-ensure-system-package)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Mac / OSX specific configuration
@@ -66,7 +60,7 @@
   (setq mac-command-key-is-meta t)
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier nil)
-)
+  )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
