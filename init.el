@@ -96,9 +96,9 @@
 (use-package evil
   :init     (setq evil-want-keybinding nil)
   :config   (evil-mode)
-            ;; visually differentiate between normal and insert mode
-            (setq evil-normal-state-cursor '(box "yellow"))
-            (setq evil-insert-state-cursor '(bar "white")))
+  ;; visually differentiate between normal and insert mode
+  (setq evil-normal-state-cursor '(box "yellow"))
+  (setq evil-insert-state-cursor '(bar "white")))
 
 ;; This s a collection of Evil bindings for the parts of Emacs that Evil does
 ;; not cover properly by default, such as help-mode, M-x calendar, Eshell and
@@ -106,27 +106,27 @@
 (use-package evil-collection
   :after    evil
   :custom   ;; use evil in minibuffer
-            (evil-collection-setup-minibuffer t)
+  (evil-collection-setup-minibuffer t)
   :config   ;; use fj key-chord to enter normal state
-            (key-chord-define-global "fj" 'evil-normal-state)
-	    ;; init evil-collection globally
-            (evil-collection-init))
+  (key-chord-define-global "fj" 'evil-normal-state)
+  ;; init evil-collection globally
+  (evil-collection-init))
 
 ;; leader key provides the <leader> feature from Vim - an easy way to bind keys
 ;; under a variable prefix key (here the space-bar)
 (use-package evil-leader
   :after    evil-collection
   :config   (global-evil-leader-mode)
-            (evil-leader/set-leader "<SPC>"))
+  (evil-leader/set-leader "<SPC>"))
 
 ;; visualize evil actions
 (use-package evil-goggles
   :after    evil
   :config   (evil-goggles-mode)
-            (custom-set-faces
-                 '(evil-goggles-delete-face ((t (:inherit 'shadow))))
-                 '(evil-goggles-paste-face ((t (:inherit 'lazy-highlight))))
-                 '(evil-goggles-yank-face ((t (:inherit 'isearch-fail))))))
+  (custom-set-faces
+   '(evil-goggles-delete-face ((t (:inherit 'shadow))))
+   '(evil-goggles-paste-face ((t (:inherit 'lazy-highlight))))
+   '(evil-goggles-yank-face ((t (:inherit 'isearch-fail))))))
 
 ;; Call M-x evil-tutor-start to start learning evil mode
 (use-package evil-tutor
@@ -145,7 +145,7 @@
 (column-number-mode 1)               ;; show column number in minibuffer
 (global-display-line-numbers-mode 1) ;; display line numbers
 (fset `yes-or-no-p `y-or-n-p)        ;; answer questions with y/n (instead of
-				     ;; yes/no)
+;; yes/no)
 
 ;; sometimes we want to dedicate a window for a given buffer, this function
 ;; allows to quickly toggle between dedicated and not dedicated for a given
@@ -167,9 +167,9 @@
 ;; Displays a vertical line showing the column length limit ( is set to 80)
 (use-package display-fill-column-indicator
   :hook     (prog-mode . display-fill-column-indicator-mode)
-            (org-mode . display-fill-column-indicator-mode)
-            (latex-mode . display-fill-column-indicator-mode)
-            (markdown-mode . display-fill-column-indicator-mode)
+  (org-mode . display-fill-column-indicator-mode)
+  (latex-mode . display-fill-column-indicator-mode)
+  (markdown-mode . display-fill-column-indicator-mode)
   :config   (setq-default fill-column 80))
 
 ;; The command 'clm/open-command-log-buffer' opens small buffer that shows all
@@ -190,17 +190,17 @@
 ;; words of encouragement in the minibuffer each time you save a file
 (use-package encourage-mode
   :config   (encourage-mode 1)
-            (setq encourage-encouragements (nconc encourage-encouragements
-                                            '("Good job"
-                                              "Great initiative"
-                                              "Nice work"
-					      "OMG! Awesome!"))))
+  (setq encourage-encouragements (nconc encourage-encouragements
+                                        '("Good job"
+                                          "Great initiative"
+                                          "Nice work"
+					  "OMG! Awesome!"))))
 
 ;; load default theme called moe-theme in the dark version
 (use-package moe-theme
   :config   (setq moe-dark-comment-delimiter -moe-dark-doc)
-            (setq moe-dark-comment -moe-dark-doc)
-            (load-theme 'moe-dark t))
+  (setq moe-dark-comment -moe-dark-doc)
+  (load-theme 'moe-dark t))
 
 ;; allows quick theme change
 (use-package helm-themes)
@@ -215,10 +215,10 @@
 ;; your Emacs
 (use-package recentf
   :config   ;; store max 200 items
-            (setq recentf-max-saved-items 200
-             recentf-max-menu-items 15)
-            ;; enable globallu
-            (recentf-mode +1))
+  (setq recentf-max-saved-items 200
+        recentf-max-menu-items 15)
+  ;; enable globallu
+  (recentf-mode +1))
 
 ;; TODO make this a dedicated package that I will push to melpa
 ;; -----------------------------------------------------------------------------
@@ -232,7 +232,7 @@
 (defvar light-themes-list '(moe-light solarized-light leuven)
   "List of light themes.")
 
-(defvar dark-themes-list '(moe-dark)
+(defvar dark-themes-list '(moe-dark manoj-dark tango-dark leuven-dark afternoon-theme)
   "List of dark themes.")
 
 (defun cursors-to-light ()
@@ -265,27 +265,27 @@
 
 ;; This Hydra creates a menu to manipulate the UX/UI elements quickly
 (pretty-hydra-define hydra-uiux (:foreign-keys warn
-				 :title "UI/UX"
-				 :quit-key "q")
+					       :title "UI/UX"
+					       :quit-key "q")
   ("Zoom"
    (("i" zoom-frm-in "(+) in")
     ("o" zoom-frm-out "(-) out")
-   )
+    )
    "Window"
    (("e" enlarge-window "enlarge")
     ("s" shrink-window "enlarge")
-   )
+    )
 
    "Other"
    (("t" helm-themes "theme switch")
     ("l" clm/open-command-log-buffer "log commands buffer")
-   )
+    )
    ))
 
 ;; enable UIUI hydra under SPC-x
 (evil-leader/set-key
   "x" 'hydra-uiux/body
-)
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -294,11 +294,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package helm
   :config   ;; replace default M-x
-            (global-set-key (kbd "M-x") 'helm-M-x)
-            ;; replace default find file
-            (global-set-key (kbd "C-x C-f") 'helm-find-files)
-            ;; replace default search
-            (global-set-key (kbd "C-s") 'helm-occur))
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  ;; replace default find file
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
+  ;; replace default search
+  (global-set-key (kbd "C-s") 'helm-occur))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -308,12 +308,49 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package projectile
   :config ;; follow the compilation buffer
-          (setq compilation-scroll-output t)
-)
+  (setq compilation-scroll-output t)
+  )
 (projectile-global-mode 1)
 (use-package helm-projectile) ;; integrate helm with projectile
 (use-package ag)              ;; search using ag (silversearch)
 (use-package helm-ag)         ;; helm integration with ag
+
+
+(defun my-compilation-buffer-colorize ()
+  "Apply ANSI color codes in compilation buffer."
+  (ansi-color-apply-on-region compilation-filter-start (point)))
+
+(add-hook 'compilation-filter-hook #'my-compilation-buffer-colorize)
+
+
+(defun helm-projectile-git-modified-files ()
+  "Helm over Git modified (staged + unstaged) files in current Projectile project."
+  (interactive)
+  (let* ((project-root (projectile-project-root)))
+    (unless project-root
+      (error "Not inside a Projectile project"))
+    (let* ((default-directory project-root)
+           (git-cmd "git diff --name-only HEAD")
+           (modified-files (split-string (shell-command-to-string git-cmd) "\n" t))
+           (helm-source (helm-build-sync-source "Git Modified Files"
+                          :candidates modified-files
+                          :fuzzy-match t
+                          :action '(("Open file" . find-file)
+                                    ("Open in other window" . find-file-other-window)))))
+      (helm :sources helm-source
+            :buffer "*helm git modified files*"))))
+
+(defun open-new-project ()
+  "Open a new projectile project by specifying name and root directory."
+  (interactive)
+  (let* ((project-name (read-string "Project name: "))
+         (root-dir (read-directory-name "Root directory: " "~/projects/"))
+         (project-path (expand-file-name project-name root-dir)))
+    (if (file-directory-p project-path)
+        (let ((default-directory project-path))
+          (projectile-add-known-project project-path)
+          (helm-projectile-find-file))
+      (message "Directory does not exist: %s" project-path))))
 
 (evil-leader/set-key
   "pb" 'helm-mini                         ;; all buffers via helm
@@ -322,13 +359,17 @@
   "pr" 'projectile-replace                ;; replace occurances in whole project
   "pg" 'helm-do-ag-project-root           ;; grap content in the project
   "pG" 'helm-do-ag                        ;; grap content in the project
-                                          ;; but you specify the folder
+  ;; but you specify the folder
   "ps" 'projectile-save-project-buffers   ;; save all buffers in the project
   "ph" 'helm-projectile-switch-project    ;; switch to known project
+  "pn" 'open-new-project                  ;; open new project by name
   "pc" 'projectile-compile-project        ;; compile current project
   "pt" 'projectile-test-project           ;; test current project
+  "pe" 'projectile-run-project            ;; execute (run) current project
   "pl" 'project-shell                     ;; project shell
-)
+  )
+
+(put 'project-compile-command 'safe-local-variable #'stringp)
 
 ;; Dired tries to guess a default target directory. This means if there is a
 ;; Dired buffer displayed in some window, use its current directory, instead of
@@ -345,7 +386,7 @@
 ;; ag (silversearch) works best
 (use-package dumb-jump
   :config (setq dumb-jump-force-searcher 'ag)
-)
+  )
 (evil-leader/set-key
   "jj" 'dumb-jump-go
   "jb" 'dumb-jump-back
@@ -359,12 +400,14 @@
   "nl" 'avy-goto-line
   "nc" 'goto-last-change
   "nw" 'evil-avy-goto-char-timer
+  "nk" 'flycheck-previous-error
+  "nj" 'flycheck-next-error
   )
 ;; jump to last change
 (use-package goto-chg)
 (evil-leader/set-key
   "nc" 'goto-last-change
-)
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -373,7 +416,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (evil-leader/set-key
   "bs" 'helm-bookmarks     ;; search bookmarks
-)
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -391,7 +434,17 @@
   "uu" 'undo-tree-visualize
   "us" 'undo-tree-save-state-to-register
   "ur" 'undo-tree-restore-state-to-register
-)
+  )
+
+;; type gs to add ; at the end of the line
+(evil-define-key 'normal 'global
+  (kbd "gs")
+  (lambda ()
+    (interactive)
+    (end-of-line)
+    (insert ";")))
+
+
 ;; contextual selection
 (use-package expand-region)
 ;; this unbinds evil C-e
@@ -419,7 +472,7 @@
   "vU" 'vimish-fold-unfold-all
   "vt" 'vimish-fold-toggle
   "vT" 'vimish-fold-toggle-all
-)
+  )
 
 (use-package format-all)
 
@@ -444,7 +497,7 @@
 ;; like linux multiple desktop support
 (use-package eyebrowse
   :config (eyebrowse-mode t)
-)
+  )
 
 (use-package eyebrowse-restore
   :ensure t
@@ -474,7 +527,7 @@
 (use-package ace-window
   ;; changing windows with row-key
   :config (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-)
+  )
 
 (winner-mode 1)                           ;; undo/redo for windows management
 
@@ -504,9 +557,7 @@
   "wu" 'winner-undo                  ;; undo any window change
   "wU" 'winner-redo                  ;; redo any window change
   "k" 'kill-buffer
-)
-;; back-up jump (if evil not available)
-(global-set-key (kbd "C-c \\") 'ace-window)
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -520,10 +571,10 @@
 
 ;; mark commits already seen on the log list
 (use-package magit-commit-mark
-  :commands (magit-commit-mark-mode))
-
-(eval-after-load 'magit
-  (add-hook 'magit-mode-hook 'magit-commit-mark-mode))
+  :after magit
+  :hook (magit-mode . magit-commit-mark-mode)
+  :commands (magit-commit-mark-mode)
+  )
 
 
 ;; time machine allows inspecting changes on a single file
@@ -540,40 +591,40 @@
 ;; show which lines were added/modfied/removed
 ;; git-gutter-fringe+ words perfectly with linum-mode but only in
 ;; graphical environment (this will not work in terminal)
-(use-package git-gutter-fringe+)
-(global-git-gutter+-mode t)
+;;(use-package git-gutter-fringe+)
+;;(global-git-gutter+-mode t)
 ;; refresh gutter when staged by magit
-(defun my-refresh-visible-git-gutter-buffers ()
-  (dolist (buff (buffer-list))
-    (with-current-buffer buff
-      (when (and git-gutter+-mode (get-buffer-window buff))
-        (git-gutter+-mode t)))))
+;;(defun my-refresh-visible-git-gutter-buffers ()
+;;  (dolist (buff (buffer-list))
+;;    (with-current-buffer buff
+;;      (when (and git-gutter+-mode (get-buffer-window buff))
+;;        (git-gutter+-mode t)))))
 
-(add-hook 'magit-post-refresh-hook
-          #'my-refresh-visible-git-gutter-buffers)
+;;(add-hook 'magit-post-refresh-hook
+;;          #'my-refresh-visible-git-gutter-buffers)
 
 ;; inline git blame
-(use-package git-messenger)
-(setq git-messenger:show-detail t) ;; more details in popup (author, date etc.)
+;;(use-package git-messenger)
+;;(setq git-messenger:show-detail t) ;; more details in popup (author, date etc.)
 
 (pretty-hydra-define hydra-git (:foreign-keys warn :title "Git" :quit-key "q" :exit t)
   ("Git"
    (("o" magit "open")
     ("b" magit-blame "blame")
     ("p" git-messenger:popup-message "blame line")
-   )
+    )
    "Hunks"
    (("w" git-gutter+-show-hunk "show hunk" :exit nil)
     ("k" git-gutter+-previous-hunk "previous hunk" :exit nil)
     ("j" git-gutter+-next-hunk "previous hunk" :exit nil)
     ("x" git-gutter+-revert-hunk "kill hunk" :exit nil)
     ("s" git-gutter+-stage-hunks "stage hunk" :exit nil)
-   )
+    )
    "Log"
    (("t" git-timemachine "time machine")
     ("a" magit-log-all "log all")
     ("f" magit-log-buffer-file "log file")
-   )
+    )
    ))
 (global-set-key (kbd "C-c g") 'hydra-git/body)
 
@@ -608,12 +659,12 @@
   ("File"
    (("x" delete-file-visited-by-buffer "delete")
     ("p" put-file-name-on-clipboard "path to clipboard")
-   )
+    )
    ))
 (evil-leader/set-key
   "g" 'hydra-git/body
   "x" 'hydra-uiux/body
-)
+  )
 (define-key evil-normal-state-map (kbd "gf") 'hydra-file/body)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -625,18 +676,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; enable company mode for all files
-(use-package company-ghc)
 (use-package company
   :init
-  (setq company-backends '((company-ghc company-files company-keywords company-capf company-dabbrev-code company-dabbrev company-ispell)))
-  :config
-  (global-company-mode)
+  ;; (setq company-backends '((company-files company-keywords company-capf company-dabbrev-code company-dabbrev company-ispell)))
+  :config (global-company-mode)
 
-;; (add-to-list 'company-backends 'company-yasnippet)
+  ;; (add-to-list 'company-backends 'company-yasnippet)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
+  ;; Use M-RET to accept completion and trigger LSP additional text edits (like auto-imports)
+  (define-key company-active-map (kbd "C-RET") 'company-complete-selection)
+  (define-key company-active-map (kbd "C-<return>") 'company-complete-selection)
   :bind ("C-<tab>" . 'company-complete-common-or-cycle)
-)
+  )
 ;; "aggressive" completion (no delays, quick feedback)
 (setq company-idle-delay 1
       company-echo-delay 0
@@ -665,14 +717,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package flyspell)
 (use-package flyspell-correct-helm
-   :bind ("C-M-;" . flyspell-correct-wrapper)
-   :defer t
-   :init
-   (progn
-     (add-hook 'prog-mode-hook 'flyspell-prog-mode)
-     (add-hook 'text-mode-hook 'flyspell-mode)
-   (setq flyspell-correct-interface #'flyspell-correct-helm)))
-;; TODO https://endlessparentheses.com/ispell-and-abbrev-the-perfect-auto-correct.html
+  :bind ("C-M-;" . flyspell-correct-wrapper)
+  :defer t
+  :init
+  (progn
+    (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+    (add-hook 'text-mode-hook 'flyspell-mode)
+    (setq flyspell-correct-interface #'flyspell-correct-helm)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -686,6 +737,11 @@
 
   :hook     ('org-mode-hook . org-autolist-mode)
   :init
+  ;; Set this to wherever your org files live:
+  (setq org-directory (expand-file-name "~/org"))
+  ;; Now it’s safe to derive paths from org-directory
+  (setq org-default-notes-file (expand-file-name "captured.org" org-directory))
+
 
   ;; add timestamp when closing as done
   (setq org-log-done 'time)
@@ -707,9 +763,9 @@
         org-edit-src-content-indentation 0)
 
   (setq org-todo-keywords
-      '((sequence "TODO(t)" "|" "DONE(d)")
-        (sequence "TO_READ(r)" "READING(g)" "|" "IS_READ(i)")
-        (sequence "|" "CANCELED(c)")))
+	'((sequence "TODO(t)" "|" "DONE(d)")
+          (sequence "TO_READ(r)" "READING(g)" "|" "IS_READ(i)")
+          (sequence "|" "CANCELED(c)")))
 
   ;; do not include validate link when exporting to html
   (setq org-html-validation-link nil)
@@ -737,52 +793,42 @@
    org-agenda-current-time-string
    "◀── now ─────────────────────────────────────────────────")
 
-  (progn
-    (setq org-agenda-files (directory-files-recursively "/Users/encodepanda/Dropbox/org" "\\.org$"))
-    (setq org-default-notes-file (concat org-directory "/captured.org"))
-    (add-hook 'org-mode-hook 'org-toggle-pretty-entities) ;; pretty math latex
   )
-)
 
-(defun insert-org-link-from-url ()
-  "Fetches the title of a webpage from a URL in the clipboard and inserts an org-mode link at point."
-  (interactive)
-  (let* ((url (substring-no-properties (current-kill 0)))
-         (buffer (url-retrieve-synchronously url))
-         title)
-    (with-current-buffer buffer
-      (goto-char (point-min))
-      (if (re-search-forward "<title>\\(.*?\\)</title>" nil t)
-          (setq title (match-string 1))
-        (setq title url)) ; Use URL as title if no title is found
-      (kill-buffer buffer))
-    (insert (format "[[%s][%s]]" url title))))
+
+(evil-leader/set-key
+  "olf" 'org-web-tools-insert-link-for-url
+  "ocr" 'org-refile
+  "occ" 'helm-org-capture-templates
+  "oa" 'org-agenda
+  "ow" 'helm-org-agenda-files-sets ;; set which org: private or work
+  )
 
 (use-package org-superstar
   :after    org
   :config   (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
            ;;; Titles and Sections
-           ;; hide #+TITLE:
-           (setq org-hidden-keywords '(title))
-           ;; set basic title font
-           (set-face-attribute 'org-level-8 nil :weight 'bold :inherit 'default)
-           ;; Low levels are unimportant => no scaling
-           (set-face-attribute 'org-level-7 nil :inherit 'org-level-8)
-           (set-face-attribute 'org-level-6 nil :inherit 'org-level-8)
-           (set-face-attribute 'org-level-5 nil :inherit 'org-level-8)
-           (set-face-attribute 'org-level-4 nil :inherit 'org-level-8)
-           ;; Top ones get scaled the same as in LaTeX (\large, \Large, \LARGE)
-           (set-face-attribute 'org-level-3 nil :inherit 'org-level-8 :height 1.0) ;\large
-           (set-face-attribute 'org-level-2 nil :inherit 'org-level-8 :height 1.2) ;\Large
-           (set-face-attribute 'org-level-1 nil :inherit 'org-level-8 :height 1.44) ;\LARGE
-           ;; Only use the first 4 styles and do not cycle.
-           (setq org-cycle-level-faces nil)
-           (setq org-n-level-faces 4)
-           ;; Document Title, (\huge)
-           (set-face-attribute 'org-document-title nil
-                               :height 2.074
-                               :foreground 'unspecified
-                               :inherit 'org-level-8)
+  ;; hide #+TITLE:
+  (setq org-hidden-keywords '(title))
+  ;; set basic title font
+  (set-face-attribute 'org-level-8 nil :weight 'bold :inherit 'default)
+  ;; Low levels are unimportant => no scaling
+  (set-face-attribute 'org-level-7 nil :inherit 'org-level-8)
+  (set-face-attribute 'org-level-6 nil :inherit 'org-level-8)
+  (set-face-attribute 'org-level-5 nil :inherit 'org-level-8)
+  (set-face-attribute 'org-level-4 nil :inherit 'org-level-8)
+  ;; Top ones get scaled the same as in LaTeX (\large, \Large, \LARGE)
+  (set-face-attribute 'org-level-3 nil :inherit 'org-level-8 :height 1.0) ;\large
+  (set-face-attribute 'org-level-2 nil :inherit 'org-level-8 :height 1.2) ;\Large
+  (set-face-attribute 'org-level-1 nil :inherit 'org-level-8 :height 1.44) ;\LARGE
+  ;; Only use the first 4 styles and do not cycle.
+  (setq org-cycle-level-faces nil)
+  (setq org-n-level-faces 4)
+  ;; Document Title, (\huge)
+  (set-face-attribute 'org-document-title nil
+                      :height 2.074
+                      :foreground 'unspecified
+                      :inherit 'org-level-8)
 
   )
 
@@ -790,30 +836,60 @@
   :after    org)
 
 ;; TODO use https://www.nongnu.org/org-edna-el/
+;; TODO build org-mode hydra
 
-;; Template expansion for Org structures
-;; User <s TAB to insert a source block
-(use-package org-tempo
-  :after    org)
+;; Define base directories and file extension pattern
+(defcustom org-agenda-base-dir "/Users/encodepanda/Dropbox/org"
+  "Base directory for general org files.")
+(defcustom work-agenda-base-dir "/Users/encodepanda/Dropbox/org-work"
+  "Base directory for work org files.")
+(defcustom org-agenda-file-pattern "\\.org$"
+  "File extension pattern for org files.")
 
-(setq org-agenda-files-org (directory-files-recursively "/Users/encodepanda/Dropbox/org" "\\.org$"))
-(setq org-agenda-files-work (directory-files-recursively "/Users/encodepanda/Dropbox/org-work" "\\.org$"))
+;; Generate file lists
+(setq org-agenda-files-org (directory-files-recursively org-agenda-base-dir org-agenda-file-pattern))
+(setq org-agenda-files-work (directory-files-recursively work-agenda-base-dir org-agenda-file-pattern))
 
+;; Define capture templates
+(setq org-capture-templates-private
+      '(("t" "Todo" entry (file+headline "~/org/capture.org" "Tasks")
+         "* TODO %?\n  %i")
+        ("d" "Diary" entry (file+datetree "~/org/diary.org")
+         "* %? %U")))
+
+(setq org-capture-templates-work
+      '(("t" "Todo" entry (file+headline "~/org-work/capture.org" "Capture")
+         "* TODO %?\n  %i")
+        ("p" "Plan" entry (file+datetree "~/org-work/plan.org")
+         "* TODO %?\n  %i\n  SCHEDULED: %t")
+        ("w" "Work log" entry (file+datetree "~/org-work/work-log.org")
+         "* %? %U")
+        ("m" "Meeting" entry (file+datetree "~/org-work/meetings.org")
+         "* %? %U")
+	))
+
+;; Function to switch org-agenda-files and capture templates set
 (defun switch-org-agenda-files-set (set-name)
-  (cond ((equal set-name "org") (setq org-agenda-files org-agenda-files-org))
-        ((equal set-name "work") (setq org-agenda-files org-agenda-files-work))
-        (t (error "Invalid set name"))))
+  (interactive)
+  (cond ((equal set-name "org")
+         (setq org-agenda-files org-agenda-files-org)
+         (setq org-capture-templates org-capture-templates-private))
+        ((equal set-name "work")
+         (setq org-agenda-files org-agenda-files-work)
+         (setq org-capture-templates org-capture-templates-work))
+        (t (error "Invalid set name: %s" set-name))))
 
+;; Helm source for selecting agenda file sets
 (defvar helm-source-org-agenda-files-sets
   (helm-build-sync-source "Org Agenda File Sets"
-    :candidates '("org" "opensource" "work")
+    :candidates '("org" "work")
     :action '(("Switch to set" . switch-org-agenda-files-set))))
 
+;; Helm function for switching org-agenda-files sets
 (defun helm-org-agenda-files-sets ()
   (interactive)
   (helm :sources 'helm-source-org-agenda-files-sets
         :buffer "*helm org agenda sets*"))
-
 
 (dolist (face '((org-level-1 . 1.2)
                 (org-level-2 . 1.1)
@@ -823,15 +899,15 @@
                 (org-level-6 . 1.1)
                 (org-level-7 . 1.1)
                 (org-level-8 . 1.1)))
-    )
+  )
 
 (org-babel-do-load-languages 'org-babel-load-languages
-    '(
-        (shell . t)
-        (dot . t)
-        (latex . t)
-    )
-)
+			     '(
+			       (shell . t)
+			       (dot . t)
+			       (latex . t)
+			       )
+			     )
 ;; TODO https://orgmode.org/worg/exporters/taskjuggler/ox-taskjuggler.html
 (use-package org-contrib)
 (use-package ox-reveal
@@ -840,14 +916,14 @@
   (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/2.5.0/")
   (setq org-reveal-hlevel 2)
   (setq org-reveal-control nil)
-)
+  )
 
 
 ;; autolist changes behaviour to more familiar one from non-programming editors
 ;; e.g hiting RET at the end of a list creats new entry in that list
 (use-package org-autolist
   :after org
-)
+  )
 
 ;; evil bindings
 ;; (use-package evil-org
@@ -860,31 +936,58 @@
 ;; bindings, todo use use-package
 
 (setq org-refile-targets '(
-   (nil :maxlevel . 2)             ; refile to headings in the current buffer
-   (org-agenda-files :maxlevel . 2) ; refile to any of these files
-   ))
+			   (nil :maxlevel . 2)             ; refile to headings in the current buffer
+			   (org-agenda-files :maxlevel . 2) ; refile to any of these files
+			   ))
 
-(setq org-capture-templates
- '(("t" "Todo" entry (file+headline "~/org/capture.org" "Tasks")
-    "* TODO %?\n  %i")
-   ("j" "JIRA" entry (file+headline "~/org/work/tripshot/issues.org" "JIRA issues")
-        "* TODO %?\n  %i\n  %a")
-   ("w" "Work log" entry (file+datetree "~/org/work/tripshot/diary.org")
-        "* %? %U")))
+
+(setq org-agenda-files org-agenda-files-org)
+(setq org-capture-templates org-capture-templates-private)
+
 
 (defun markdown-convert-buffer-to-org ()
-    "Convert the current buffer's content from markdown to orgmode format and save it with the current buffer's file name but with .org extension."
-    (interactive)
-    (shell-command-on-region (point-min) (point-max)
-                             (format "pandoc -f markdown -t org -o %s"
-                                     (concat (file-name-sans-extension (buffer-file-name)) ".org"))))
+  "Convert the current buffer's content from markdown to orgmode format and save it with the current buffer's file name but with .org extension."
+  (interactive)
+  (shell-command-on-region (point-min) (point-max)
+                           (format "pandoc -f markdown -t org -o %s"
+                                   (concat (file-name-sans-extension (buffer-file-name)) ".org"))))
 
 ;; add to eneeded to produce latex/pdf for org more
-;; TODO document software hat needs to be installed
 (if (eq window-system 'mac)
-   (add-to-list 'exec-path "/usr/local/texlive/2019/bin/x86_64-darwin")
-)
+    (add-to-list 'exec-path "/usr/local/texlive/2019/bin/x86_64-darwin")
+  )
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Rust
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun rust-cargo-add-crate ()
+  "Prompt for a crate name and run cargo add to add it to the project."
+  (interactive)
+  (let ((crate-name (read-string "Crate name: ")))
+    (when (and crate-name (not (string-empty-p crate-name)))
+      (let ((default-directory (projectile-project-root)))
+        (compile (concat "cargo add " crate-name))))))
+
+(major-mode-hydra-define rust-mode nil
+  ("Navigation"
+   (("f" rust-beginning-of-defun  "function beginning")
+    ("F" rust-end-of-defun  "function end")
+    )
+   "LSP"
+   (("e" lsp-rust-analyzer-expand-macro  "expand macro")
+    ("c" lsp-rust-analyzer-open-cargo-toml  "open Cargo.toml")
+    )
+   "Cargo"
+   (("a" rust-cargo-add-crate  "add crate")
+    )
+   ))
+
+(setq-default format-all-formatters '(("Rust" rustfmt)))
+
+
+;; TOOD https://github.com/bmillwood/pointfree
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Haskell
@@ -893,11 +996,11 @@
 ;; TOOD https://github.com/bmillwood/pointfree
 (use-package haskell-mode
   :init (setq haskell-stylish-on-save t)
-)
+  )
 
 ;; from function definition to body
 (fset 'haskell-function-body
-   (kmacro-lambda-form [?I escape ?v ?i ?w ?y ?o backspace backspace escape ?p ?a ?  ?= ?  ?q backspace escape] 0 "%d"))
+      (kmacro-lambda-form [?I escape ?v ?i ?w ?y ?o backspace backspace escape ?p ?a ?  ?= ?  ?q backspace escape] 0 "%d"))
 (define-key haskell-mode-map (kbd "C-c f") 'haskell-function-body)
 
 ;; apply-refactor for hlint hints
@@ -956,7 +1059,7 @@
   :mode "\\.nix\\'")
 (use-package nixpkgs-fmt)
 ;; format all nix files on save
-(add-hook 'nix-mode-hook 'nixpkgs-fmt-on-save-mode)
+;; (add-hook 'nix-mode-hook 'nixpkgs-fmt-on-save-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -1026,8 +1129,8 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package direnv
- :config
- (direnv-mode))
+  :config
+  (direnv-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -1057,12 +1160,12 @@
           ;; programming
           ("https://www.reddit.com/r/haskell.rss" haskell)
           ("https://www.reddit.com/r/emacs.rss" emacs)
-  	)
-  )
+  	  )
+	)
   (setq-default elfeed-search-filter "@2-days-ago +unread")
   (setq-default elfeed-search-title-max-width 100)
   (setq-default elfeed-search-title-min-width 100)
-)
+  )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1089,8 +1192,19 @@
 ;; highlight
 (use-package highlight-symbol)
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
-;; remove whitespaces at the end of the line
+;; delete trailing whitespace
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(defun toggle-delete-trailing-whitespace ()
+  (interactive)
+  (if (member #'delete-trailing-whitespace before-save-hook)
+      (progn
+        (remove-hook 'before-save-hook #'delete-trailing-whitespace)
+        (message "delete-trailing-whitespace disabled"))
+    (add-hook 'before-save-hook #'delete-trailing-whitespace)
+    (message "delete-trailing-whitespace enabled")))
+
+
 
 (use-package multiple-cursors)
 (global-set-key (kbd "C-s-c C-s-c") 'mc/edit-lines)
@@ -1133,7 +1247,7 @@
   "cv" 'evilnc-toggle-invert-comment-line-by-line
   "."  'evilnc-copy-and-comment-operator
   "\\" 'evilnc-comment-operator ; if you prefer backslash key
-)
+  )
 
 (use-package evil-surround
   :ensure t
@@ -1177,50 +1291,62 @@
 ;; Turn off LSP for a project: M-x lsp-disconnect
 ;; -----------------------------------------------------------------------------
 (use-package lsp-mode      :commands    lsp
-                           :hook        (lsp-mode . lsp-enable-which-key-integration)
-                           ;; :hook        (haskell-mode . lsp)
-                           :custom      (lsp-prefer-flymake nil)
-                           :config      (push "[/\\\\]\\.stack-work\\'" lsp-file-watch-ignored-directories)
-                                        (push "[/\\\\]\\.dist-newstyle\\'" lsp-file-watch-ignored-directories)
-                                        (advice-add 'lsp :before #'direnv-update-environment)
-                                        (setq gc-cons-threshold 100000000)
-                                        (setq read-process-output-max (* 1024 1024)))
-                                        (setq read-process-output-max (* 1024 1024)) ;; 1mb
+  :hook        (lsp-mode . lsp-enable-which-key-integration)
+  :hook        (haskell-mode . lsp)
+  :hook        (rust-mode . lsp-deferred)
+
+  :custom      (lsp-prefer-flymake nil)
+  :config      (push "[/\\\\]\\.stack-work\\'" lsp-file-watch-ignored-directories)
+  (push "[/\\\\]\\.dist-newstyle\\'" lsp-file-watch-ignored-directories)
+  (push "[/\\\\]\\.dist-newstyle\\'" lsp-file-watch-ignored-directories)
+  (advice-add 'lsp :before #'direnv-update-environment)
+  (setq gc-cons-threshold 100000000)
+  (setq read-process-output-max (* 1024 1024))
+  ;; Enable auto-import on completion
+  (setq lsp-completion-enable-additional-text-edit t)
+  )
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 ;; -----------------------------------------------------------------------------
 (use-package lsp-haskell)
 ;; -----------------------------------------------------------------------------
+;; Rust-analyzer specific configuration
+(with-eval-after-load 'lsp-mode
+  (setq lsp-rust-analyzer-completion-add-call-parenthesis t)
+  ;; rust-analyzer expects cargo.extraEnv to be a JSON object/map
+  (setq lsp-rust-analyzer-cargo-extra-env (make-hash-table :test 'equal))
+  (setq lsp-rust-analyzer-completion-add-call-argument-snippets t))
+
+;; -----------------------------------------------------------------------------
 (use-package lsp-ui        :hook        (lsp-mode . lsp-ui-mode)
-                           :custom      (lsp-ui-doc-header t)
-                                        (lsp-ui-doc-include-signature t)
-                                        (lsp-ui-doc-position 'at-point))
+  :custom      (lsp-ui-doc-header t)
+  (lsp-ui-doc-include-signature t)
+  (lsp-ui-doc-position 'at-point))
 ;; -----------------------------------------------------------------------------
 
-(defun haskell-lsp-enable ()
-  "Enable lsp-mode for Haskell buffers and start LSP in the current buffer."
-  (interactive)
-  (message "Enabling lsp-mode for Haskell...")
-  (add-hook 'haskell-mode-hook #'lsp)
-  (unless (bound-and-true-p lsp-mode)
-    (lsp)))  ;; Start LSP in the current buffer if not already running
+(with-eval-after-load 'lsp-ui-doc
 
-(defun haskell-lsp-disable ()
-  "Disable lsp-mode for Haskell buffers and disconnect LSP in the current buffer."
-  (interactive)
-  (message "Disabling lsp-mode for Haskell...")
-  (remove-hook 'haskell-mode-hook #'lsp)
-  (when (bound-and-true-p lsp-mode)
-    (lsp-disconnect)))  ;; Properly disconnect LSP if it's running
+  (defun my/lsp-ui-doc-unfocus-and-hide ()
+    "Unfocus lsp-ui-doc child frame and hide it."
+    (interactive)
+    (when (fboundp 'lsp-ui-doc-unfocus-frame)
+      (lsp-ui-doc-unfocus-frame))
+    (cond
+     ((fboundp 'lsp-ui-doc-hide) (lsp-ui-doc-hide))
+     (t                          (lsp-ui-doc-toggle))))
+  )
 
 (evil-leader/set-key
-  "lr" 'lsp-workspace-restart
-  "la" 'helm-lsp-code-actions
-  "lj" 'lsp-find-definition
-  "lug" 'lsp-ui-doc-glance
-  "lur" 'lsp-ui-peek-find-references
-  "ls" 'haskell-lsp-enable
-  "lS" 'haskell-lsp-disable)
-
+  "lr"  'lsp-rename
+  "la"  'helm-lsp-code-actions
+  "ll"  'lsp-avy-lens
+  "ldg" 'lsp-ui-doc-glance
+  "ldf" 'lsp-ui-doc-focus-frame
+  "ldu" 'lsp-ui-doc-unfocus-and-hide
+  "lfr" 'lsp-ui-peek-find-references
+  "lfi" 'lsp-ui-peek-find-implementation
+  "lfd" 'lsp-find-definition
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -1232,11 +1358,39 @@
 (setq display-time-world-list
       '(("Europe/London"                    "London - UK")
         ("Europe/Warsaw"                    "Warsaw - PL")
+        ("America/Los_Angeles"              "Los Angeles")
+	("America/Denver"                   "Denver")
         ("Australia/Canberra"               "Canberra - AU")))
 
 (use-package helpful)
 
 ;; TODO create hydra for helpful
+
+
+
+(use-package pulsar
+  :hook     ('next-error-hook . 'pulsar-pulse-line))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; AI, Agents and LLMs
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; TODO https://github.com/douo/magit-gptcommit
+;; seems very powerful https://github.com/lanceberge/elysium
+
+;; Copilot
+(use-package copilot)
+
+(add-hook 'rust-mode-hook 'copilot-mode)
+(add-hook 'haskell-mode-hook 'copilot-mode)
+
+(define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion-by-word)
+(define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion-by-word)
+(define-key copilot-completion-map (kbd "C-<tab>") 'copilot-accept-completion)
+(define-key copilot-completion-map (kbd "C-TAB") 'copilot-accept-completion)
+(define-key copilot-completion-map (kbd "C-l") 'copilot-accept-completion-by-line)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1252,4 +1406,20 @@
 ;; https://github.com/atykhonov/google-translate
 ;; https://github.com/Malabarba/emacs-google-this
 ;; https://github.com/dgutov/diff-hl
+;; https://www.reddit.com/r/emacs/comments/18da57j/evil_mode_how_to_move_lines_up_and_down_in_visual/
+;; drag-stuff
+;; https://prelude.emacsredux.com/en/latest/ - steal packages they use :)
 ;;
+;; https://github.com/akicho8/string-inflection - jump between cases
+;; https://ryan.himmelwright.net/post/org-babel-setup/ org-mode configuration
+;; https://github.com/gopar/.emacs.d cool inspiration
+;;
+;; Emcas as Postgres IDE:
+;;
+;; * https://emacs-lsp.github.io/lsp-mode/page/lsp-sqls/ and
+;; * https://emacs-lsp.github.io/lsp-mode/page/lsp-sqls/
+;;
+;; Another amazing source of inspiration https://github.com/MatthewZMD/.emacs.d
+;;
+;; AI agents
+;; * https://www.tabnine.com/
