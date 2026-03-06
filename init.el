@@ -202,8 +202,31 @@
   (setq moe-dark-comment -moe-dark-doc)
   (load-theme 'moe-dark t))
 
-;; allows quick theme change
-(use-package helm-themes)
+;; allows quick theme change (helm-themes was removed from melpa,
+;; so we use helm directly to pick themes)
+(defun helm-themes--load (theme)
+  "Disable current themes then load THEME."
+  (mapc 'disable-theme custom-enabled-themes)
+  (unless (string= theme "default")
+    (load-theme (intern theme) t)))
+
+(defun helm-themes--candidates ()
+  "Return list of available themes with `default' on the head."
+  (cons 'default (custom-available-themes)))
+
+(defun helm-choose-theme ()
+  "Choose a theme interactively using helm."
+  (interactive)
+  (let (helm-candidate-number-limit
+        (orig-theme (or (car-safe custom-enabled-themes) 'default)))
+    (unless (helm :prompt (format "pattern (current theme: %s): " orig-theme)
+                  :preselect (format "%s$" orig-theme)
+                  :sources (helm-build-sync-source "Theme"
+                             :candidates 'helm-themes--candidates
+                             :action 'helm-themes--load
+                             :persistent-action 'helm-themes--load)
+                  :buffer "*helm-themes*")
+      (helm-themes--load (symbol-name orig-theme)))))
 
 ;; zoom in/out a.k.a presentation mode, this used to be part of melpa but not
 ;; anymore thus is now part of this repo
@@ -277,7 +300,7 @@
     )
 
    "Other"
-   (("t" helm-themes "theme switch")
+   (("t" helm-choose-theme "theme switch")
     ("l" clm/open-command-log-buffer "log commands buffer")
     )
    ))
