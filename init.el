@@ -335,8 +335,6 @@
   )
 (projectile-global-mode 1)
 (use-package helm-projectile) ;; integrate helm with projectile
-(use-package ag)              ;; search using ag (silversearch)
-(use-package helm-ag)         ;; helm integration with ag
 
 
 (defun my-compilation-buffer-colorize ()
@@ -345,6 +343,11 @@
 
 (add-hook 'compilation-filter-hook #'my-compilation-buffer-colorize)
 
+(defun helm-do-grep-ag-in-directory ()
+  "Prompt for a directory, then run helm-do-grep-ag there."
+  (interactive)
+  (let ((default-directory (read-directory-name "Search in directory: ")))
+    (helm-do-grep-ag nil)))
 
 (defun helm-projectile-git-modified-files ()
   "Helm over Git modified (staged + unstaged) files in current Projectile project."
@@ -380,9 +383,8 @@
   "pp" 'helm-projectile-find-file         ;; all project files
   "pf" 'helm-projectile-recentf           ;; project recently opened buffers
   "pr" 'projectile-replace                ;; replace occurances in whole project
-  "pg" 'helm-do-ag-project-root           ;; grap content in the project
-  "pG" 'helm-do-ag                        ;; grap content in the project
-  ;; but you specify the folder
+  "pg" 'helm-projectile-ag                ;; grep content in the project
+  "pG" 'helm-do-grep-ag-in-directory      ;; grep content in a prompted directory
   "ps" 'projectile-save-project-buffers   ;; save all buffers in the project
   "ph" 'helm-projectile-switch-project    ;; switch to known project
   "pn" 'open-new-project                  ;; open new project by name
