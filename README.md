@@ -18,6 +18,12 @@ ln -s ~/projects/my_emacs_d/my_snippets ~/.emacs.d/my_snippets
 ln -s ~/projects/my_emacs_d/logo.png ~/.emacs.d/logo.png
 ```
 
+After launching Emacs for the first time, install the icon fonts used by dired:
+
+```
+M-x all-the-icons-install-fonts
+```
+
 Also install Silver Search on your machine https://github.com/ggreer/the_silver_searcher
 
 Also install mactex for Mac OS
