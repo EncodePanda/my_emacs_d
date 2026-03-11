@@ -1073,6 +1073,7 @@
    (("h" hoogle "hoogle"))))
 (use-package flymake-hlint)
 (add-hook 'haskell-mode-hook 'flymake-hlint-load)
+(make-directory "~/.emacs.d/tmp/" t)
 (setq temporary-file-directory "~/.emacs.d/tmp/")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
