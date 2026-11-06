@@ -1012,6 +1012,21 @@
 (setq-default format-all-formatters '(("Rust" rustfmt)))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Go
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LSP for Go uses the `gopls` server (built into lsp-mode). Install it with:
+;;   go install golang.org/x/tools/gopls@latest
+;; and make sure it is on your PATH. The lsp hook is registered in the lsp-mode
+;; use-package block above.
+;; Go files use literal tabs (gofmt insists), but `tab-width' only affects how
+;; wide a tab is displayed - the files on disk are unchanged.
+(use-package go-mode
+  :hook (go-mode . (lambda () (setq tab-width 2))))
+
+
 ;; TOOD https://github.com/bmillwood/pointfree
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -1320,6 +1335,7 @@
   :hook        (lsp-mode . lsp-enable-which-key-integration)
   :hook        (haskell-mode . lsp)
   :hook        (rust-mode . lsp-deferred)
+  :hook        (go-mode . lsp-deferred)
 
   :custom      (lsp-prefer-flymake nil)
   :config      (push "[/\\\\]\\.stack-work\\'" lsp-file-watch-ignored-directories)
@@ -1411,6 +1427,8 @@
 
 (add-hook 'rust-mode-hook 'copilot-mode)
 (add-hook 'haskell-mode-hook 'copilot-mode)
+(add-hook 'go-mode-hook 'copilot-mode)
+(add-hook 'python-mode-hook 'copilot-mode)
 
 (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion-by-word)
 (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion-by-word)
