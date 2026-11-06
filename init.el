@@ -529,10 +529,13 @@
   :config (eyebrowse-mode t)
   )
 
-(use-package eyebrowse-restore
-  :ensure t
-  :config
-  (eyebrowse-restore-mode))
+;; Persist eyebrowse slots across restarts.  Eyebrowse keeps its slots
+;; as frame parameters, and desktop.el saves frames (with their
+;; parameters) plus the open buffers to ~/.emacs.d/.emacs.desktop on
+;; exit and periodically while idle.  `desktop-save' set to t skips the
+;; "Save desktop?" prompt on the first exit.
+(setq desktop-save t)
+(desktop-save-mode 1)
 
 ;; Define a Helm source for Eyebrowse
 (defun helm-eyebrowse-source ()
