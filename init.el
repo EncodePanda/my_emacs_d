@@ -41,6 +41,11 @@
 ;; repository if is not available locally
 (setq use-package-always-ensure t)
 
+
+(unless (package-installed-p 'vc-use-package)
+  (package-vc-install "https://github.com/slotThe/vc-use-package"))
+(require 'vc-use-package)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Mac / OSX specific configuration
@@ -1436,6 +1441,16 @@
 (define-key copilot-completion-map (kbd "C-TAB") 'copilot-accept-completion)
 (define-key copilot-completion-map (kbd "C-l") 'copilot-accept-completion-by-line)
 
+;; Claude Code IDE
+
+
+(use-package vterm)
+
+(use-package claude-code-ide
+  :vc (:fetcher github :repo manzaltu/claude-code-ide.el)
+  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+  :config
+  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
